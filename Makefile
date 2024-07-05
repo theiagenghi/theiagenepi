@@ -3,7 +3,8 @@ SHELL := /bin/bash
 ### DOCKER ENVIRONMENTAL VARS #################################################
 export DOCKER_BUILDKIT:=1
 export COMPOSE_DOCKER_CLI_BUILD:=1
-export docker_compose:=docker compose --env-file .env.ecr
+# export docker_compose:=docker compose --env-file .env.ecr
+export docker_compose:=docker compose
 export AWS_DEV_PROFILE=genepi-dev
 export AWS_PROD_PROFILE=genepi-prod
 export BACKEND_APP_ROOT=/usr/src/app
@@ -62,6 +63,8 @@ local-hostconfig:
 local-nohostconfig:
 	sudo happy hosts uninstall
 
+# .PHONY: certificate_pfx
+# certificate_pfx: oauth/pkcs12/certificate.pfx
 oauth/pkcs12/certificate.pfx:
 	# All calls to the openssl cli happen in the oidc-server-mock container.
 	@echo "Generating certificates for local dev"
@@ -112,8 +115,9 @@ init-empty-db:
 
 
 .PHONY: local-init
-local-init: oauth/pkcs12/certificate.pfx .env.ecr local-ecr-login local-hostconfig ## Launch a new local dev env and populate it with test data.
-	$(docker_compose) pull database
+# local-init: oauth/pkcs12/certificate.pfx .env.ecr local-ecr-login local-hostconfig ## Launch a new local dev env and populate it with test data.
+local-init: oauth/pkcs12/certificate.pfx ## Launch a new local dev env and populate it with test data.
+	# $(docker_compose) pull database
 	$(docker_compose) --profile $(LOCALDEV_PROFILE) up -d
 	# Wait for psql to be up
 	while [ -z "$$($(docker_compose) exec -T database psql $(LOCAL_DB_CONN_STRING) -c 'select 1')" ]; do echo "waiting for db to start..."; sleep 1; done;

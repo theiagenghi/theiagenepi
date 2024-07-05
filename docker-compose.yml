@@ -1,8 +1,7 @@
-version: "3.8"
-
+# version: "3.8" #obsolete
 services:
   database:
-    image: "${DOCKER_REPO}genepi-devdb:latest"
+    image: "postgres:12"
     profiles: [ "backend", "web", "gisaid", "all" ]
     platform: linux/amd64
     ports:
@@ -23,13 +22,13 @@ services:
         aliases:
           - database.genepinet.localdev
   frontend:
-    image: "${DOCKER_REPO}genepi-frontend"
+    image: "genepi-frontend"
     profiles: [ "frontend", "web", "all" ]
     platform: linux/amd64
     build:
       context: src/frontend
-      cache_from:
-        - "${DOCKER_REPO}genepi-frontend:branch-trunk"
+      # cache_from:
+      #   - "genepi-frontend:branch-trunk"
       args:
         - BUILDKIT_INLINE_CACHE=1
         - HAPPY_COMMIT
@@ -54,13 +53,14 @@ services:
         aliases:
           - frontend.genepinet.localdev
   backend:
-    image: "${DOCKER_REPO}genepi-backend"
+    image: "genepi-backend"
     profiles: [ "backend", "web", "gisaid", "all" ]
     platform: linux/amd64
     build:
       context: src/backend
-      cache_from:
-        - "${DOCKER_REPO}genepi-backend:branch-trunk"
+      dockerfile: Dockerfile.backend
+      # cache_from:
+      #   - "genepi-backend:branch-trunk"
       args:
         - BUILDKIT_INLINE_CACHE=1
     restart: always
@@ -105,7 +105,7 @@ services:
   localstack:
     platform: linux/amd64
     image: localstack/localstack:0.13.0
-    profiles: [ "backend", "web", "gisaid", "all" ]
+    profiles: [ "backend", "web", "gisaid", "all", "localstack" ]
     ports:
       - "4566:4566"
       - "8083:8083"
@@ -156,14 +156,14 @@ services:
         aliases:
           - oidc.genepinet.localdev
   gisaid:
-    image: "${DOCKER_REPO}genepi-gisaid"
+    image: "genepi-gisaid"
     profiles: [ "gisaid", "jobs", "all" ]
     platform: linux/amd64
     build:
       context: src/backend/
       dockerfile: Dockerfile.gisaid
-      cache_from:
-        - "${DOCKER_REPO}genepi-gisaid:branch-trunk"
+      # cache_from:
+      #   - "genepi-gisaid:branch-trunk"
       args:
         - BUILDKIT_INLINE_CACHE=1
         - HAPPY_COMMIT
@@ -182,14 +182,14 @@ services:
         aliases:
           - gisaid.genepinet.localdev
   pangolin:
-    image: "${DOCKER_REPO}genepi-pangolin"
+    image: "genepi-pangolin"
     profiles: [ "pangolin", "jobs", "all" ]
     platform: linux/amd64
     build:
       context: src/backend
       dockerfile: Dockerfile.pangolin
-      cache_from:
-        - "${DOCKER_REPO}genepi-pangolin:branch-trunk"
+      # cache_from:
+      #   - "genepi-pangolin:branch-trunk"
       args:
         - BUILDKIT_INLINE_CACHE=1
     environment:
@@ -212,14 +212,14 @@ services:
     volumes:
       - ./src/backend:/usr/src/app
   lineage_qc:
-    image: "${DOCKER_REPO}genepi-lineage-qc"
+    image: "genepi-lineage-qc"
     profiles: [ "lineage_qc", "jobs", "all" ]
     platform: linux/amd64
     build:
       context: src/backend
       dockerfile: Dockerfile.lineage_qc
-      cache_from:
-        - "${DOCKER_REPO}genepi-lineage-qc:branch-trunk"
+      # cache_from:
+      #   - "genepi-lineage-qc:branch-trunk"
       args:
         - BUILDKIT_INLINE_CACHE=1
     environment:
@@ -242,14 +242,14 @@ services:
     volumes:
       - ./src/backend:/usr/src/app
   nextstrain:
-    image: "${DOCKER_REPO}genepi-nextstrain"
+    image: "genepi-nextstrain"
     profiles: [ "nextstrain", "jobs", "all" ]
     platform: linux/amd64
     build:
       context: src/backend
       dockerfile: Dockerfile.nextstrain
-      cache_from:
-        - "${DOCKER_REPO}genepi-nextstrain:branch-trunk"
+      # cache_from:
+      #   - "genepi-nextstrain:branch-trunk"
       args:
         - BUILDKIT_INLINE_CACHE=1
     environment:
@@ -275,7 +275,7 @@ services:
 networks:
   genepinet:
     name: genepinet
-    driver: overlay
+    driver: bridge
     attachable: true
 volumes:
   localstack:

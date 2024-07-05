@@ -9,7 +9,7 @@ if [ -n "${CI}" ]; then
 	PROFILE=""
 fi
 # Fetch some additional data from real-aws to populate in our fake-aws secret.
-EXTRA_SECRETS=$(aws ${PROFILE} secretsmanager get-secret-value --secret-id localdev/genepi-config-secrets --query SecretString --output text)
+# EXTRA_SECRETS=$(aws ${PROFILE} secretsmanager get-secret-value --secret-id localdev/genepi-config-secrets --query SecretString --output text)
 
 export AWS_REGION=us-west-2
 export AWS_DEFAULT_REGION=us-west-2
@@ -41,16 +41,21 @@ until curl -m 1 -sk $OIDC_BROWSER_URL/.well-known/openid-configuration; do
 done
 
 
-ONETRUST_FRONTEND_KEY=$(jq -c .ONETRUST_FRONTEND_KEY <<< "${EXTRA_SECRETS}")
-PLAUSIBLE_FRONTEND_KEY=$(jq -c .PLAUSIBLE_FRONTEND_KEY <<< "${EXTRA_SECRETS}")
-AUTH0_MANAGEMENT_CLIENT_ID=$(jq -c .AUTH0_MANAGEMENT_CLIENT_ID <<< "${EXTRA_SECRETS}")
-AUTH0_MANAGEMENT_CLIENT_SECRET=$(jq -c .AUTH0_MANAGEMENT_CLIENT_SECRET <<< "${EXTRA_SECRETS}")
-AUTH0_MANAGEMENT_DOMAIN=$(jq -c .AUTH0_MANAGEMENT_DOMAIN <<< "${EXTRA_SECRETS}")
+# ONETRUST_FRONTEND_KEY=$(jq -c .ONETRUST_FRONTEND_KEY <<< "${EXTRA_SECRETS}")
+# PLAUSIBLE_FRONTEND_KEY=$(jq -c .PLAUSIBLE_FRONTEND_KEY <<< "${EXTRA_SECRETS}")
+# AUTH0_MANAGEMENT_CLIENT_ID=$(jq -c .AUTH0_MANAGEMENT_CLIENT_ID <<< "${EXTRA_SECRETS}")
+# AUTH0_MANAGEMENT_CLIENT_SECRET=$(jq -c .AUTH0_MANAGEMENT_CLIENT_SECRET <<< "${EXTRA_SECRETS}")
+# AUTH0_MANAGEMENT_DOMAIN=$(jq -c .AUTH0_MANAGEMENT_DOMAIN <<< "${EXTRA_SECRETS}")
+ONETRUST_FRONTEND_KEY="nonce"
+PLAUSIBLE_FRONTEND_KEY="nonce"
+***REMOVED***
+***REMOVED***
+***REMOVED***
 echo "Creating secretsmanager secrets"
 local_aws="aws --no-paginate --endpoint-url=${LOCALSTACK_URL}"
-${local_aws} secretsmanager create-secret --name genepi-config &> /dev/null || true
+awslocal secretsmanager create-secret --name genepi-config &> /dev/null || true
 # AUSPICE_MAC_KEY is just the result of urlsafe_b64encode(b'auspice-mac-key')
-${local_aws} secretsmanager update-secret --secret-id genepi-config --secret-string '{
+awslocal secretsmanager update-secret --secret-id genepi-config --secret-string '{
   "AUSPICE_MAC_KEY": "YXVzcGljZS1tYWMta2V5",
   "AUTH0_CLIENT_ID": "local-client-id",
   "AUTH0_CALLBACK_URL": "'"${BACKEND_URL}"'/callback",
@@ -63,26 +68,26 @@ ${local_aws} secretsmanager update-secret --secret-id genepi-config --secret-str
   "AUTH0_CLIENT_KWARGS": {"scope": "openid profile email offline_access"},
   "FLASK_SECRET": "DevelopmentKey",
   "SPLIT_BACKEND_KEY": "localhost",
-  "DB_rw_username": "user_rw",
-  "DB_rw_password": "password_rw",
+  "DB_rw_username": "postgres",
+  "DB_rw_password": "password_postgres",
   "DB_address": "database.genepinet.localdev",
   "S3_external_auspice_bucket": "genepi-external-auspice-data",
   "S3_db_bucket": "genepi-db-data",
-  "ONETRUST_FRONTEND_KEY": '"${ONETRUST_FRONTEND_KEY}"',
-  "PLAUSIBLE_FRONTEND_KEY": '"${PLAUSIBLE_FRONTEND_KEY}"',
-  "AUTH0_MANAGEMENT_CLIENT_ID": '"${AUTH0_MANAGEMENT_CLIENT_ID}"',
-  "AUTH0_MANAGEMENT_CLIENT_SECRET": '"${AUTH0_MANAGEMENT_CLIENT_SECRET}"',
-  "AUTH0_MANAGEMENT_DOMAIN": '"${AUTH0_MANAGEMENT_DOMAIN}"'
-}' || true
+  "ONETRUST_FRONTEND_KEY": "'"${ONETRUST_FRONTEND_KEY}"'",
+  "PLAUSIBLE_FRONTEND_KEY": "'"${PLAUSIBLE_FRONTEND_KEY}"'",
+  "AUTH0_MANAGEMENT_CLIENT_ID": "'"${AUTH0_MANAGEMENT_CLIENT_ID}"'",
+  "AUTH0_MANAGEMENT_CLIENT_SECRET": "'"${AUTH0_MANAGEMENT_CLIENT_SECRET}"'",
+  "AUTH0_MANAGEMENT_DOMAIN": "'"${AUTH0_MANAGEMENT_DOMAIN}"'"
+}'
 
-${local_aws} secretsmanager create-secret --name gisaid-download-credentials &> /dev/null || true
-${local_aws} secretsmanager update-secret --secret-id gisaid-download-credentials --secret-string '{
+awslocal secretsmanager create-secret --name gisaid-download-credentials &> /dev/null || true
+awslocal secretsmanager update-secret --secret-id gisaid-download-credentials --secret-string '{
   "username": "foo",
   "password": "bar"
-}' || true
+}'
 
 echo "Creating IAM role"
-${local_aws} iam create-role --role-name sfnrole --assume-role-policy-document '{
+awslocal iam create-role --role-name sfnrole --assume-role-policy-document '{
   "Version": "2012-10-17",
   "Statement": [
     {
@@ -96,15 +101,15 @@ ${local_aws} iam create-role --role-name sfnrole --assume-role-policy-document '
 }'
 
 echo "Creating SFN"
-${local_aws} stepfunctions create-state-machine --name swipe-sfn --role-arn arn:aws:iam::000000000000:role/sfnrole --definition '{"Comment":"SWIPE single-wdl pipeline entry point","StartAt":"PreprocessInput","States":{"HandleFailure":{"End":true,"OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-handle-failure","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"HandleSuccess":{"End":true,"OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-handle-success","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"PreprocessInput":{"Next":"RunSPOT","OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-preprocess-input","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"RunDetectError":{"Choices":[{"Next":"RunEC2","StringMatches":"Host EC2 (instance i-*) terminated.","Variable":"$.BatchJobError.RunSPOT.Cause.StatusReason"}],"Default":"RunReadOutput","Type":"Choice"},"RunEC2":{"Catch":[{"ErrorEquals":["States.ALL"],"Next":"RunReadOutput","ResultPath":"$.BatchJobError.RunEC2"}],"Next":"RunReadOutput","Parameters":{"ContainerOverrides":{"Environment":[{"Name":"AWS_DEFAULT_REGION","Value":"us-west-2"},{"Name":"REMOTE_DEV_PREFIX","Value":"/sfn-exec"},{"Name":"DEPLOYMENT_STAGE","Value":"rdev"},{"Name":"WDL_INPUT_URI","Value.$":"$.RUN_INPUT_URI"},{"Name":"WDL_WORKFLOW_URI","Value.$":"$.RUN_WDL_URI"},{"Name":"WDL_OUTPUT_URI","Value.$":"$.RUN_OUTPUT_URI"},{"Name":"SFN_EXECUTION_ID","Value.$":"$$.Execution.Id"},{"Name":"SFN_CURRENT_STATE","Value.$":"$$.State.Name"}],"Memory.$":"$.RunEC2Memory","Vcpus.$":"$.RunEC2Vcpu"},"JobDefinition":"aspen-rdev-sfn-exec-swipe","JobName.$":"$$.Execution.Name","JobQueue":"arn:aws:batch:us-west-2:000000000000:job-queue/rdev-aspen-batch-EC2","Timeout":{"AttemptDurationSeconds":54000}},"Resource":"arn:aws:states:::batch:submitJob.sync","ResultPath":"$.BatchJobDetails.Run","Retry":[{"BackoffRate":2,"ErrorEquals":["Batch.AWSBatchException"],"IntervalSeconds":15,"MaxAttempts":3}],"Type":"Task"},"RunGetCause":{"Next":"RunDetectError","Parameters":{"Cause.$":"States.StringToJson($.BatchJobError.RunSPOT.Cause)"},"ResultPath":"$.BatchJobError.RunSPOT","Type":"Pass"},"RunReadOutput":{"Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleFailure"}],"Next":"HandleSuccess","OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-process-stage-output","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"RunSPOT":{"Catch":[{"ErrorEquals":["States.ALL"],"Next":"RunGetCause","ResultPath":"$.BatchJobError.RunSPOT"}],"Next":"RunReadOutput","Parameters":{"ContainerOverrides":{"Environment":[{"Name":"AWS_DEFAULT_REGION","Value":"us-west-2"},{"Name":"REMOTE_DEV_PREFIX","Value":"/sfn-exec"},{"Name":"DEPLOYMENT_STAGE","Value":"rdev"},{"Name":"WDL_INPUT_URI","Value.$":"$.RUN_INPUT_URI"},{"Name":"WDL_WORKFLOW_URI","Value.$":"$.RUN_WDL_URI"},{"Name":"WDL_OUTPUT_URI","Value.$":"$.RUN_OUTPUT_URI"},{"Name":"SFN_EXECUTION_ID","Value.$":"$$.Execution.Id"},{"Name":"SFN_CURRENT_STATE","Value.$":"$$.State.Name"}],"Memory.$":"$.RunSPOTMemory","Vcpus.$":"$.RunSPOTVcpu"},"JobDefinition":"aspen-rdev-sfn-exec-swipe","JobName.$":"$$.Execution.Name","JobQueue":"arn:aws:batch:us-west-2:000000000000:job-queue/rdev-aspen-batch-SPOT","Timeout":{"AttemptDurationSeconds":54000}},"Resource":"arn:aws:states:::batch:submitJob.sync","ResultPath":"$.BatchJobDetails.Run","Retry":[{"BackoffRate":2,"ErrorEquals":["Batch.AWSBatchException"],"IntervalSeconds":15,"MaxAttempts":3}],"Type":"Task"}},"TimeoutSeconds":259200}'
-LOCAL_SFN_ARN=$(${local_aws} stepfunctions list-state-machines | jq '.stateMachines | .[0] | .stateMachineArn')
+awslocal stepfunctions create-state-machine --name swipe-sfn --role-arn arn:aws:iam::000000000000:role/sfnrole --definition '{"Comment":"SWIPE single-wdl pipeline entry point","StartAt":"PreprocessInput","States":{"HandleFailure":{"End":true,"OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-handle-failure","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"HandleSuccess":{"End":true,"OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-handle-success","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"PreprocessInput":{"Next":"RunSPOT","OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-preprocess-input","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"RunDetectError":{"Choices":[{"Next":"RunEC2","StringMatches":"Host EC2 (instance i-*) terminated.","Variable":"$.BatchJobError.RunSPOT.Cause.StatusReason"}],"Default":"RunReadOutput","Type":"Choice"},"RunEC2":{"Catch":[{"ErrorEquals":["States.ALL"],"Next":"RunReadOutput","ResultPath":"$.BatchJobError.RunEC2"}],"Next":"RunReadOutput","Parameters":{"ContainerOverrides":{"Environment":[{"Name":"AWS_DEFAULT_REGION","Value":"us-west-2"},{"Name":"REMOTE_DEV_PREFIX","Value":"/sfn-exec"},{"Name":"DEPLOYMENT_STAGE","Value":"rdev"},{"Name":"WDL_INPUT_URI","Value.$":"$.RUN_INPUT_URI"},{"Name":"WDL_WORKFLOW_URI","Value.$":"$.RUN_WDL_URI"},{"Name":"WDL_OUTPUT_URI","Value.$":"$.RUN_OUTPUT_URI"},{"Name":"SFN_EXECUTION_ID","Value.$":"$$.Execution.Id"},{"Name":"SFN_CURRENT_STATE","Value.$":"$$.State.Name"}],"Memory.$":"$.RunEC2Memory","Vcpus.$":"$.RunEC2Vcpu"},"JobDefinition":"aspen-rdev-sfn-exec-swipe","JobName.$":"$$.Execution.Name","JobQueue":"arn:aws:batch:us-west-2:000000000000:job-queue/rdev-aspen-batch-EC2","Timeout":{"AttemptDurationSeconds":54000}},"Resource":"arn:aws:states:::batch:submitJob.sync","ResultPath":"$.BatchJobDetails.Run","Retry":[{"BackoffRate":2,"ErrorEquals":["Batch.AWSBatchException"],"IntervalSeconds":15,"MaxAttempts":3}],"Type":"Task"},"RunGetCause":{"Next":"RunDetectError","Parameters":{"Cause.$":"States.StringToJson($.BatchJobError.RunSPOT.Cause)"},"ResultPath":"$.BatchJobError.RunSPOT","Type":"Pass"},"RunReadOutput":{"Catch":[{"ErrorEquals":["States.ALL"],"Next":"HandleFailure"}],"Next":"HandleSuccess","OutputPath":"$.Payload","Parameters":{"FunctionName":"swipe-aspen-rdev-process-stage-output","Payload":{"CurrentState.$":"$$.State.Name","ExecutionId.$":"$$.Execution.Id","Input.$":"$"}},"Resource":"arn:aws:states:::lambda:invoke","Type":"Task"},"RunSPOT":{"Catch":[{"ErrorEquals":["States.ALL"],"Next":"RunGetCause","ResultPath":"$.BatchJobError.RunSPOT"}],"Next":"RunReadOutput","Parameters":{"ContainerOverrides":{"Environment":[{"Name":"AWS_DEFAULT_REGION","Value":"us-west-2"},{"Name":"REMOTE_DEV_PREFIX","Value":"/sfn-exec"},{"Name":"DEPLOYMENT_STAGE","Value":"rdev"},{"Name":"WDL_INPUT_URI","Value.$":"$.RUN_INPUT_URI"},{"Name":"WDL_WORKFLOW_URI","Value.$":"$.RUN_WDL_URI"},{"Name":"WDL_OUTPUT_URI","Value.$":"$.RUN_OUTPUT_URI"},{"Name":"SFN_EXECUTION_ID","Value.$":"$$.Execution.Id"},{"Name":"SFN_CURRENT_STATE","Value.$":"$$.State.Name"}],"Memory.$":"$.RunSPOTMemory","Vcpus.$":"$.RunSPOTVcpu"},"JobDefinition":"aspen-rdev-sfn-exec-swipe","JobName.$":"$$.Execution.Name","JobQueue":"arn:aws:batch:us-west-2:000000000000:job-queue/rdev-aspen-batch-SPOT","Timeout":{"AttemptDurationSeconds":54000}},"Resource":"arn:aws:states:::batch:submitJob.sync","ResultPath":"$.BatchJobDetails.Run","Retry":[{"BackoffRate":2,"ErrorEquals":["Batch.AWSBatchException"],"IntervalSeconds":15,"MaxAttempts":3}],"Type":"Task"}},"TimeoutSeconds":259200}'
+LOCAL_SFN_ARN=$(awslocal stepfunctions list-state-machines | jq '.stateMachines | .[0] | .stateMachineArn')
 
 echo "Creating SSM Parameters"
 # Delete any previous values so we have updated values when we run this script
 # Otherwise updating these is more painful since the only other script that cleans them
 # is make local-clean, which is overkill
-${local_aws} ssm delete-parameter --name /genepi/local/localstack/pangolin-ondemand-sfn
-${local_aws} ssm put-parameter --name /genepi/local/localstack/pangolin-ondemand-sfn --value '{
+awslocal ssm delete-parameter --name /genepi/local/localstack/pangolin-ondemand-sfn
+awslocal ssm put-parameter --name /genepi/local/localstack/pangolin-ondemand-sfn --value '{
   "Input":{
     "Run":{
       "genepi_config_secret_name":"genepi-config",
@@ -120,8 +125,8 @@ ${local_aws} ssm put-parameter --name /genepi/local/localstack/pangolin-ondemand
   "RunSPOTVcpu":10,
   "StateMachineArn":'${LOCAL_SFN_ARN}'
 }'
-${local_aws} ssm delete-parameter --name /genepi/local/localstack/nextstrain-ondemand-sfn
-${local_aws} ssm put-parameter --name /genepi/local/localstack/nextstrain-ondemand-sfn --value '{
+awslocal ssm delete-parameter --name /genepi/local/localstack/nextstrain-ondemand-sfn
+awslocal ssm put-parameter --name /genepi/local/localstack/nextstrain-ondemand-sfn --value '{
   "Input":{
     "Run":{
       "genepi_config_secret_name":"genepi-config",
@@ -137,8 +142,8 @@ ${local_aws} ssm put-parameter --name /genepi/local/localstack/nextstrain-ondema
   "RunSPOTVcpu":10,
   "StateMachineArn":'${LOCAL_SFN_ARN}'
 }'
-${local_aws} ssm delete-parameter --name /genepi/local/localstack/nextstrain-sfn
-${local_aws} ssm put-parameter --name /genepi/local/localstack/nextstrain-sfn --value '{
+awslocal ssm delete-parameter --name /genepi/local/localstack/nextstrain-sfn
+awslocal ssm put-parameter --name /genepi/local/localstack/nextstrain-sfn --value '{
   "Input":{
     "Run":{
       "genepi_config_secret_name":"genepi-config",
@@ -154,8 +159,8 @@ ${local_aws} ssm put-parameter --name /genepi/local/localstack/nextstrain-sfn --
   "RunSPOTVcpu":10,
   "StateMachineArn":'${LOCAL_SFN_ARN}'
 }'
-${local_aws} ssm delete-parameter --name /genepi/local/localstack/lineage-qc-ondemand-sfn
-${local_aws} ssm put-parameter --name /genepi/local/localstack/lineage-qc-ondemand-sfn --value '{
+awslocal ssm delete-parameter --name /genepi/local/localstack/lineage-qc-ondemand-sfn
+awslocal ssm put-parameter --name /genepi/local/localstack/lineage-qc-ondemand-sfn --value '{
   "Input":{
     "Run":{
       "genepi_config_secret_name":"genepi-config",
@@ -173,18 +178,18 @@ ${local_aws} ssm put-parameter --name /genepi/local/localstack/lineage-qc-ondema
 }'
 
 echo "Creating s3 buckets"
-${local_aws} s3api head-bucket --bucket genepi-external-auspice-data || ${local_aws} s3 mb s3://genepi-external-auspice-data
-${local_aws} s3api head-bucket --bucket genepi-db-data || ${local_aws} s3 mb s3://genepi-db-data
-${local_aws} s3api head-bucket --bucket genepi-gisaid-data || ${local_aws} s3 mb s3://genepi-gisaid-data
-${local_aws} s3api head-bucket --bucket genepi-batch || ${local_aws} s3 mb s3://genepi-batch
+awslocal s3api head-bucket --bucket genepi-external-auspice-data || awslocal s3 mb s3://genepi-external-auspice-data
+awslocal s3api head-bucket --bucket genepi-db-data || awslocal s3 mb s3://genepi-db-data
+awslocal s3api head-bucket --bucket genepi-gisaid-data || awslocal s3 mb s3://genepi-gisaid-data
+awslocal s3api head-bucket --bucket genepi-batch || awslocal s3 mb s3://genepi-batch
 echo
 echo "Dev env is up and running!"
 echo "  Frontend: ${FRONTEND_URL}"
 echo "  Backend: ${BACKEND_URL}"
 
 # Add FE vars (onetrust, etc) to .env.ecr so we can pull in via docker-compose
-REPO=$(cat .env.ecr | grep DOCKER_REPO)
-SECRETS=$($local_aws secretsmanager get-secret-value --secret-id genepi-config --query SecretString --output text)
-jq -r '.| to_entries | .[] | select(.key == "ONETRUST_FRONTEND_KEY") | .key + "=" + (.value | @sh)' <<< "${SECRETS}" > .env.ecr
-jq -r '.| to_entries | .[] | select(.key == "PLAUSIBLE_FRONTEND_KEY") | .key + "=" + (.value | @sh)' <<< "${SECRETS}" > .env.ecr
-echo $REPO >> .env.ecr
+# REPO=$(cat .env.ecr | grep DOCKER_REPO) #thanh
+# SECRETS=$(awslocal secretsmanager get-secret-value --secret-id genepi-config --query SecretString --output text)
+# jq -r '.| to_entries | .[] | select(.key == "ONETRUST_FRONTEND_KEY") | .key + "=" + (.value | @sh)' <<< "${SECRETS}" > .env.ecr
+# jq -r '.| to_entries | .[] | select(.key == "PLAUSIBLE_FRONTEND_KEY") | .key + "=" + (.value | @sh)' <<< "${SECRETS}" > .env.ecr
+# echo $REPO >> .env.ecr

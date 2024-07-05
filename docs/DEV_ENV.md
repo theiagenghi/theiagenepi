@@ -10,11 +10,13 @@ xcode-select --install
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+Linux: `CI=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` 
 3. Install CZI homebrew tap:
 ```
 brew tap chanzuckerberg/tap
 ```
 4. Install base software:
+
 ```
 brew install chanzuckerberg/tap/happy aws-oidc blessclient@1 fogg pre-commit
 brew install awscli@2 python3 jq docker terraform

@@ -37,17 +37,18 @@ from aspen.database.models import (
 from aspen.database.models.workflow import SoftwareNames
 
 
-def create_test_group(session, group_name, prefix, default_tree_location):
+def create_test_group(session, group_name, prefix, default_tree_location, auth0_org_id):
     g = session.query(Group).filter(Group.name == group_name).one_or_none()
     if g:
         print("Group already exists")
         return g
-    print("Creating group")
+    print(f"Creating group {prefix}")
     g = Group(
         name=group_name,
         address="123 Example St, Redwood City CA",
         prefix=prefix,
         default_tree_location=default_tree_location,
+        auth0_org_id=auth0_org_id
     )
     session.add(g)
     session.commit()
@@ -577,7 +578,7 @@ def create_test_data(engine):
     location = create_location(
         session, "North America", "USA", "California", "San Mateo County"
     )
-    group = create_test_group(session, "CZI", "CZI", location)
+    group = create_test_group(session, "CZI", "CZI", location, "org1")
     user = create_test_user(session, "user1@czgenepi.org", group, "User1", "Test User")
     for pathogen in pathogens:
         create_samples(session, group, pathogen, user, location, 15)
@@ -586,7 +587,7 @@ def create_test_data(engine):
     # Create db rows for another group
     location2 = create_location(session, "Africa", "Mali", "Timbuktu", None)
     group2 = create_test_group(
-        session, "Timbuktu Dept of Public Health", "TBK", location2
+        session, "Timbuktu Dept of Public Health", "TBK", location2, "org2"
     )
     user2 = create_test_user(
         session, "tbktu@czgenepi.org", group2, "tbktu", "Timbuktu User"

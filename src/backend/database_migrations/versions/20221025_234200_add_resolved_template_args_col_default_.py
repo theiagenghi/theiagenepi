@@ -22,7 +22,7 @@ def upgrade():
         "groups",
         "default_tree_location_id",
         existing_type=sa.INTEGER(),
-        nullable=False,
+        nullable=True,
         schema="aspen",
     )
     op.add_column(
