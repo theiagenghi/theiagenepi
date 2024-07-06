@@ -1,4 +1,5 @@
 # version: "3.8" #obsolete
+name: theiagenepi
 services:
   database:
     image: "postgres:12"
@@ -22,7 +23,7 @@ services:
         aliases:
           - database.genepinet.localdev
   frontend:
-    image: "genepi-frontend"
+    image: "${DOCKER_REPO}genepi-frontend"
     profiles: [ "frontend", "web", "all" ]
     platform: linux/amd64
     build:
@@ -53,7 +54,7 @@ services:
         aliases:
           - frontend.genepinet.localdev
   backend:
-    image: "genepi-backend"
+    image: "${DOCKER_REPO}genepi-backend"
     profiles: [ "backend", "web", "gisaid", "all" ]
     platform: linux/amd64
     build:
@@ -156,7 +157,7 @@ services:
         aliases:
           - oidc.genepinet.localdev
   gisaid:
-    image: "genepi-gisaid"
+    image: "${DOCKER_REPO}genepi-gisaid"
     profiles: [ "gisaid", "jobs", "all" ]
     platform: linux/amd64
     build:
@@ -182,7 +183,7 @@ services:
         aliases:
           - gisaid.genepinet.localdev
   pangolin:
-    image: "genepi-pangolin"
+    image: "${DOCKER_REPO}genepi-pangolin"
     profiles: [ "pangolin", "jobs", "all" ]
     platform: linux/amd64
     build:
@@ -212,7 +213,7 @@ services:
     volumes:
       - ./src/backend:/usr/src/app
   lineage_qc:
-    image: "genepi-lineage-qc"
+    image: "${DOCKER_REPO}genepi-lineage-qc"
     profiles: [ "lineage_qc", "jobs", "all" ]
     platform: linux/amd64
     build:
@@ -242,7 +243,7 @@ services:
     volumes:
       - ./src/backend:/usr/src/app
   nextstrain:
-    image: "genepi-nextstrain"
+    image: "${DOCKER_REPO}genepi-nextstrain"
     profiles: [ "nextstrain", "jobs", "all" ]
     platform: linux/amd64
     build:
@@ -275,7 +276,8 @@ services:
 networks:
   genepinet:
     name: genepinet
-    driver: bridge
+    # driver: bridge
+    driver: overlay
     attachable: true
 volumes:
   localstack:

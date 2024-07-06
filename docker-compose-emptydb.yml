@@ -2,4 +2,4 @@ version: '3.8'
 
 services:
   database:
-    image: "postgres"
+    image: "postgres:12" # Always pin the version of the image you're using

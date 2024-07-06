@@ -3,8 +3,8 @@ SHELL := /bin/bash
 ### DOCKER ENVIRONMENTAL VARS #################################################
 export DOCKER_BUILDKIT:=1
 export COMPOSE_DOCKER_CLI_BUILD:=1
-# export docker_compose:=docker compose --env-file .env.ecr
-export docker_compose:=docker compose
+export docker_compose:=docker compose --env-file .env.ecr
+# export docker_compose:=docker compose
 export AWS_DEV_PROFILE=genepi-dev
 export AWS_PROD_PROFILE=genepi-prod
 export BACKEND_APP_ROOT=/usr/src/app
@@ -116,7 +116,7 @@ init-empty-db:
 
 .PHONY: local-init
 # local-init: oauth/pkcs12/certificate.pfx .env.ecr local-ecr-login local-hostconfig ## Launch a new local dev env and populate it with test data.
-local-init: oauth/pkcs12/certificate.pfx ## Launch a new local dev env and populate it with test data.
+local-init: oauth/pkcs12/certificate.pfx ## Launch a new local dev env and populate it with test data and  localstack
 	# $(docker_compose) pull database
 	$(docker_compose) --profile $(LOCALDEV_PROFILE) up -d
 	# Wait for psql to be up
@@ -161,7 +161,7 @@ create-new-db-image:
 check-images: ## Spot-check the workflow images
 	$(docker_compose) run --no-deps --rm gisaid /usr/src/app/aspen/workflows/test-gisaid.sh
 	$(docker_compose) run --no-deps --rm nextstrain /usr/src/app/aspen/workflows/test-nextstrain.sh
-	$(docker_compose) run --no-deps --rm panoglin /usr/src/app/aspen/workflows/test-pangolin.sh
+	$(docker_compose) run --no-deps --rm pangolin /usr/src/app/aspen/workflows/test-pangolin.sh
 	$(docker_compose) run --no-deps --rm lineage_qc /usr/src/app/aspen/workflows/test-pangolin.sh
 
 .PHONY: imagecheck-genepi-%
@@ -237,6 +237,7 @@ local-pgconsole: ## Connect to the local postgres database.
 local-dbconsole: ## Connect to the local postgres database.
 	$(docker_compose) exec backend aspen-cli db --local interact
 
+# Error: no such option: --profile
 .PHONY: local-dbconsole-profile
 local-dbconsole-profile: ## Connect to the local postgres database and profile queries.
 	$(docker_compose) exec backend aspen-cli db --local interact --profile
@@ -260,10 +261,10 @@ frontend-%: .env.ecr ## Run make commands in the frontend container (src/fronten
 	$(docker_compose) run -e CI=true --no-deps --rm frontend make $(subst frontend-,,$@)
 
 ### PIPELINE TESTS ###################################################
-.PHONY: pipeline-test-gisaid
+.PHONY: pipeline-test-gisaid # Not working as transform-genbank can't access s3 climb for UK metadata
 pipeline-test-gisaid:
-	source .env.ecr; \
-	export DOCKER_REPO; \
+	# source .env.ecr; \
+	# export DOCKER_REPO; \
 	export BOTO_ENDPOINT_URL=http://localstack.genepinet.localdev:4566; \
 	export AWS_ACCESS_KEY_ID=NONCE; \
 	export AWS_SECRET_ACCESS_KEY=NONCE; \
@@ -274,9 +275,9 @@ pipeline-test-gisaid:
 	$(docker_compose) run --no-deps --rm backend make pipeline-test-gisaid
 
 .PHONY: pipeline-test-genbank-mpx
-pipeline-test-genbank-mpx:
-	source .env.ecr; \
-	export DOCKER_REPO; \
+pipeline-test-genbank-mpx: ## Run the genbank-mpx pipeline test
+	# source .env.ecr; \
+	# export DOCKER_REPO; \
 	export BOTO_ENDPOINT_URL=http://localstack.genepinet.localdev:4566; \
 	export AWS_ACCESS_KEY_ID=NONCE; \
 	export AWS_SECRET_ACCESS_KEY=NONCE; \
@@ -288,13 +289,13 @@ pipeline-test-genbank-mpx:
 
 ### WDL ###################################################
 .PHONY: wdl-lint
-wdl-lint:
+wdl-lint: ## Lint all WDL files in the repo
 	set -e; for i in $$(find .happy/terraform/modules/sfn_config -name '*.wdl'); do echo $${i}; miniwdl check $${i}; done
 
 
 ### TERRAFORM ###################################################
 .PHONY: tf-lint
-tf-lint:
+tf-lint: ## Lint all terraform files in the repo
 	set -e; for i in $$(find .happy/terraform/envs ! -path .happy/terraform/envs -type d -maxdepth 1); do echo $${i}; pushd $${i}; terraform init; terraform validate; tflint --module; popd; done
 
 ### GitHub Actions ###################################################
@@ -302,3 +303,15 @@ tf-lint:
 gha-setup:
 	docker swarm init
 	echo "DOCKER_REPO=${DOCKER_REPO}" > .env.ecr
+
+.PHONY: docker-destroy
+docker-destroy: ## Destroy all docker containers and volumes
+	docker compose --profile $(LOCALDEV_PROFILE) down -v
+
+.PHONY: docker-swarm-init
+docker-swarm-init: ## Initialize a docker swarm
+	docker swarm init --listen-addr 127.0.0.1 --advertise-addr 127.0.0.1
+
+.PHONY: docker-swarm-leave
+docker-swarm-leave: ## Leave the docker swarm
+	docker swarm leave --force
