@@ -28,8 +28,8 @@ services:
     platform: linux/amd64
     build:
       context: src/frontend
-      # cache_from:
-      #   - "genepi-frontend:branch-trunk"
+      cache_from:
+        - "${DOCKER_REPO}genepi-frontend:tghi-dev"
       args:
         - BUILDKIT_INLINE_CACHE=1
         - HAPPY_COMMIT
@@ -60,8 +60,8 @@ services:
     build:
       context: src/backend
       dockerfile: Dockerfile.backend
-      # cache_from:
-      #   - "genepi-backend:branch-trunk"
+      cache_from:
+        - "${DOCKER_REPO}genepi-backend:tghi-dev"
       args:
         - BUILDKIT_INLINE_CACHE=1
     restart: always
@@ -163,8 +163,8 @@ services:
     build:
       context: src/backend/
       dockerfile: Dockerfile.gisaid
-      # cache_from:
-      #   - "genepi-gisaid:branch-trunk"
+      cache_from:
+        - "${DOCKER_REPO}genepi-gisaid:tghi-dev"
       args:
         - BUILDKIT_INLINE_CACHE=1
         - HAPPY_COMMIT
@@ -189,8 +189,8 @@ services:
     build:
       context: src/backend
       dockerfile: Dockerfile.pangolin
-      # cache_from:
-      #   - "genepi-pangolin:branch-trunk"
+      cache_from:
+        - "${DOCKER_REPO}genepi-pangolin:tghi-dev"
       args:
         - BUILDKIT_INLINE_CACHE=1
     environment:
@@ -219,8 +219,8 @@ services:
     build:
       context: src/backend
       dockerfile: Dockerfile.lineage_qc
-      # cache_from:
-      #   - "genepi-lineage-qc:branch-trunk"
+      cache_from:
+        - "${DOCKER_REPO}genepi-lineage-qc:tghi-dev"
       args:
         - BUILDKIT_INLINE_CACHE=1
     environment:
@@ -249,8 +249,8 @@ services:
     build:
       context: src/backend
       dockerfile: Dockerfile.nextstrain
-      # cache_from:
-      #   - "genepi-nextstrain:branch-trunk"
+      cache_from:
+        - "${DOCKER_REPO}genepi-nextstrain:tghi-dev"
       args:
         - BUILDKIT_INLINE_CACHE=1
     environment:
