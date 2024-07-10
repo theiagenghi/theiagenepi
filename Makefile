@@ -223,7 +223,7 @@ local-clean: local-stop local-nohostconfig ## Remove everything related to the l
 
 .PHONY: local-logs
 local-logs: ## Tail the logs of the dev env containers. ex: make local-logs CONTAINER=backend
-	$(docker_compose) logs -f $(CONTAINER)
+	$(docker_compose) --profile web logs -f $(CONTAINER)
 
 .PHONY: local-shell
 local-shell: ## Open a command shell in one of the dev containers. ex: make local-shell CONTAINER=frontend
@@ -276,8 +276,8 @@ pipeline-test-gisaid:
 
 .PHONY: pipeline-test-genbank-mpx
 pipeline-test-genbank-mpx: ## Run the genbank-mpx pipeline test
-	# source .env.ecr; \
-	# export DOCKER_REPO; \
+	source .env.ecr; \
+	export DOCKER_REPO; \
 	export BOTO_ENDPOINT_URL=http://localstack.genepinet.localdev:4566; \
 	export AWS_ACCESS_KEY_ID=NONCE; \
 	export AWS_SECRET_ACCESS_KEY=NONCE; \
