@@ -7,6 +7,7 @@ services:
     platform: linux/amd64
     ports:
       - "5432:5432"
+    restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=password_postgres
@@ -110,6 +111,7 @@ services:
     ports:
       - "4566:4566"
       - "8083:8083"
+    restart: always
     environment:
       - HOSTNAME_EXTERNAL=localstack
       - LEGACY_PERSISTENCE=1
@@ -133,6 +135,7 @@ services:
     ports:
       - "4011:80"
       - "8443:8443"
+    restart: always
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       SERVER_OPTIONS_INLINE: |
