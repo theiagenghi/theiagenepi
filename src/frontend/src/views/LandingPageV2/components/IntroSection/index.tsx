@@ -19,7 +19,7 @@ export default function IntroSection(): JSX.Element {
           Translate pathogen data into public health insights
         </IntroHeading>
         <IntroDescription>
-          Chan Zuckerberg GEN EPI helps local departments of public health
+          TheiaGenEpi helps local departments of public health
           identify the most effective interventions to stop the spread of
           disease. The secure, cloud-based platform streamlines the analysis of
           pathogen genomic data and generates phylogenetic trees with a single

@@ -14,7 +14,7 @@ export const uploadDateColumn: ColumnDef<Sample, any> = {
       style={generateWidthStyles(column)}
       tooltipStrings={{
         boldText: "Upload Date",
-        regularText: "Date on which the sample was uploaded to CZ Gen Epi.",
+        regularText: "Date on which the sample was uploaded to TheiaGenEpi.",
       }}
     >
       Upload Date

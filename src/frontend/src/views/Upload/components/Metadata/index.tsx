@@ -143,7 +143,7 @@ export default function Metadata({
             </span>,
             `Samples are only available to anyone outside of your Group when it is shared by you, or by your Group. Other organizations that you share your data with (i.e. CDPH for California jurisdictions) can see your samples, but not your private, internal identifiers.`,
             `If a sample should remain private to your Group, please update the “Sample is Private” setting to “Yes”. These samples will never be shared beyond your Group unless you choose to change their access level later on.`,
-            `Check local requirements for reporting to public health authorities. These may not be met by uploading samples to CZ GEN EPI.`,
+            `Check local requirements for reporting to public health authorities. These may not be met by uploading samples to TheiaGenEpi.`,
             <span key="2">
               Please read our{" "}
               <NewTabLink href={ROUTES.PRIVACY}>Privacy Policy</NewTabLink> for

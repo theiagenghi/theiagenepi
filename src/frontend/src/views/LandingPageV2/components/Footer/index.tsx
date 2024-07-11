@@ -40,17 +40,12 @@ export default function Footer(): JSX.Element {
     <FooterContainer data-test-id="landing-footer">
       <FooterTopContainer>
         <FooterLogoContainer href={ROUTES.HOMEPAGE}>
-          <FooterLogo title="CZ Gen Epi Home" />
+          <FooterLogo title="TheiaGenEpi Home" />
         </FooterLogoContainer>
         <FooterTopLinks>
           <FooterTopListItem>
             <FooterTopLink href={ROUTES.GITHUB} target="_blank">
               Github
-            </FooterTopLink>
-          </FooterTopListItem>
-          <FooterTopListItem>
-            <FooterTopLink href={ROUTES.CAREERS} target="_blank">
-              Careers
             </FooterTopLink>
           </FooterTopListItem>
           <FooterTopListItem>

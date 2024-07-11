@@ -108,7 +108,7 @@ const EditSamplesReviewDialog = ({
       <CheckboxWrapper onClick={() => setChecked(!isChecked)}>
         <InputCheckbox stage={isChecked ? "checked" : "unchecked"} />
         <div>
-          I agree that the data I am uploading to CZ GEN EPI has been lawfully
+          I agree that the data I am uploading to TheiaGenEpi has been lawfully
           collected and that I have all the necessary consents, permissions, and
           authorizations needed to collect, share and export data as outlined in
           the <NewTabLink href={ROUTES.TERMS}>Terms</NewTabLink> and{" "}

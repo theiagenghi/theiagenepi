@@ -20,7 +20,7 @@ export const treeType: ColumnDef<PhyloRun, any> = {
           linkText: "Read our guide to learn more.",
         },
         regularText:
-          "CZ Gen Epi-defined profiles for tree building based on primary use case and build settings.",
+          "TheiaGenEpi-defined profiles for tree building based on primary use case and build settings.",
       }}
     >
       Tree Type

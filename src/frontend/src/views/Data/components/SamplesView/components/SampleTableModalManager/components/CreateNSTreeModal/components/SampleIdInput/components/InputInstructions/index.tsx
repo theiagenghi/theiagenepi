@@ -30,8 +30,8 @@ const InputInstructions = (): JSX.Element => {
                   .publicRepositoryIdType
               }
             </SemiBold>
-            , <SemiBold>CZ GEN EPI Public IDs</SemiBold>, or{" "}
-            <SemiBold>CZ GEN EPI Private IDs</SemiBold> (e.g.{" "}
+            , <SemiBold>TheiaGenEpi Public IDs</SemiBold>, or{" "}
+            <SemiBold>TheiaGenEpi Private IDs</SemiBold> (e.g.{" "}
             {
               InputInstructionsPathogenStrings[pathogen]
                 .publicRepositoryIdExamples

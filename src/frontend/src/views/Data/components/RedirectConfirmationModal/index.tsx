@@ -35,7 +35,7 @@ const RedirectConfirmationModal = ({
         width={logoWidth}
         layout={"intrinsic"} // Scale down to fit width of container, up to image size
       />
-      <StyledHeader>You are now leaving CZ GEN EPI.</StyledHeader>
+      <StyledHeader>You are now leaving TheiaGenEpi.</StyledHeader>
     </>
   );
 

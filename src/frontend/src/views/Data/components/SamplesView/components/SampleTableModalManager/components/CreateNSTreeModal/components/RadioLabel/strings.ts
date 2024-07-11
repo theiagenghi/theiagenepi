@@ -29,12 +29,12 @@ const generalViralRadioLabelStrings: RadioLabelStrings = {
     "Builds tree focused around samples of interest and closely-related samples, at a ratio of roughly 2:1.",
   overviewGoodFor1: "Good for identifying possible local outbreaks.",
   overviewGoodFor2:
-    "Good for specifying sample location, collection date, or lineages instead of the defaults used for your CZ GEN EPI weekly build.",
+    "Good for specifying sample location, collection date, or lineages instead of the defaults used for your TheiaGenEpi weekly build.",
   targetedBestFor: "Best for investigating an identified outbreak.",
   targetedDescription:
     "Builds tree with selected samples (from the sample table or the ID box below) and closely-related samples, at a ratio of roughly 1:2. ",
   targetedGoodFor:
-    "Good for identifying samples most closely related to the selected samples among all public repository samples and your CZ GEN EPI samples.",
+    "Good for identifying samples most closely related to the selected samples among all public repository samples and your TheiaGenEpi samples.",
 };
 
 export const pathogenStrings: PathogenConfigType<RadioLabelStrings> = {

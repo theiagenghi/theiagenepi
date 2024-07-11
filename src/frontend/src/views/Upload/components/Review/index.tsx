@@ -147,10 +147,14 @@ export default function Review({
           <CheckboxText onClick={handleConsentCheck}>
             <StyledCheckbox
               checked={isConsentChecked}
+
+
+
+              
               stage={isConsentChecked ? "checked" : "unchecked"}
             />
             <span>
-              I agree that the data I am uploading to CZ GEN EPI has been
+              I agree that the data I am uploading to TheiaGenEpi has been
               lawfully collected and that I have all the necessary consents,
               permissions, and authorizations needed to collect, share and
               export data as outlined in the{" "}

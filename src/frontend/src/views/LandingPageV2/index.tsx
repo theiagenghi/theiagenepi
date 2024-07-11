@@ -35,7 +35,7 @@ export default function Homepage(): JSX.Element {
   return (
     <>
       <Head>
-        <title>CZ GEN EPI</title>
+        <title>TheiaGenEpi</title>
       </Head>
       <Container>
         <Hero />
