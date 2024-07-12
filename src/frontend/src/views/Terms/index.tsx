@@ -107,10 +107,7 @@ export default function Terms(): JSX.Element {
               You must also ensure that the data you upload to TheiaGenEpi (Raw
               Sequence Data, Pathogen Consensus Genomes, and Sample Metadata)
               are similarly <B>not</B> personally identifiable. This means
-              removing all{" "}
-              <NewTabLink href="https://docs.google.com/document/d/1sboOmbafvMh3VYjK1-3MAUt0I13UUJfkQseq8ANLPl8/edit">
-                direct identifiers
-              </NewTabLink>{" "}
+              removing all direct identifiers (see Direct personal identifiers below)
               like name, address, dates, telephone numbers, e-mail addresses, or
               medical record numbers from data you upload to TheiaGenEpi.
             </span>
@@ -138,12 +135,116 @@ export default function Terms(): JSX.Element {
             Pathogen Consensus Genomes, and Sample Metadata (ex: date collected
             and county-level location data). You should <B>not</B> be uploading
             any information that would allow identification of any specific
-            individuals to which the Samples may relate, such as{" "}
-            <NewTabLink href="https://docs.google.com/document/d/1sboOmbafvMh3VYjK1-3MAUt0I13UUJfkQseq8ANLPl8/edit">
-              direct identifiers
-            </NewTabLink>{" "}
+            individuals to which the Samples may relate, such as direct identifiers (see Direct personal identifiers below)
             like name, address, symptom onset dates or case interview dates,
             telephone numbers, e-mail addresses, or medical record numbers.
+          </span>
+        </ListItem>
+        <ListItem>
+          <span>
+          <ListItemLabel>Direct personal identifiers</ListItemLabel>
+              The below categories are considered 'direct personal identifiers' and are informed
+              by the {" "}
+              <NewTabLink href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">
+              HIPAA Privacy Rule
+              </NewTabLink>{" "} as well as other regulations (e.g. GDPR):
+              
+              <List>
+                <ListItem>
+                  <span>
+                    Names
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    For US: All geographic subdivisions smaller than a state, except for the initial three digits of the ZIP code if the geographic unit formed by combining all ZIP codes with the same three initial digits contains more than 20,000 people.
+                    For non-US: any geographic subdivision smaller than a city (e.g. neighborhood, mailing address).
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    All elements of dates except year, and all ages over 89 or elements indicative of such age
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Telephone numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Fax numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Email addresses
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    government ID numbers (e.g. social security)
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Medical record numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Health plan beneficiary numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Account numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Certificate or license numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Vehicle identifiers and license plate numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Device identifiers and serial numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    URLs
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    IP addresses
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    biometric identifiers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    full-face photographs and any comparable images
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    any other unique, identifying characteristic or code, except as permitted for re-identification in the
+                    {" "}
+              <NewTabLink href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">
+              Privacy Rule.
+              </NewTabLink>{" "}
+                  </span>
+                </ListItem>
           </span>
         </ListItem>
         <ListItem>
