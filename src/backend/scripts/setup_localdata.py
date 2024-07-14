@@ -5,7 +5,7 @@ from datetime import datetime
 import boto3
 import requests
 from sqlalchemy.sql.expression import and_
-
+from sqlalchemy.exc import IntegrityError
 from aspen.config.docker_compose import DockerComposeConfig
 from aspen.database.connection import get_db_uri, init_db
 from aspen.database.models import (
@@ -31,6 +31,7 @@ from aspen.database.models import (
     TreeType,
     UploadedPathogenGenome,
     User,
+    UserRole,
     Workflow,
     WorkflowStatusType,
 )
@@ -566,6 +567,47 @@ def upload_tree_files(session):
             CopySource={"Bucket": default_file.bucket_name, "Key": default_file.key}
         )
 
+def insert_user_role(session, role_id=1, user_id=2, group_id=2):
+    """
+    Insert a new record into the UserRole table.
+
+    Args:
+    session (SQLAlchemy.Session): The database session
+    role_id (int): The role_id for the new record (default is 1)
+    user_id (int): The user_id for the new record (default is 2)
+    group_id (int): The group_id for the new record (default is 2)
+
+    Returns:
+    UserRole: The newly created UserRole object if successful, None otherwise
+    """
+    try:
+        # Create a new UserRole object
+        new_user_role = UserRole(
+            role_id=role_id,
+            user_id=user_id,
+            group_id=group_id
+        )
+        
+        # Add the new object to the session
+        session.add(new_user_role)
+        
+        # Commit the transaction
+        session.commit()
+        
+        print(f"Successfully inserted new UserRole record with role_id={role_id}, user_id={user_id}, group_id={group_id}")
+        return new_user_role
+    
+    except IntegrityError:
+        # If a duplicate key error occurs, rollback the transaction
+        session.rollback()
+        print(f"A UserRole record with role_id={role_id}, user_id={user_id}, group_id={group_id} already exists.")
+        return None
+    
+    except Exception as e:
+        # If any other error occurs, rollback the transaction
+        session.rollback()
+        print(f"An error occurred: {str(e)}")
+        return None
 
 def create_test_data(engine):
     session = engine.make_session()
@@ -592,6 +634,13 @@ def create_test_data(engine):
     user2 = create_test_user(
         session, "tbktu@czgenepi.org", group2, "tbktu", "Timbuktu User"
     )
+    
+    # id of User1 is 2
+    # Insert group CZI group for User1
+    insert_user_role(session, role_id=1, user_id=2, group_id=2)
+    # Insert group TBK group for User1
+    insert_user_role(session, role_id=1, user_id=2, group_id=3)
+
     for pathogen in pathogens:
         create_samples(session, group2, pathogen, user2, location2, 15)
         create_test_trees(session, group2, pathogen, repositories[0], user2)
