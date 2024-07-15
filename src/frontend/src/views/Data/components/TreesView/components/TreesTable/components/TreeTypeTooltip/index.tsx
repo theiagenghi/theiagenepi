@@ -27,7 +27,7 @@ export const TreeTypeTooltip = ({ children, value }: Props): JSX.Element => {
   const TOOLTIP_TEXT = (
     <div>
       {content}{" "}
-      <NewTabLink href="https://docs.google.com/document/d/1_iQgwl3hn_pjlZLX-n0alUbbhgSPZvpW_0620Hk_kB4/edit?usp=sharing">
+      <NewTabLink href="https://theiagengenomics5614.zendesk.com/hc/en-us/article_attachments/27402419300507">
         Learn more
       </NewTabLink>
     </div>
