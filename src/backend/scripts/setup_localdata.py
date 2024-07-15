@@ -637,9 +637,9 @@ def create_test_data(engine):
     
     # id of User1 is 2
     # Insert group CZI group for User1
-    insert_user_role(session, role_id=1, user_id=2, group_id=2)
+    insert_user_role(session, role_id=1, user_id=user.id, group_id=group.id)
     # Insert group TBK group for User1
-    insert_user_role(session, role_id=1, user_id=2, group_id=3)
+    insert_user_role(session, role_id=1, user_id=user.id, group_id=group2.id)
 
     for pathogen in pathogens:
         create_samples(session, group2, pathogen, user2, location2, 15)
