@@ -17,36 +17,32 @@ export default function Terms(): JSX.Element {
   const renderIntro = () => (
     <>
       <Title>
-        <H1>Chan Zuckerberg GEN EPI (formerly Aspen) Terms of Use</H1>
-        <H4>Last Updated: December 6, 2021</H4>
+        <H1>TheiaGenEpi Terms of Use</H1>
+        <H4>Last Updated: July 11, 2024</H4>
       </Title>
       <P>
-        Please read these Terms of Use (&quot;Terms&quot;) before using Chan
-        Zuckerberg GEN EPI (&quot;Services&quot; or &quot;CZ GEN EPI&quot;).
-        These Terms are entered into between the Chan Zuckerberg Initiative
-        Foundation, a 501(c)(3) nonprofit private foundation, (&quot;CZIF&quot;,
+        Please read these Terms of Use (&quot;Terms&quot;) before using TheiaGenEpi (&quot;Services&quot; or &quot;TheiaGenEpi&quot;).
+        These Terms are entered into between the Theiagen Global Health Initiative, a 501(c)(3) nonprofit private foundation pending approval, (&quot;TGHI&quot;,
         &quot;we&quot;, &quot;us&quot; or &quot;our&quot;) and you
         (&quot;User&quot; or &quot;you&quot;) and govern your and your
-        organization’s use of CZ GEN EPI.
+        organization’s use of TheiaGenEpi.
       </P>
       <P>
-        CZ GEN EPI is a tool that helps you infer how pathogens are moving
-        through a population and how cases are related to one another. CZ GEN
-        EPI comprises our Genomic Epidemiology portal, any associated online
+        TheiaGenEpi is a tool that helps you infer how pathogens are moving
+        through a population and how cases are related to one another. TheiaGenEpi comprises our Genomic Epidemiology portal, any associated online
         services or platforms that link to or refer to these Terms, and any
         databases or data accessible through the portal, associated services or
         platforms.
       </P>
       <P>
-        CZ GEN EPI is offered by the Chan Zuckerberg Initiative Foundation
-        (&quot;CZIF&quot;), in close collaboration with the Chan Zuckerberg
-        Biohub (&quot;CZB&quot;) and the Chan Zuckerberg Initiative, LLC
-        (&quot;CZI LLC&quot;).
+        TheiaGenEpi is offered by Theiagen Global Health Initiative
+        (&quot;TGHI&quot;), in close collaboration with Theiagen Genomics LLC
+        (&quot;TG LLC&quot;).
       </P>
       <P>
         Please carefully read these terms and indicate your acceptance by
-        registering for CZ GEN EPI. If you do not agree to these Terms, do not
-        register for an account to use CZ GEN EPI. For more information about
+        registering for TheiaGenEpi. If you do not agree to these Terms, do not
+        register for an account to use TheiaGenEpi. For more information about
         our privacy practices, please see the &quot;Privacy Notice&quot;).
       </P>
       <P>
@@ -56,10 +52,10 @@ export default function Terms(): JSX.Element {
           AGREEMENT.
         </B>{" "}
         EXCEPT FOR CERTAIN TYPES OF DISPUTES MENTIONED IN THAT PROVISION, YOU
-        AND CZIF (AND ITS PARTNERS AND AFFILIATES, INCLUDING WITHOUT LIMITATION
-        CZB AND CZI, LLC) AGREE THAT (1) DISPUTES BETWEEN US WILL BE RESOLVED BY
-        INDIVIDUAL BINDING ARBITRATION, AND (2) YOU AND CZIF (AND ITS PARTNERS
-        AND AFFILIATES, INCLUDING WITHOUT LIMITATION CZB AND CZI, LLC) WAIVE ANY
+        AND TGHI (AND ITS PARTNERS AND AFFILIATES, INCLUDING WITHOUT LIMITATION
+        TG LLC) AGREE THAT (1) DISPUTES BETWEEN US WILL BE RESOLVED BY
+        INDIVIDUAL BINDING ARBITRATION, AND (2) YOU AND TGHI (AND ITS PARTNERS
+        AND AFFILIATES, INCLUDING WITHOUT LIMITATION TG LLC) WAIVE ANY
         RIGHT TO PARTICIPATE IN A CLASS-ACTION LAWSUIT, CLASS-WIDE ARBITRATION,
         OR ANY OTHER REPRESENTATIVE ACTION.
       </P>
@@ -73,25 +69,24 @@ export default function Terms(): JSX.Element {
         <List>
           <ListItem>
             <span>
-              CZ GEN EPI is a tool that helps you infer how pathogens are moving
+              TheiaGenEpi is a tool that helps you infer how pathogens are moving
               through a population and how cases are related to one another.
             </span>
           </ListItem>
           <ListItem>
             <span>
-              CZ GEN EPI is offered by the Chan Zuckerberg Initiative Foundation
-              (CZIF), in close collaboration with the Chan Zuckerberg Biohub
-              (CZB) and the Chan Zuckerberg Initiative, LLC (CZI LLC).
+              TheiaGenEpi is offered by the Theiagen Global Health Initiative
+              (TGHI), in close collaboration with the Theiagen Genomics LLC (TG LLC).
             </span>
           </ListItem>
           <ListItem>
-            <span>CZ GEN EPI is a free and open-source tool.</span>
+            <span>TheiaGenEpi is a free and open-source tool.</span>
           </ListItem>
           <ListItem>
             <span>
-              In order to use CZ GEN EPI, you must be acting in your
+              In order to use TheiaGenEpi, you must be acting in your
               professional capacity. This means a couple things: (1) your use of
-              CZ GEN EPI may be subject to your organization’s policies and (2)
+              TheiaGenEpi may be subject to your organization’s policies and (2)
               upon sign-up, you’ll be placed into a group with other users from
               your organization (3) your Upload Data, and analytical results may
               be shared with third parties in accordance with your
@@ -108,21 +103,17 @@ export default function Terms(): JSX.Element {
           <ListItem>
             <span>
               The outputs (ex: analytical outputs, such as phylogenetic trees)
-              you create with CZ GEN EPI are <B>not</B> personally identifiable.
-              You must also ensure that the data you upload to CZ GEN EPI (Raw
+              you create with TheiaGenEpi are <B>not</B> personally identifiable.
+              You must also ensure that the data you upload to TheiaGenEpi (Raw
               Sequence Data, Pathogen Consensus Genomes, and Sample Metadata)
               are similarly <B>not</B> personally identifiable. This means
-              removing all{" "}
-              <NewTabLink href="https://docs.google.com/document/d/1sboOmbafvMh3VYjK1-3MAUt0I13UUJfkQseq8ANLPl8/edit">
-                direct identifiers
-              </NewTabLink>{" "}
+              removing all direct identifiers (see Direct personal identifiers below)
               like name, address, dates, telephone numbers, e-mail addresses, or
-              medical record numbers from data you upload to CZ GEN EPI.
+              medical record numbers from data you upload to TheiaGenEpi.
             </span>
           </ListItem>
           <ListItem>
-            CZ GEN EPI does not provide medical advice. The output from CZ GEN
-            EPI does not constitute and should not be relied upon to provide
+            TheiaGenEpi does not provide medical advice. The output from TheiaGenEpi does not constitute and should not be relied upon to provide
             medical advice, diagnosis or treatment. It is intended for research,
             educational, or informational purposes only.
           </ListItem>
@@ -140,45 +131,149 @@ export default function Terms(): JSX.Element {
         <ListItem>
           <span>
             <ListItemLabel>No personally identifying data.</ListItemLabel>
-            The data you upload to CZ GEN EPI consists of Raw Sequence Data,
+            The data you upload to TheiaGenEpi consists of Raw Sequence Data,
             Pathogen Consensus Genomes, and Sample Metadata (ex: date collected
             and county-level location data). You should <B>not</B> be uploading
             any information that would allow identification of any specific
-            individuals to which the Samples may relate, such as{" "}
-            <NewTabLink href="https://docs.google.com/document/d/1sboOmbafvMh3VYjK1-3MAUt0I13UUJfkQseq8ANLPl8/edit">
-              direct identifiers
-            </NewTabLink>{" "}
+            individuals to which the Samples may relate, such as direct identifiers (see Direct personal identifiers below)
             like name, address, symptom onset dates or case interview dates,
             telephone numbers, e-mail addresses, or medical record numbers.
           </span>
         </ListItem>
         <ListItem>
           <span>
+          <ListItemLabel>Direct personal identifiers</ListItemLabel>
+              The below categories are considered 'direct personal identifiers' and are informed
+              by the {" "}
+              <NewTabLink href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">
+              HIPAA Privacy Rule
+              </NewTabLink>{" "} as well as other regulations (e.g. GDPR):
+              
+              <List>
+                <ListItem>
+                  <span>
+                    Names
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    For US: All geographic subdivisions smaller than a state, except for the initial three digits of the ZIP code if the geographic unit formed by combining all ZIP codes with the same three initial digits contains more than 20,000 people.
+                    For non-US: any geographic subdivision smaller than a city (e.g. neighborhood, mailing address).
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    All elements of dates except year, and all ages over 89 or elements indicative of such age
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Telephone numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Fax numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Email addresses
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    government ID numbers (e.g. social security)
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Medical record numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Health plan beneficiary numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Account numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Certificate or license numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Vehicle identifiers and license plate numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    Device identifiers and serial numbers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    URLs
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    IP addresses
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    biometric identifiers
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    full-face photographs and any comparable images
+                  </span>
+                </ListItem>
+                <ListItem>
+                  <span>
+                    any other unique, identifying characteristic or code, except as permitted for re-identification in the
+                    {" "}
+              <NewTabLink href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">
+              Privacy Rule.
+              </NewTabLink>{" "}
+                  </span>
+                </ListItem>
+          </span>
+        </ListItem>
+        <ListItem>
+          <span>
             <ListItemLabel>Compliance with laws.</ListItemLabel>
-            By uploading data to CZ GEN EPI, you represent and warrant to us
+            By uploading data to TheiaGenEpi, you represent and warrant to us
             that (A) you have all consents, permissions, and authorizations
-            necessary for uploading the data to CZ GEN EPI and (B) that your
-            uploading this data to CZ GEN EPI complies with applicable laws,
+            necessary for uploading the data to TheiaGenEpi and (B) that your
+            uploading this data to TheiaGenEpi complies with applicable laws,
             rules, and regulations, including the Nagoya Protocol and relevant
             export laws and industry guidelines and ethical standards that apply
             to you (e.g. CIOMS or GA4GH). Please note that we filter out human
             sequence data as part of processing Raw Sequence Data as such
-            information is not necessary for providing CZ GEN EPI.
+            information is not necessary for providing TheiaGenEpi.
           </span>
         </ListItem>
         <ListItem>
           <span>
             <ListItemLabel>Our rights and your rights.</ListItemLabel>
             We need some basic rights to use your Upload data in order to offer
-            CZ GEN EPI’s services to you. Specifically, you grant to us a
-            license to use (ex: store your data in the CZ GEN EPI database),
-            reproduce (ex: backing up the CZ GEN EPI database), distribute,
+            TheiaGenEpi’s services to you. Specifically, you grant to us a
+            license to use (ex: store your data in the TheiaGenEpi database),
+            reproduce (ex: backing up the TheiaGenEpi database), distribute,
             display, and create derivative works (ex: produce phylogenetic trees
             per your requests) from Upload data in connection with offering and
-            improving CZ GEN EPI. You can request deletion of your Upload Data
-            from CZ GEN EPI by emailing us at{" "}
-            <NewTabLink href="mailto:hello@czgenepi.org">
-              hello@czgenepi.org
+            improving TheiaGenEpi. You can request deletion of your Upload Data
+            from TheiaGenEpi by emailing us at{" "}
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>{" "}
           </span>
         </ListItem>
@@ -187,7 +282,7 @@ export default function Terms(): JSX.Element {
             <ListItemLabel>
               Sharing pathogen genomes and analytical outputs.
             </ListItemLabel>
-            CZ GEN EPI gives you tools to analyze pathogen genomes and create
+            TheiaGenEpi gives you tools to analyze pathogen genomes and create
             further analytical outputs from them (ex: phylogenetic trees) that
             allow you to better understand the relationship between different
             pathogen genomes.
@@ -196,12 +291,12 @@ export default function Terms(): JSX.Element {
                 <span>
                   <ListItemLabel>Within your organization:</ListItemLabel>
                   The pathogen genomes created from your Samples and the
-                  analytical outputs you create using CZ GEN EPI are visible to
+                  analytical outputs you create using TheiaGenEpi are visible to
                   other Users at your organization (ex: your DPH). You, along
                   with other members of your Group, control whether you permit
                   us to share this information with Users outside your
                   organization. In certain circumstances, we may also share your
-                  data with third party entities, through the CZ GEN EPI tool,
+                  data with third party entities, through the TheiaGenEpi tool,
                   in line with your organization’s policies or in line with
                   applicable law. Samples marked &quot;private&quot; will never
                   be shared with any 3rd parties unless you choose to mark them
@@ -218,20 +313,19 @@ export default function Terms(): JSX.Element {
   const renderAuthorizationToUseCZGenEpi = () => (
     <>
       <H2>
-        <Number>2.</Number>Authorization To Use CZ GEN EPI
+        <Number>2.</Number>Authorization To Use TheiaGenEpi
       </H2>
       <List>
         <ListItem>
-          You are using CZ GEN EPI in your professional capacity as a User from
-          your organization. This means that in addition to CZ GEN EPI’s Terms
+          You are using TheiaGenEpi in your professional capacity as a User from
+          your organization. This means that in addition to TheiaGenEpi’s Terms
           and Privacy Policy, your organization’s policies also likely apply to
-          your and your colleagues’ use of CZ GEN EPI. Please see your
+          your and your colleagues’ use of TheiaGenEpi. Please see your
           organization for questions related to their policies.
         </ListItem>
         <ListItem>
-          CZ GEN EPI may not be used to provide medical or other services to any
-          third party (for instance, to inform or provide disease diagnoses). CZ
-          GEN EPI is not intended to diagnose, treat, cure, or prevent any
+          TheiaGenEpi may not be used to provide medical or other services to any
+          third party (for instance, to inform or provide disease diagnoses). TheiaGenEpi is not intended to diagnose, treat, cure, or prevent any
           disease and is not a substitute for medical advice.
         </ListItem>
       </List>
@@ -245,9 +339,8 @@ export default function Terms(): JSX.Element {
       </H2>
       <List>
         <ListItem>
-          You shall not otherwise access or use, or attempt to access or use, CZ
-          GEN EPI to take any action that could harm us, CZ GEN EPI or its
-          Users, or any third party, or use CZ GEN EPI in any manner that
+          You shall not otherwise access or use, or attempt to access or use, TheiaGenEpi to take any action that could harm us, TheiaGenEpi or its
+          Users, or any third party, or use TheiaGenEpi in any manner that
           violates applicable law or infringes or otherwise violates third party
           rights.
         </ListItem>
@@ -259,7 +352,7 @@ export default function Terms(): JSX.Element {
           </span>
         </ListItem>
         <ListItem>
-          We may restrict or terminate your access to CZ GEN EPI at any time,
+          We may restrict or terminate your access to TheiaGenEpi at any time,
           including for breach of these Terms. If this happens, we will attempt
           to provide you notice through the contact information we have for you.
         </ListItem>
@@ -270,17 +363,16 @@ export default function Terms(): JSX.Element {
   const renderChangesToCZGenEpiOrTerms = () => (
     <>
       <H2>
-        <Number>4.</Number>Changes To CZ GEN EPI Or These Terms
+        <Number>4.</Number>Changes To TheiaGenEpi Or These Terms
       </H2>
       <List>
         <ListItem>
           <span>
-            <ListItemLabel>Changes to CZ GEN EPI.</ListItemLabel>CZ GEN EPI is a
-            free tool. We can’t promise CZ GEN EPI will always be up and offered
+            <ListItemLabel>Changes to TheiaGenEpi.</ListItemLabel>TheiaGenEpi is a
+            free tool. We can’t promise TheiaGenEpi will always be up and offered
             as it is today, but if we are making material changes to its
             features or that impact its availability, we will give you a chance
-            to download and/or delete your data so you can take it off of CZ GEN
-            EPI.
+            to download and/or delete your data so you can take it off of TheiaGenEpi.
           </span>
         </ListItem>
         <ListItem>
@@ -296,8 +388,8 @@ export default function Terms(): JSX.Element {
           <span>
             <ListItemLabel>Closing Your Account.</ListItemLabel>You can close
             your Account at any time. Just contact us at{" "}
-            <NewTabLink href="mailto:privacy@czgenepi.org">
-              privacy@czgenepi.org
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>
           </span>
         </ListItem>
@@ -314,12 +406,12 @@ export default function Terms(): JSX.Element {
         <ListItem>
           <span>
             We and our service providers do not review or correct any data
-            uploaded into CZ GEN EPI. If you would like to report any issue with
-            CZ GEN EPI please contact us at{" "}
-            <NewTabLink href="mailto:security@czgenepi.org">
-              security@czgenepi.org
+            uploaded into TheiaGenEpi. If you would like to report any issue with
+            TheiaGenEpi please contact us at{" "}
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>
-            . CZ GEN EPI is not intended as a storage service, so please back up
+            . TheiaGenEpi is not intended as a storage service, so please back up
             your Upload Data using a secure service of your choice, such as the
             NCBI’s Sequence Read Archive (SRA) repository.
           </span>
@@ -330,22 +422,22 @@ export default function Terms(): JSX.Element {
             <List>
               <ListItem>
                 <span>
-                  YOUR ACCESS AND USE CZ GEN EPI AT YOUR SOLE RISK AND AGREE
+                  YOUR ACCESS AND USE TheiaGenEpi AT YOUR SOLE RISK AND AGREE
                   THAT WE AND OUR SERVICE PROVIDERS WILL NOT BE RESPONSIBLE FOR
-                  ANY ACTIONS YOU TAKE BASED ON CZ GEN EPI OR FOR ANY INACCURATE
-                  DATA OR OUTPUTS OF CZ GEN EPI.
+                  ANY ACTIONS YOU TAKE BASED ON TheiaGenEpi OR FOR ANY INACCURATE
+                  DATA OR OUTPUTS OF TheiaGenEpi.
                 </span>
               </ListItem>
               <ListItem>
                 <span>
-                  CZ GEN EPI IS PROVIDED &quot;AS IS&quot; WITH ALL FAULTS, AND
+                  TheiaGenEpi IS PROVIDED &quot;AS IS&quot; WITH ALL FAULTS, AND
                   WE AND OUR SERVICE PROVIDERS HEREBY DISCLAIM ALL
                   REPRESENTATIONS AND WARRANTIES, EXPRESS, STATUTORY, OR IMPLIED
                   (INCLUDING, WITHOUT LIMITATION, IMPLIED WARRANTIES OF TITLE,
                   NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR
                   PURPOSE, AND ALL WARRANTIES ARISING FROM THE COURSE OF
-                  DEALING, USAGE, OR TRADE PRACTICE) WITH RESPECT TO CZ GEN EPI.
-                  CZ GEN EPI IS NOT INTENDED TO BE USED AND SHOULD NOT BE USED
+                  DEALING, USAGE, OR TRADE PRACTICE) WITH RESPECT TO TheiaGenEpi.
+                  TheiaGenEpi IS NOT INTENDED TO BE USED AND SHOULD NOT BE USED
                   AS A MEDICAL DEVICE OR FOR PURPOSES OF MEDICAL DIAGNOSIS OR
                   TREATMENT.
                 </span>
@@ -355,12 +447,12 @@ export default function Terms(): JSX.Element {
                   FOR CLARITY AND WITHOUT LIMITING THE FOREGOING, WE AND OUR
                   SERVICE PROVIDERS DO NOT MAKE ANY GUARANTEES (I) REGARDING THE
                   ACCURACY, COMPLETENESS, TIMELINESS, SECURITY, AVAILABILITY OR
-                  INTEGRITY OF CZ GEN EPI, (II) THAT CZ GEN EPI WILL BE
+                  INTEGRITY OF TheiaGenEpi, (II) THAT TheiaGenEpi WILL BE
                   UNINTERRUPTED OR OPERATE IN COMBINATION WITH ANY SOFTWARE,
-                  SERVICE, SYSTEM OR OTHER DATA, OR (III) THAT CZ GEN EPI WILL
+                  SERVICE, SYSTEM OR OTHER DATA, OR (III) THAT TheiaGenEpi WILL
                   MEET ANY REQUIREMENTS OF ANY PERSON OR ENTITY, OR ANY
                   REGULATORY APPROVALS OR REQUIREMENTS. WITHOUT LIMITATION, YOU
-                  ACKNOWLEDGE THAT CZ GEN EPI IS NOT A BUSINESS ASSOCIATE FOR
+                  ACKNOWLEDGE THAT TheiaGenEpi IS NOT A BUSINESS ASSOCIATE FOR
                   PURPOSES OF HIPAA.
                 </span>
               </ListItem>
@@ -379,9 +471,9 @@ export default function Terms(): JSX.Element {
       <List>
         <ListItem>
           <span>
-            TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, CZIF AND
-            AFFILIATES (INCLUDING WITHOUT LIMITATION CHAN ZUCKERBERG INITIATIVE,
-            LLC; AND THE CHAN ZUCKERBERG BIOHUB COLLECTIVELY, THE{" "}
+            TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, TGHI AND
+            AFFILIATES (INCLUDING WITHOUT LIMITATION THEIAGEN GENOMICS,
+            LLC, THE{" "}
             <B>&quot;PROTECTED PARTIES&quot;</B>) WILL NOT BE LIABLE FOR ANY
             INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES OF
             ANY KIND (INCLUDING LOST PROFITS, LOST DATA, BUSINESS INTERRUPTION,
@@ -413,7 +505,7 @@ export default function Terms(): JSX.Element {
           proceeding (a &quot;Claim&quot;) to the extent arising from: (1) your
           gross negligence, willful misconduct or fraud; and/or (2) any
           misrepresentation you make regarding your permission to submit data to
-          CZ GEN EPI for your organization’s use.
+          TheiaGenEpi for your organization’s use.
         </ListItem>
         <ListItem>
           Indemnification is conditioned upon the Protected Parties giving you
@@ -422,7 +514,7 @@ export default function Terms(): JSX.Element {
           such defense. Notwithstanding anything to the contrary, (1) the
           Protected Parties may participate in defense of such Claim with its
           own counsel at its own expense and (2) you may not settle any Claim
-          without CZIF’s prior written consent, which will not be unreasonably
+          without TGHI’s prior written consent, which will not be unreasonably
           withheld, unless it unconditionally releases the Protected Parties of
           all liability, obligation, and fault.
         </ListItem>
@@ -451,11 +543,11 @@ export default function Terms(): JSX.Element {
           <span>
             <ListItemLabel>Dispute Resolution.</ListItemLabel>
             In the unlikely event we have a dispute arising out of or related to
-            the use of CZ GEN EPI (&quot;Dispute&quot;) that we can’t resolve
+            the use of TheiaGenEpi (&quot;Dispute&quot;) that we can’t resolve
             between us, you and we agree that we shall (in good faith) meet and
             attempt to resolve the Dispute within thirty (30) days. If the
             Dispute is not resolved during such time period, then you and a
-            representative of CZIF shall (in good faith) meet and attempt to
+            representative of TGHI shall (in good faith) meet and attempt to
             resolve the Dispute through non-binding mediation with a mutually
             agreed upon mediator within thirty (30) additional days.
           </span>
@@ -473,7 +565,7 @@ export default function Terms(): JSX.Element {
             laws of the State of California, exclusive of conflict or choice of
             law rules. In-person proceedings will take place in San Mateo
             County, California and your reasonable and documented travel
-            expenses will be paid by CZIF. The arbitrator shall have the power
+            expenses will be paid by TGHI. The arbitrator shall have the power
             to award any type of relief that would be available in a court of
             competent jurisdiction and will issue a written decision at the end
             of the arbitration, which will be final and binding. Judgment on any
@@ -534,8 +626,8 @@ export default function Terms(): JSX.Element {
         </ListItem>
         <ListItem>
           Entire Agreement. These Terms (along with the Privacy Notice)
-          constitute the entire agreement between you and us regarding CZ GEN
-          EPI. If you wish to modify these Terms, any amendment must be provided
+          constitute the entire agreement between you and us regarding TheiaGenEpi. 
+          If you wish to modify these Terms, any amendment must be provided
           to us in writing and signed by our authorized representative.
         </ListItem>
       </List>
@@ -552,8 +644,8 @@ export default function Terms(): JSX.Element {
           <span>
             If you have any questions, comments, or concerns with Terms, you may
             contact us at{" "}
-            <NewTabLink href="mailto:privacy@czgenepi.org">
-              privacy@czgenepi.org
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>
             .
           </span>
@@ -563,21 +655,19 @@ export default function Terms(): JSX.Element {
             Notice under these Terms must be in writing and deemed to have been
             given on the date delivered by a nationally recognized express mail
             service, such as Federal Express, or by certified and registered
-            mail (signature for receipt required) to CZIF as follows:
+            mail (signature for receipt required) to TGHI as follows:
             <br />
             <br />
-            Chan Zuckerberg Initiative Foundation
-            <br />
-            c/o The Chan Zuckerberg Initiative
+            Theiagen Global Health Initiative
             <br />
             Attn: General Counsel
             <br />
-            2682 Middlefield Road, Suite i<br />
-            Redwood City, CA 94063
+            1745 Shea Center Drive, Suite 400<br />
+            Highlands Ranch, CO, 80129, USA.
             <br />
             With a courtesy copy via email to:{" "}
-            <NewTabLink href="mailto:legalczi1@chanzuckerberg.com">
-              legalczi1@chanzuckerberg.com
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>{" "}
             (email does not constitute notice)
             <br />

@@ -8,7 +8,7 @@ import {
   UseCasesImageMobile,
 } from "./style";
 
-const imageAltText = `CZ Gen Epi bridges outbreak investigation and pathogen 
+const imageAltText = `[TheiaGenEpi] bridges outbreak investigation and pathogen 
 surveillance. On the left, "Outbreak investigation", includes 
 questions such as: "Do these cases share a common source?", "How are these two 
 outbreaks related?" and "Is this community transmission, or is this a new 

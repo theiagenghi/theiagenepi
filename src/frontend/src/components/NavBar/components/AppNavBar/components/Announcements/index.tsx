@@ -21,8 +21,7 @@ export const Announcements = (): JSX.Element => {
       {shouldShowTransferBanner && (
         <StyledBanner sdsType="primary">
           <B>
-            THEIAGEN GLOBAL HEALTH INITIATIVE WILL MANAGE CZ GEN EPI ON NOVEMBER
-            15, 2024. CLICK&nbsp;
+            THEIAGEN GLOBAL HEALTH INITIATIVE IS NOW MANAGING CZ GEN EPI. CLICK&nbsp;
           </B>
           <StyledNewTabLink
             href="https://help.czgenepi.org/hc/en-us/articles/20083077583764-FAQs-CZ-GEN-EPI-Transfer-to-Theiagen-Global-Health-Initiative-TGHI"

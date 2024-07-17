@@ -145,7 +145,7 @@ const TreeTableNameCell = ({ phyloRun, locations }: Props): JSX.Element => {
                 <StyledTooltip
                   arrow
                   leaveDelay={200}
-                  title="This tree is automatically built by CZ GEN EPI every Monday"
+                  title="This tree is automatically built by TheiaGenEpi."
                   placement="bottom"
                 >
                   <StyledInfoIconWrapper>

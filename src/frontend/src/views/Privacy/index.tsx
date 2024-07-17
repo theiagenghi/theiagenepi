@@ -27,35 +27,34 @@ const PrivacyPolicy = (): JSX.Element => {
   const renderIntro = () => (
     <>
       <Title>
-        <H1>Chan Zuckerberg GEN EPI (formerly Aspen) Privacy Policy</H1>
-        <H4>Last Updated: January 1, 2023</H4>
+        <H1>TheiaGenEpi Privacy Policy</H1>
+        <H4>Last Updated: July 11, 2024</H4>
       </Title>
       <P>
-        The Chan Zuckerberg Initiative Foundation, a 501(c)(3) nonprofit private
-        foundation (&quot;<B>CZIF</B>,&quot; &quot;we,&quot; &quot;us,&quot; or
-        &quot;our&quot;), provides the Chan Zuckerberg GEN EPI product
-        (&quot;Services&quot; or &quot;CZ GEN EPI&quot;) in close collaboration
-        with the Chan Zuckerberg Biohub (&quot;<B>CZB</B>&quot;), and the Chan
-        Zuckerberg Initiative, LLC (&quot;<B>CZI LLC</B>&quot;). This Privacy
+        The Theiagen Global Health Initiative, a 501(c)(3) nonprofit private
+        foundation pending approval (&quot;<B>TGHI</B>,&quot; &quot;we,&quot; &quot;us,&quot; or
+        &quot;our&quot;), provides the TheiaGenEpi product
+        (&quot;Services&quot; or &quot;TheiaGenEpi&quot;) in close collaboration
+        with Theiagen Genomics LLC (&quot;<B>TG LLC</B>&quot;). This Privacy
         Policy describes the types of information we collect or that is uploaded
-        by CZ GEN EPI Users (collectively &quot;Users&quot; or &quot;you&quot;,
+        by TheiaGenEpi Users (collectively &quot;Users&quot; or &quot;you&quot;,
         ex: registered public health officials at state and/or county level
         Departments of Public Health (&quot;<B>DPH</B>&quot;), other public
         health researchers), and how we use, disclose, and protect that
         information.
       </P>
-      <H3>About CZ GEN EPI</H3>
+      <H3>About TheiaGenEpi</H3>
       <P>
-        CZ GEN EPI is a tool that uses pathogen genomic sequence data to help
+        TheiaGenEpi is a tool that uses pathogen genomic sequence data to help
         you infer how pathogens are moving through a population and how cases
-        and outbreaks are related. In order to become a User of CZ GEN EPI you
+        and outbreaks are related. In order to become a User of TheiaGenEpi you
         must be acting in your organizational capacity, which means a couple
-        things: (1) your use of CZ GEN EPI may be subject to your organization’s
+        things: (1) your use of TheiaGenEpi may be subject to your organization’s
         policies and (2) upon sign-up, you’ll be placed into a group with other
         users from your organization.
       </P>
       <P>
-        Here’s how CZ GEN EPI processes and manages Upload Data: Users submit
+        Here’s how TheiaGenEpi processes and manages Upload Data: Users submit
         Raw Sequence Data (as described below) as well as information about
         those sequences, such as the date the sample was collected (&quot;Sample
         Metadata&quot; as further defined below -- Raw Sequence Data and Sample
@@ -70,8 +69,7 @@ const PrivacyPolicy = (): JSX.Element => {
         <B>
           By default, these analytical outputs will be visible to the User that
           uploaded the Sample and other members of the User’s organization
-          (&quot;Group&quot;, ex: a Department of Public Health) using CZ GEN
-          EPI.
+          (&quot;Group&quot;, ex: a Department of Public Health) using TheiaGenEpi.
         </B>
       </P>
       <P>
@@ -84,14 +82,14 @@ const PrivacyPolicy = (): JSX.Element => {
         To help you better understand our Privacy Policy, we’ve created the
         below Summary, which includes bullets regarding Key Things to Know, as
         well as a Table summarizing key aspects of our data practices. For more
-        information about the rules governing your use of CZ GEN EPI, please
+        information about the rules governing your use of TheiaGenEpi, please
         also see our{" "}
         <NewTabLink href={ROUTES.TERMS}>
           Terms of Use (&quot;Terms&quot;)
         </NewTabLink>
         .{" "}
         <B>
-          Please remember that you are using CZ GEN EPI in your organizational
+          Please remember that you are using TheiaGenEpi in your organizational
           capacity, which means that your organization’s policies will apply to
           your use.
         </B>
@@ -99,14 +97,14 @@ const PrivacyPolicy = (): JSX.Element => {
 
       <H3>Key Things to Know</H3>
       <List>
-        <ListItem>CZ GEN EPI is a free and open-source tool.</ListItem>
+        <ListItem>TheiaGenEpi is a free and open-source tool.</ListItem>
         <ListItem>
           You always own the data you upload. You decide how you want your data
-          to be shared, and you can delete your data from CZ GEN EPI at any
+          to be shared, and you can delete your data from TheiaGenEpi at any
           time.
         </ListItem>
         <ListItem>
-          You’re using CZ GEN EPI in your professional capacity, which means any
+          You’re using TheiaGenEpi in your professional capacity, which means any
           pathogen sample data you upload, and any data that we generate on the
           basis of this, are visible to other members (Users) in your Group.
           This data is only available to anyone outside of your organization
@@ -122,7 +120,7 @@ const PrivacyPolicy = (): JSX.Element => {
         </ListItem>
         <ListItem>
           <span>
-            Similarly, CZ GEN EPI{" "}
+            Similarly, TheiaGenEpi{" "}
             <B>
               does not contain any personally identifying metadata or
               health-related information
@@ -134,7 +132,7 @@ const PrivacyPolicy = (): JSX.Element => {
             upload (e.g., you can choose to list only the state, or to redact
             collection dates before uploading). We collect this metadata only
             for the purposes of providing analyses for you, enabling you to link
-            back to your epidemiological data (outside of CZ GEN EPI), and
+            back to your epidemiological data (outside of TheiaGenEpi), and
             optionally submitting to public repositories.
           </span>
         </ListItem>
@@ -155,7 +153,7 @@ const PrivacyPolicy = (): JSX.Element => {
           </TopRow>
           <SectionRow>
             <td colSpan={5}>
-              <B>Data you upload to or create using CZ GEN EPI</B>
+              <B>Data you upload to or create using TheiaGenEpi</B>
             </td>
           </SectionRow>
           <ContentRow>
@@ -185,7 +183,7 @@ const PrivacyPolicy = (): JSX.Element => {
               </P>
               <P>
                 Other than as specifically requested by you, such as to debug an
-                issue, staff working on CZ GEN EPI never access this data.
+                issue, staff working on TheiaGenEpi never access this data.
               </P>
               <P>
                 This data is temporarily disclosed to our service providers (ex:
@@ -196,9 +194,9 @@ const PrivacyPolicy = (): JSX.Element => {
               <P>
                 Users can request deletion of Raw Sequence Data, Sample
                 Metadata, Pathogen Consensus Genomes, analytical outputs, or
-                their CZ GEN EPI account data by contacting us at{" "}
-                <NewTabLink href="mailto:hello@czgenepi.org">
-                  hello@czgenepi.org
+                their TheiaGenEpi account data by contacting us at{" "}
+                <NewTabLink href="mailto:support@theiagenghi.org">
+                support@theiagenghi.org
                 </NewTabLink>{" "}
                 and we will fulfill the request within the timelines set forth
                 under applicable privacy laws. You can learn more about your
@@ -207,7 +205,7 @@ const PrivacyPolicy = (): JSX.Element => {
               <P>
                 Please be aware, however, that we cannot delete any Pathogen
                 Consensus Genomes or analytical outputs which have been shared
-                outside of CZ GEN EPI.
+                outside of TheiaGenEpi.
               </P>
             </td>
           </ContentRow>
@@ -230,17 +228,16 @@ const PrivacyPolicy = (): JSX.Element => {
                 </P>
 
                 <P>
-                  This data is also accessible by technical partners (CZ Biohub
-                  and CZI, LLC) and Service Providers (ex: AWS) that help
-                  operate, secure, and improve CZ GEN EPI. For example, we need
+                  This data is also accessible by technical partners (TG, LLC) and Service Providers (ex: AWS) that help
+                  operate, secure, and improve TheiaGenEpi. For example, we need
                   to be able to access your data in order to back up and
                   maintain the database.
                 </P>
 
                 <P>
                   This Privacy Policy applies to all parties that access data to
-                  support CZ GEN EPI and they will not use the data for any
-                  purpose beyond operating, securing, and improving CZ GEN EPI.
+                  support TheiaGenEpi and they will not use the data for any
+                  purpose beyond operating, securing, and improving TheiaGenEpi.
                 </P>
 
                 <P>
@@ -261,9 +258,9 @@ const PrivacyPolicy = (): JSX.Element => {
             <td>
               <P>See above.</P>
               <P>
-                Users may also upload this data to CZ GEN EPI directly if they
+                Users may also upload this data to TheiaGenEpi directly if they
                 have assembled a pathogen consensus genome in a different
-                program, but would like to analyze that genome in CZ GEN EPI.
+                program, but would like to analyze that genome in TheiaGenEpi.
               </P>
             </td>
             <td>
@@ -288,7 +285,7 @@ const PrivacyPolicy = (): JSX.Element => {
               phylogenetic trees).
             </td>
             <td>
-              Users use CZ GEN EPI to drive analytical results that they can
+              Users use TheiaGenEpi to drive analytical results that they can
               then choose to share more broadly.
             </td>
             <td>
@@ -300,7 +297,7 @@ const PrivacyPolicy = (): JSX.Element => {
 
           <SectionRow>
             <td colSpan={5}>
-              <B>Data CZ GEN EPI collects</B>
+              <B>Data TheiaGenEpi collects</B>
             </td>
           </SectionRow>
           <ContentRow>
@@ -308,40 +305,37 @@ const PrivacyPolicy = (): JSX.Element => {
               <B>User Data</B>
             </td>
             <td>
-              Data about researchers with CZ GEN EPI accounts such as name,
-              email, institution, basic information about how they are using CZ
-              GEN EPI, and information provided through surveys, during an
+              Data about researchers with TheiaGenEpi accounts such as name,
+              email, institution, basic information about how they are using TheiaGenEpi, and information provided through surveys, during an
               in-person event, or for user support (ex: resolving support
               requests).
             </td>
             <td>
-              We use this data only to operate, secure, and improve the CZ GEN
-              EPI services.
+              We use this data only to operate, secure, and improve the TheiaGenEpi services.
             </td>
             <td>
               <P>
-                Basic CZ GEN EPI account information such as name and
-                institution may be visible to other CZ GEN EPI Users.
+                Basic TheiaGenEpi account information such as name and
+                institution may be visible to other TheiaGenEpi Users.
               </P>
               <P>
-                This data is also shared with technical partners (CZ Biohub and
-                CZI, LLC) and Service Providers (ex: AWS) that help operate,
-                secure, and improve CZ GEN EPI.
+                This data is also shared with technical partners (TG LLC) and Service Providers (ex: AWS) that help operate,
+                secure, and improve TheiaGenEpi.
               </P>
               <P>
                 This Privacy Policy applies to all parties that access data to
-                support CZ GEN EPI and they will not use the data for any
-                purpose beyond operating, securing, and improving CZ GEN EPI.
+                support TheiaGenEpi and they will not use the data for any
+                purpose beyond operating, securing, and improving TheiaGenEpi.
               </P>
               <P>
                 We will never sell your data or share it with anyone that does.
               </P>
             </td>
             <td rowSpan={2}>
-              Users can request deletion of their CZ GEN EPI account data by
+              Users can request deletion of their TheiaGenEpi account data by
               contacting us at{" "}
-              <NewTabLink href="mailto:hello@czgenepi.org">
-                hello@czgenepi.org
+              <NewTabLink href="mailto:support@theiagenghi.org">
+                support@theiagenghi.org
               </NewTabLink>{" "}
               and we will fulfill the request within the timelines set forth
               under applicable privacy laws. You can learn more about your
@@ -354,10 +348,9 @@ const PrivacyPolicy = (): JSX.Element => {
             </td>
             <td>
               Device Data (ex: browser type and operating system, and IP
-              address) and Analytics Information (ex: links within CZ GEN EPI
-              you click on and how often you log into CZ GEN EPI) includes basic
-              information about how Users and Visitors are interacting with CZ
-              GEN EPI and a general location (i.e. country) of where they are
+              address) and Analytics Information (ex: links within TheiaGenEpi
+              you click on and how often you log into TheiaGenEpi) includes basic
+              information about how Users and Visitors are interacting with TheiaGenEpi and a general location (i.e. country) of where they are
               accessing the Services.
             </td>
             <td>See above.</td>
@@ -371,7 +364,7 @@ const PrivacyPolicy = (): JSX.Element => {
   const renderDataCZGenEpiCollects = () => (
     <>
       <H2AnchorLink id="privacy-data-collection">
-        Data CZ GEN EPI Collects
+        Data TheiaGenEpi Collects
       </H2AnchorLink>
       <P>
         We will never share your personal information for behavioral advertising
@@ -387,7 +380,7 @@ const PrivacyPolicy = (): JSX.Element => {
         <Number>1.</Number>Upload Data
       </H2>
       <P>
-        &quot;Upload Data&quot; is data that Users upload to CZ GEN EPI (other
+        &quot;Upload Data&quot; is data that Users upload to TheiaGenEpi (other
         than the information which is provided during registration to create a
         User account). Upload Data consists of pathogen genomic data (including
         &quot;Raw Sequence Data&quot;, which includes both host and pathogenic
@@ -419,7 +412,7 @@ const PrivacyPolicy = (): JSX.Element => {
             uploaded, it will be filtered out and removed. Note that if there
             are no issues identified with the corresponding Pathogen Consensus
             Genome, the Raw Sequencing Data will be permanently deleted from our
-            backend after 90 days. We encourage Users to submit raw reads to the
+            backend after 21 days. We encourage Users to submit raw reads to the
             Sequencing Read Archive for long-term storage.
           </span>
         </ListItem>
@@ -428,8 +421,8 @@ const PrivacyPolicy = (): JSX.Element => {
             <ListItemLabel>Pathogen Consensus Genomes:</ListItemLabel>{" "}
             &quot;Pathogen Consensus Genomes&quot; are genetic sequences of
             pathogens, such as SARS-CoV-2, mapped to pathogen-specific reference
-            genomes. These may either be uploaded directly to CZ GEN EPI or
-            generated by CZ GEN EPI from uploaded Raw Sequence Data (see below).
+            genomes. These may either be uploaded directly to TheiaGenEpi or
+            generated by TheiaGenEpi from uploaded Raw Sequence Data (see below).
           </span>
         </ListItem>
         <ListItem>
@@ -445,10 +438,10 @@ const PrivacyPolicy = (): JSX.Element => {
         </ListItem>
       </List>
       <P>
-        If you are able to find data in CZ GEN EPI or any Sample Metadata that
+        If you are able to find data in TheiaGenEpi or any Sample Metadata that
         you believe is identifying, please let us know at{" "}
-        <NewTabLink href="mailto:privacy@czgenepi.org">
-          privacy@czgenepi.org
+        <NewTabLink href="mailto:support@theiagenghi.org">
+          support@theiagenghi.org
         </NewTabLink>{" "}
         and we will address it.
       </P>
@@ -457,7 +450,7 @@ const PrivacyPolicy = (): JSX.Element => {
       </P>
       <P>
         In the event Raw Sequence Data from a human host is uploaded by a User
-        to CZ GEN EPI, it is sensitive personal information (genomic sequence
+        to TheiaGenEpi, it is sensitive personal information (genomic sequence
         data), which will only be used to operate and provide the requested
         service to you. As mentioned throughout this Privacy Policy, any human
         genetic information contained in your upload is filtered out and deleted
@@ -479,8 +472,8 @@ const PrivacyPolicy = (): JSX.Element => {
           phylogenetic trees.
         </ListItem>
         <ListItem>
-          To improve the way CZ GEN EPI processes Pathogen Consensus Genomes and
-          Users’ ability to use CZ GEN EPI to create useful analytical outputs.
+          To improve the way TheiaGenEpi processes Pathogen Consensus Genomes and
+          Users’ ability to use TheiaGenEpi to create useful analytical outputs.
         </ListItem>
         <ListItem>
           To troubleshoot in the event you reach out to us with a specific issue
@@ -502,8 +495,8 @@ const PrivacyPolicy = (): JSX.Element => {
         (your &quot;Group&quot;). This data is also disclosed to service
         providers (ex: AWS) in order to store the data. Please note that while
         the Raw Sequence Data is temporarily visible to other members of your
-        Group, this data is not retained on the CZ GEN EPI platform and is
-        permanently deleted from our backend after 90 days.
+        Group, this data is not retained on the TheiaGenEpi platform and is
+        permanently deleted from our backend after 21 days.
       </P>
       <P>
         We may also disclose your Pathogen Consensus Genomes (whether uploaded
@@ -512,7 +505,7 @@ const PrivacyPolicy = (): JSX.Element => {
         as required by law. For example, certain Users in California currently
         allow the California Department of Public Health (&quot;CDPH&quot;) to
         access data from their Group. Where such access is allowed by Groups,
-        the third party can access this data through their own CZ GEN EPI
+        the third party can access this data through their own TheiaGenEpi
         accounts, and may have similar viewing permissions as members of the
         uploading Group. However, they will not have access to your private,
         internal identifiers.
@@ -524,8 +517,7 @@ const PrivacyPolicy = (): JSX.Element => {
         share it more broadly. <B>We don’t own, rent, or sell your data.</B>
       </P>
       <P>
-        Pathogen Consensus Genomes, whether uploaded by you or generated by CZ
-        GEN EPI, will be disclosed by us with public repositories (as set out
+        Pathogen Consensus Genomes, whether uploaded by you or generated by TheiaGenEpi, will be disclosed by us with public repositories (as set out
         below) unless you choose to mark this information as
         &quot;private.&quot; In the event that the Pathogen Consensus Genome is
         created by us, it will automatically be marked as private if the
@@ -549,11 +541,11 @@ const PrivacyPolicy = (): JSX.Element => {
       </P>
       <P>
         In the rare event that human genetic data is not successfully deleted in
-        the initial upload process, CZ GEN EPI may process this data only
+        the initial upload process, TheiaGenEpi may process this data only
         insofar as necessary in order to delete it. This processing is in our
-        legitimate interest, and in the legitimate interests of CZB and CZI LLC,
+        legitimate interest, and in the legitimate interests of TG LLC,
         in order for us to ensure that no personal data is contained within the
-        genomic data stored on CZ GEN EPI.
+        genomic data stored on TheiaGenEpi.
       </P>
       <P>
         The remaining pathogen genome does not contain personal data, as it
@@ -578,7 +570,7 @@ const PrivacyPolicy = (): JSX.Element => {
         reference genome.
       </P>
       <P>
-        CZ GEN EPI also gives you the ability to create new analytical outputs
+        TheiaGenEpi also gives you the ability to create new analytical outputs
         from pathogen genomes, such as phylogenetic trees that allow you to
         better map the relationship between strains.
       </P>
@@ -614,11 +606,11 @@ const PrivacyPolicy = (): JSX.Element => {
         <Number>3.</Number>User Data
       </H2>
       <P>
-        CZ GEN EPI also collects information about Users in order to offer the
-        Service. CZ GEN EPI collects basic identifiers required to create an
+        TheiaGenEpi also collects information about Users in order to offer the
+        Service. TheiaGenEpi collects basic identifiers required to create an
         account (e.g. email address, name, Group affiliation), Device and
         Analytics Data, information from Cookies, and information Users decide
-        they want to upload onto CZ GEN EPI.
+        they want to upload onto TheiaGenEpi.
       </P>
 
       <UnderLineHeader>What We Collect</UnderLineHeader>
@@ -684,20 +676,19 @@ const PrivacyPolicy = (): JSX.Element => {
       <List>
         <ListItem>
           To create a profile for Users, and verify Users’ identity so you can
-          log in to and use CZ GEN EPI.
+          log in to and use TheiaGenEpi.
         </ListItem>
         <ListItem>
-          To provide you with notices about your account and updates about CZ
-          GEN EPI.
+          To provide you with notices about your account and updates about TheiaGenEpi.
         </ListItem>
         <ListItem>To respond to your inquiries and requests.</ListItem>
         <ListItem>
-          To analyze broadly how Users are using CZ GEN EPI and the general
+          To analyze broadly how Users are using TheiaGenEpi and the general
           location (i.e., country) of where Users are accessing the Service so
           we can optimize and improve it.
         </ListItem>
         <ListItem>
-          To protect the security and integrity of CZ GEN EPI.
+          To protect the security and integrity of TheiaGenEpi.
         </ListItem>
       </List>
       <P>
@@ -710,9 +701,9 @@ const PrivacyPolicy = (): JSX.Element => {
         bases to use and disclose personal data in User Data:
       </P>
       <P>
-        We (along with CZB and CZI LLC) have a legitimate interest in using
+        We (along with TG LLC) have a legitimate interest in using
         personal data within User Data in the ways described in this Privacy
-        Policy to operate, secure, and improve CZ GEN EPI. This allows us to
+        Policy to operate, secure, and improve TheiaGenEpi. This allows us to
         improve the service that we provide to Users which, in turn, supports
         research regarding the study of infectious disease with the potential to
         benefit global public health.
@@ -736,16 +727,16 @@ const PrivacyPolicy = (): JSX.Element => {
         <ListItem>
           <span>
             We retain Pathogen Consensus Genomes, Sample Metadata and analytical
-            outputs until Users delete them from CZ GEN EPI. Users may delete
+            outputs until Users delete them from TheiaGenEpi. Users may delete
             their data by contacting us at{" "}
-            <NewTabLink href="mailto:hello@czgenepi.org">
-              hello@czgenepi.org
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>
             .
           </span>
         </ListItem>
         <ListItem>
-          We store Raw Sequence Data (ex: fastq files) for 90 days following
+          We store Raw Sequence Data (ex: fastq files) for 21 days following
           upload. If no abnormalities are found in the resulting Pathogen
           Consensus Genome, we discard this data. We encourage submission to
           NCBI’s Sequence Read Archive (SRA) repository for long-term storage
@@ -753,11 +744,11 @@ const PrivacyPolicy = (): JSX.Element => {
         </ListItem>
         <ListItem>
           <span>
-            User Data is retained until Users delete their CZ GEN EPI account
+            User Data is retained until Users delete their TheiaGenEpi account
             because this data is required to manage the service. Users may
             submit account deletion requests by emailing{" "}
-            <NewTabLink href="mailto:hello@czgenepi.org">
-              hello@czgenepi.org
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>
             . We will delete personal data within 60 days following the closure
             of your account or sooner depending on applicable privacy laws.
@@ -767,7 +758,7 @@ const PrivacyPolicy = (): JSX.Element => {
       <P>
         Please note that we do not control, and so cannot delete Pathogen
         Consensus Genomes and analytical outputs that have been shared outside
-        of CZ GEN EPI.
+        of TheiaGenEpi.
       </P>
     </>
   );
@@ -778,18 +769,18 @@ const PrivacyPolicy = (): JSX.Element => {
         <Number>5.</Number>Vendors and Service Providers
       </H2>
       <P>
-        CZB, CZIF, and CZI LLC collaborate closely in order to build, design,
-        and operate CZ GEN EPI so that it can be as useful as possible to
-        researchers and the public health community. CZB and CZIF provide
-        scientific and data analysis leadership and CZI LLC focuses on
-        maintaining CZ GEN EPI’s infrastructure, security, and compliance. The
-        three parties are all data controllers for CZ GEN EPI and will all only
+        TG LLC collaborate closely in order to build, design,
+        and operate TheiaGenEpi so that it can be as useful as possible to
+        researchers and the public health community. TG LLC provide
+        scientific and data analysis leadership and TG LLC focuses on
+        maintaining TheiaGenEpi’s infrastructure, security, and compliance. The
+        parties are all data controllers for TheiaGenEpi and will all only
         use data as described in this Privacy Policy.
       </P>
       <P>
         We also use service providers, such as a database provider, analytics
         providers, customer support providers, and survey providers to support
-        and improve the operation of CZ GEN EPI. These service providers are
+        and improve the operation of TheiaGenEpi. These service providers are
         data processors and their use is limited to the purposes disclosed in
         this Privacy Policy. For more information about our use of service
         providers, please see our{" "}
@@ -811,9 +802,9 @@ const PrivacyPolicy = (): JSX.Element => {
         results from their Group.
       </P>
       <P>
-        In the unlikely event that we can no longer keep operating CZ GEN EPI or
+        In the unlikely event that we can no longer keep operating TheiaGenEpi or
         believe that its purpose is better served by having another entity
-        operating it, we may transfer CZ GEN EPI and all data existing therein
+        operating it, we may transfer TheiaGenEpi and all data existing therein
         (Upload Data, analytical outputs, and User Data) so that Users can
         continue to be served. We will always let you know <B>before</B> this
         happens, and you will have the option to delete your account and any
@@ -841,22 +832,21 @@ const PrivacyPolicy = (): JSX.Element => {
       </H2>
       <P>
         We use industry standard security measures to ensure the
-        confidentiality, integrity and availability of data uploaded into CZ GEN
-        EPI. This includes practices like encrypting connections to CZ GEN EPI
-        using TLS (encrypting data while in transit), hosting CZ GEN EPI on
+        confidentiality, integrity and availability of data uploaded into TheiaGenEpi. This includes practices like encrypting connections to TheiaGenEpi
+        using TLS (encrypting data while in transit), hosting TheiaGenEpi on
         leading cloud providers with robust physical security, and ensuring that
-        access to any personal data within CZ GEN EPI by CZIF, CZB, and CZI LLC
+        access to any personal data within TheiaGenEpi by TG LLC
         staff is limited to those staff who need access to operate the Service.
       </P>
       <P>
         Security takes ongoing work and we will continue to monitor and adjust
-        our security measures as CZ GEN EPI develops. Please notify us
+        our security measures as TheiaGenEpi develops. Please notify us
         immediately at{" "}
-        <NewTabLink href="mailto:security@czgenepi.org">
-          security@czgenepi.org
+        <NewTabLink href="mailto:support@theiagenghi.org">
+          support@theiagenghi.org
         </NewTabLink>{" "}
         if you suspect your account has been compromised or are aware of any
-        other security issues relating to CZ GEN EPI.
+        other security issues relating to TheiaGenEpi.
       </P>
     </>
   );
@@ -870,9 +860,9 @@ const PrivacyPolicy = (): JSX.Element => {
       <List>
         <ListItem>
           Users are able to request the deletion of User Data that constitutes
-          their personal data, or Upload Data that they submitted to CZ GEN EPI.
-          Users may also request the deletion from CZ GEN EPI of the Pathogen
-          Consensus Genomes created by CZ GEN EPI on the basis of their Upload
+          their personal data, or Upload Data that they submitted to TheiaGenEpi.
+          Users may also request the deletion from TheiaGenEpi of the Pathogen
+          Consensus Genomes created by TheiaGenEpi on the basis of their Upload
           Data.
         </ListItem>
         <ListItem>
@@ -883,7 +873,7 @@ const PrivacyPolicy = (): JSX.Element => {
         <ListItem>
           Users are able to access and download analytical results relating to
           Upload Data submitted by a member of their organization group within
-          CZ GEN EPI.
+          TheiaGenEpi.
         </ListItem>
         <ListItem>
           Users have the right to receive notice of our personal information
@@ -894,8 +884,8 @@ const PrivacyPolicy = (): JSX.Element => {
           <span>
             If you have any questions about our processing of any data, please
             contact us at{" "}
-            <NewTabLink href="mailto:privacy@czgenepi.org">
-              privacy@czgenepi.org
+            <NewTabLink href="mailto:theiagenghi.org">
+              theiagenghi.org
             </NewTabLink>
             .
           </span>
@@ -906,8 +896,8 @@ const PrivacyPolicy = (): JSX.Element => {
         verify that you are the person about whom we collected personal
         information. If you would like an authorized agent to make a request for
         you, have that agent email{" "}
-        <NewTabLink href="mailto:privacy@czgenepi.org">
-          privacy@czgenepi.org
+        <NewTabLink href="mailto:support@theiagenghi.org">
+          support@theiagenghi.org
         </NewTabLink>{" "}
         with information that is sufficient for us to verify that the authorized
         agent is acting on your behalf.
@@ -915,8 +905,8 @@ const PrivacyPolicy = (): JSX.Element => {
       <P>
         If you would like to appeal a decision with respect to a request to
         exercise any of these rights, please email us at{" "}
-        <NewTabLink href="mailto:privacy@czgenepi.org">
-          privacy@czgenepi.org
+        <NewTabLink href="mailto:support@theiagenghi.org">
+          support@theiagenghi.org
         </NewTabLink>{" "}
         and explain the basis for your appeal.
       </P>
@@ -926,8 +916,8 @@ const PrivacyPolicy = (): JSX.Element => {
         (and without prejudice to any other rights you may have), you have the
         right to do so with your local supervisory authority or by emailing us
         at{" "}
-        <NewTabLink href="mailto:privacy@czgenepi.org">
-          privacy@czgenepi.org
+        <NewTabLink href="mailto:support@theiagenghi.org">
+          support@theiagenghi.org
         </NewTabLink>
         .
       </P>
@@ -940,11 +930,11 @@ const PrivacyPolicy = (): JSX.Element => {
         <Number>8.</Number>Children
       </H2>
       <P>
-        Please note: CZ GEN EPI is not designed for or directed toward children
+        Please note: TheiaGenEpi is not designed for or directed toward children
         under the age of 16 and we do not have actual knowledge that we have
         sold or shared the personal information of users under 16 years of age.
         If we become aware that we have the information of such children
-        collected through CZ GEN EPI, we will promptly delete it.
+        collected through TheiaGenEpi, we will promptly delete it.
       </P>
     </>
   );
@@ -972,10 +962,10 @@ const PrivacyPolicy = (): JSX.Element => {
         <Number>10.</Number>Data Transfers
       </H2>
       <P>
-        CZ GEN EPI is a US-based service. If you want to use CZ GEN EPI, you
+        TheiaGenEpi is a US-based service. If you want to use TheiaGenEpi, you
         must first agree to our{" "}
         <NewTabLink href={ROUTES.TERMS}>Terms</NewTabLink>, which set out the
-        contract between CZ GEN EPI and our Users. We operate in the United
+        contract between TheiaGenEpi and our Users. We operate in the United
         States, and use technical infrastructure in the United States to deliver
         the Services to you.
       </P>
@@ -1045,7 +1035,7 @@ const PrivacyPolicy = (): JSX.Element => {
               <ListItem>
                 The categories of personal information, if any, that have been
                 sold (if applicable), shared, or disclosed for a business
-                purpose to third parties. Note: CZ GEN EPI does not sell your
+                purpose to third parties. Note: TheiaGenEpi does not sell your
                 personal information nor will we share your personal information
                 for behavioral advertising purposes.
               </ListItem>
@@ -1076,9 +1066,8 @@ const PrivacyPolicy = (): JSX.Element => {
             categories of personal information from consumers within the past 12
             months: (1) identifiers; (2) professional or employment-related
             information; (3) internet or other electronic network activity
-            within CZ GEN EPI; (4) geolocation data; (5) inferences drawn from
-            your internet or other electronic network activity within CZ GEN
-            EPI; and (6) information provided within survey responses.
+            within TheiaGenEpi; (4) geolocation data; (5) inferences drawn from
+            your internet or other electronic network activity within TheiaGenEpi; and (6) information provided within survey responses.
           </span>
         </ListItem>
         <ListItem>
@@ -1105,9 +1094,9 @@ const PrivacyPolicy = (): JSX.Element => {
             <B>Information we disclose.</B> We have disclosed the following
             categories of personal information within the past 12 months: (1)
             identifiers; (2) professional or employment-related information; (3)
-            internet or other electronic network activity within CZ GEN EPI; (4)
+            internet or other electronic network activity within TheiaGenEpi; (4)
             geolocation data; (5) inferences drawn from your internet or other
-            electronic network activity within CZ GEN EPI; and (6) information
+            electronic network activity within TheiaGenEpi; and (6) information
             provided within survey responses.
           </span>
         </ListItem>
@@ -1165,8 +1154,8 @@ const PrivacyPolicy = (): JSX.Element => {
       <P>
         If you have any questions, comments, or concerns with this Privacy
         Policy, you may contact us at{" "}
-        <NewTabLink href="mailto:privacy@czgenepi.org">
-          privacy@czgenepi.org
+        <NewTabLink href="mailto:support@theiagenghi.org">
+          support@theiagenghi.org
         </NewTabLink>
         .
       </P>

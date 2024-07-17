@@ -303,7 +303,7 @@ export const CreateNSTreeModal = ({
     <div>
       Visit our help center to{" "}
       <NewTabLink href="https://help.czgenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees">
-        learn more about building Nextstrain trees in CZ GEN EPI.
+        learn more about building Nextstrain trees in TheiaGenEpi.
       </NewTabLink>
     </div>
   );

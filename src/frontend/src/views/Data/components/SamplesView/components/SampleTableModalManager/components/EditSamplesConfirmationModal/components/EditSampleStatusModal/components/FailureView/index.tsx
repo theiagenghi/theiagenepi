@@ -28,7 +28,7 @@ const FailureView = ({ onClose }: Props): JSX.Element => {
           </div>
           <div>
             You may retry or{" "}
-            <StyledNewTabLink href="mailto:hello@czgenepi.org">
+            <StyledNewTabLink href="mailto:support@theiagenghi.org">
               contact us
             </StyledNewTabLink>{" "}
             for help.

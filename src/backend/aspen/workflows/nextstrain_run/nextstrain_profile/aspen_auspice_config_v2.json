@@ -2,8 +2,8 @@
   "title": "Genomic epidemiology of novel coronavirus",
   "build_url": "https://github.com/nextstrain/ncov",
   "maintainers": [
-    {"name": "Chan Zuckerberg Initiative",
-     "url": "https://chanzuckerberg.com"}
+    {"name": "Theiagen Global Health Initiative",
+     "url": "https://theiagenghi.org"}
   ],
   "data_provenance": [
     {

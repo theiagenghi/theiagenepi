@@ -19,7 +19,7 @@ class Pathogen(idbase):  # type: ignore
         nullable=False,
         unique=True,
         comment=(
-            "Used as a URL param for differentiating functionality within CZGE, ex: SC2"
+            "Used as a URL param for differentiating functionality within TheiaGenEpi, ex: SC2"
         ),
     )
     name = Column(

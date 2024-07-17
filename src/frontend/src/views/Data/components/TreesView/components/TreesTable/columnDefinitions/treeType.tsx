@@ -16,11 +16,11 @@ export const treeType: ColumnDef<PhyloRun, any> = {
       tooltipStrings={{
         boldText: "Tree Type",
         link: {
-          href: "https://docs.google.com/document/d/1_iQgwl3hn_pjlZLX-n0alUbbhgSPZvpW_0620Hk_kB4/edit?usp=sharing",
+          href: "https://theiagengenomics5614.zendesk.com/hc/en-us/article_attachments/27402419300507",
           linkText: "Read our guide to learn more.",
         },
         regularText:
-          "CZ Gen Epi-defined profiles for tree building based on primary use case and build settings.",
+          "TheiaGenEpi-defined profiles for tree building based on primary use case and build settings.",
       }}
     >
       Tree Type

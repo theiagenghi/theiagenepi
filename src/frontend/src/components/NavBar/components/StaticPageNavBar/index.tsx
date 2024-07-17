@@ -88,7 +88,7 @@ export default function StaticPageNavBar(): JSX.Element {
           href={API_URL + API.LOG_IN}
           style={menuOpen ? { opacity: "1" } : { opacity: "0" }}
           rel="noreferrer"
-          aria-label="Log into CZI GEN EPI"
+          aria-label="Log into TheiaGenEpi"
         >
           Sign In
         </MobileNavLink>
@@ -124,8 +124,7 @@ export default function StaticPageNavBar(): JSX.Element {
     <HeaderContainer data-test-id="navbar-landing">
       {isTransferBannerFlagOn && (
         <Banner sdsType="primary">
-          THEIAGEN GLOBAL HEALTH INITIATIVE WILL MANAGE CZ GEN EPI ON NOVEMBER
-          15, 2024. CLICK&nbsp;
+          THEIAGEN GLOBAL HEALTH INITIATIVE IS NOW MANAGING CZ GEN EPI. CLICK&nbsp;
           <Link
             href="https://help.czgenepi.org/hc/en-us/articles/20083077583764-FAQs-CZ-GEN-EPI-Transfer-to-Theiagen-Global-Health-Initiative-TGHI"
             sdsStyle="dashed"

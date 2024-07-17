@@ -26,7 +26,7 @@ const NextstrainConfirmationModal = ({
     <>
       By clicking “Continue” you agree to send a copy of your tree JSON to
       Nextstrain’s visualization service. Nextstrain is a separate service from
-      CZ GEN EPI.{" "}
+      TheiaGenEpi.{" "}
       <NewTabLink href="https://nextstrain.org/">Learn More</NewTabLink>
     </>
   );

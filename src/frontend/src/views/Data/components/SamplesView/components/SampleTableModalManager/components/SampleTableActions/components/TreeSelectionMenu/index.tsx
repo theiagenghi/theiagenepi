@@ -54,7 +54,7 @@ const TreeSelectionMenu = ({
   );
 
   const USHER_DISABLED_TEXT =
-    "You must select at least 1 CZ GEN EPI sample to create an UShER Placement.";
+    "You must select at least 1 TheiaGenEpi sample to create an UShER Placement.";
 
   return (
     <>

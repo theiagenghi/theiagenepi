@@ -46,7 +46,7 @@ test.describe("Sample filtering tests", () => {
     await page.goto(url);
     //accept cookie t&c (if prompted)
     const acceptCookieSelector =
-      '[aria-label="Help us improve CZ GEN EPI"] >> text=Accept';
+      '[aria-label="Help us improve TheiaGenEpi"] >> text=Accept';
     if (await page.isVisible(acceptCookieSelector)) {
       await page.locator(acceptCookieSelector).click();
     }

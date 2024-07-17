@@ -12,7 +12,7 @@ def get_missing_and_found_sample_ids(
     Parameters:
         sample_ids Iterable[str]: A list of identifiers (usually submitted by a user)
                                   that need to be checked if they exist as either public
-                                  or private identifiers in the CZ GEN EPI database Sample table
+                                  or private identifiers in the TheiaGenEpi database Sample table
         all_samples (Query): Query consisting of all samples that a user has been allowed access to see.
 
     Returns:
@@ -25,6 +25,6 @@ def get_missing_and_found_sample_ids(
         found_sample_ids.add(sample.private_identifier)
         found_sample_ids.add(sample.public_identifier)
 
-    # These are the sample ID's that don't match the CZ GEN EPI db
+    # These are the sample ID's that don't match the TheiaGenEpi db
     missing_sample_ids = set(sample_ids) - found_sample_ids
     return missing_sample_ids, found_sample_ids

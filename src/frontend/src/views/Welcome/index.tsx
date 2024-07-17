@@ -19,7 +19,7 @@ const Welcome = (): JSX.Element => {
     router.push(ROUTES.DATA);
   }, [groupIdInt, dispatch, router]);
 
-  return <HeadAppTitle subTitle="Welcome to CZ Gen Epi!" />;
+  return <HeadAppTitle subTitle="Welcome to TheiaGenEpi!" />;
 };
 
 export default Welcome;

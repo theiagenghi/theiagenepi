@@ -40,8 +40,8 @@ const GroupDetailsTab = ({
       {shouldShowChangeDetailsCallout && (
         <StyledCallout intent="info">
           Contact us at{" "}
-          <Link sdsStyle="dashed" href="mailto:support@czgenepi.org">
-            support@czgenepi.org
+          <Link sdsStyle="dashed" href="mailto:support@theiagenghi.org">
+          support@theiagenghi.org
           </Link>{" "}
           to add or update your group’s details.
         </StyledCallout>
@@ -50,20 +50,19 @@ const GroupDetailsTab = ({
         <DetailSection>
           <DetailHeader>General</DetailHeader>
           <Text>
-            The information in this section is used to support CZ GEN EPI
+            The information in this section is used to support TheiaGenEpi
             functionality.
           </Text>
           <DetailSubheader>
             Default Location for Trees
-            <InfoTooltip title="Group’s full Nextstrain location ID. CZ GEN EPI uses this as the default location parameters when building trees for this group." />
+            <InfoTooltip title="Group’s full Nextstrain location ID. TheiaGenEpi uses this as the default location parameters when building trees for this group." />
           </DetailSubheader>
           <DetailDisplay>{displayLocation}</DetailDisplay>
         </DetailSection>
         <DetailSection>
           <DetailHeader>GISAID Submission Details</DetailHeader>
           <Text>
-            The information in this section is used to pre-fill metadata in CZ
-            GEN EPI’s GISAID sample submission template.
+            The information in this section is used to pre-fill metadata in TheiaGenEpi’s GISAID sample submission template.
           </Text>
           <DetailSubheader>
             Submitting Lab

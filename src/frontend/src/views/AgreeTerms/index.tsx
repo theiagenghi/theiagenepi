@@ -103,7 +103,7 @@ export default function AgreeTerms(): JSX.Element | null {
                 organizations, but are visible to your group.
               </ListItem>
               <ListItem fontSize="s">
-                CZ GEN EPI does not contain any personally identifiable
+                TheiaGenEpi does not contain any personally identifiable
                 information or protected health information.
               </ListItem>
               <ListItem fontSize="s">

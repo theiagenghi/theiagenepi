@@ -10,7 +10,7 @@
  */
 import Head from "next/head";
 
-const APP_NAME = "CZ GEN EPI";
+const APP_NAME = "TheiaGenEpi";
 
 interface Props {
   subTitle?: string;

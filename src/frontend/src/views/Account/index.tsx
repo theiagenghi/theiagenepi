@@ -154,7 +154,7 @@ export default function Account(): JSX.Element {
       </StyledSection>
       {isInternalUserFlagOn && (
         <StyledSection>
-          <StyledH3>CZGE Internal User account</StyledH3>
+          <StyledH3>TheiaGenEpi Internal User account</StyledH3>
           <SubText>This section is not shown to external users.</SubText>
         </StyledSection>
       )}
