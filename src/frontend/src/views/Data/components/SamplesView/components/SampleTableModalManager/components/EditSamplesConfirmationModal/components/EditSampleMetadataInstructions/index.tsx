@@ -40,11 +40,11 @@ const EditSampleMetaDataInstructions = ({
     <InstructionsSemiBold key="1">
       Please refer to the Updating Metadata help documentation for detailed
       instructions on{" "}
-      <NewTabLink href="https://help.czgenepi.org/hc/en-us/articles/6430483116180-Editing-metadata">
+      <NewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6430483116180-Editing-metadata">
         setting up your file
       </NewTabLink>{" "}
       and{" "}
-      <NewTabLink href="https://help.czgenepi.org/hc/en-us/articles/6846628453652-Troubleshooting-guide-Updating-metadata">
+      <NewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6846628453652-Troubleshooting-guide-Updating-metadata">
         troubleshooting errors and warnings
       </NewTabLink>
       .

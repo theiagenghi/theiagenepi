@@ -134,7 +134,7 @@ export default function Account(): JSX.Element {
             <span>
               &nbsp;
               <Link
-                href="https://help.czgenepi.org/hc/en-us/articles/8179880474260-Download-data-and-upload-it-into-the-GISAID-data-repository"
+                href="https://help.theiagenepi.org/hc/en-us/articles/8179880474260-Download-data-and-upload-it-into-the-GISAID-data-repository"
                 target="_blank"
                 rel="noreferrer"
               >

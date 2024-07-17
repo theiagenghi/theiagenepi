@@ -35,13 +35,13 @@ async def setup_invitation_flows(
     group = group_factory(auth0_org_id="test_org")
     user1 = user_factory(
         name="Existing User",
-        email="existing_user@czgenepi.org",
+        email="existing_user@theiagenghi.org",
         auth0_user_id="existing_user",
         group=group,
     )
     user2 = user_factory(
         name="Another User",
-        email="another_user@czgenepi.org",
+        email="another_user@theiagenghi.org",
         auth0_user_id="another_user",
         group=group,
     )
@@ -52,7 +52,7 @@ async def setup_invitation_flows(
     userinfo = {
         "sub": "user123-asdf",
         "org_id": group.auth0_org_id,
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
         "name": "user1",
     }
 
@@ -127,7 +127,7 @@ async def test_redirect_without_prompt(
     auth_user = None
     test_cases: List[Tuple[str, Optional[datetime]]] = [
         (user.email, datetime.now() - timedelta(days=2)),
-        ("zzyzx@czgenepi.org", None),
+        ("zzyzx@theiagenghi.org", None),
     ]
 
     auth0_oauth.authorize_redirect.return_value = RedirectResponse("/v2/auth/callback")  # type: ignore

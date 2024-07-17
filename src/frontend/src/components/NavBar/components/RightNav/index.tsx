@@ -61,7 +61,7 @@ export default function RightNav(): JSX.Element {
       >
         <StyledLink
           aria-labelledby="feedback-label"
-          href="https://airtable.com/shr2SrkMN8DK1mLEK"
+          href="https://forms.gle/cdHv5nZcs3Xwd5uB7"
           target="_blank"
           rel="noreferrer"
         >

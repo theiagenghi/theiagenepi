@@ -621,7 +621,7 @@ def create_test_data(engine):
         session, "North America", "USA", "California", "San Mateo County"
     )
     group = create_test_group(session, "CZI", "CZI", location, "org1")
-    user = create_test_user(session, "user1@czgenepi.org", group, "User1", "Test User")
+    user = create_test_user(session, "user1@theiagenghi.org", group, "User1", "Test User")
     for pathogen in pathogens:
         create_samples(session, group, pathogen, user, location, 15)
         create_test_trees(session, group, pathogen, repositories[0], user)
@@ -632,7 +632,7 @@ def create_test_data(engine):
         session, "Timbuktu Dept of Public Health", "TBK", location2, "org2"
     )
     user2 = create_test_user(
-        session, "tbktu@czgenepi.org", group2, "tbktu", "Timbuktu User"
+        session, "tbktu@theiagenghi.org", group2, "tbktu", "Timbuktu User"
     )
     
     # id of User1 is 2

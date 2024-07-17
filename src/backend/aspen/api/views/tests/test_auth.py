@@ -69,7 +69,7 @@ async def test_create_new_user_if_not_exists(
     userinfo = {
         "sub": "user123-asdf",
         "org_id": "123456",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
     }
     group = group_factory(auth0_org_id=userinfo["org_id"])
     async_session.add(group)
@@ -101,7 +101,7 @@ async def test_dont_create_new_user_if_exists(
     userinfo = {
         "sub": "user123-asdf",
         "org_id": "123456",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
     }
     group = group_factory(auth0_org_id=userinfo["org_id"])
     user = await userrole_factory(
@@ -137,7 +137,7 @@ async def test_create_new_user_and_sync_roles(
     userinfo = {
         "sub": "user123-asdf",
         "org_id": "group1",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
     }
     group1 = group_factory(name="Group 1", auth0_org_id=userinfo["org_id"])
     group2 = group_factory(name="Group 2", auth0_org_id="group2")
@@ -182,7 +182,7 @@ async def test_sync_complicated_roles(
     users = [
         user_factory(
             name=f"User {i}",
-            email=f"user{i}@czgenepi.org",
+            email=f"user{i}@theiagenghi.org",
             auth0_user_id=f"user{i}",
             group=groups[0],
         )
@@ -244,7 +244,7 @@ async def test_callback_syncs_auth0_user_roles(
     userinfo = {
         "sub": "auth0|user123-asdf",
         "org_id": "123456",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
         "name": "Bob",
     }
     group = group_factory(auth0_org_id=userinfo["org_id"])
@@ -273,7 +273,7 @@ async def test_callback_doesnt_sync_localdev_roles(
     userinfo = {
         "sub": "User1",
         "org_id": "123456",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
         "name": "Bob",
     }
     group = group_factory(auth0_org_id=userinfo["org_id"])
@@ -301,7 +301,7 @@ async def test_callback_ff_doesnt_sync_auth0_user_roles(
     userinfo = {
         "sub": "auth0|user123-asdf",
         "org_id": "123456",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
         "name": "Bob",
     }
     group = group_factory(auth0_org_id=userinfo["org_id"])
@@ -370,7 +370,7 @@ async def test_redirect_to_samples_if_exists(
     userinfo = {
         "sub": "user123-asdf",
         "org_id": "123456",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
         "name": "Name Goes Here",
     }
     group = group_factory(auth0_org_id=userinfo["org_id"])
@@ -408,7 +408,7 @@ async def test_redirect_to_group_welcome_if_new(
     userinfo = {
         "sub": "user123-asdf",
         "org_id": "123456",
-        "email": "hello@czgenepi.org",
+        "email": "support@theiagenghi.org",
         "name": "Name Goes Here",
     }
     group = group_factory(auth0_org_id=userinfo["org_id"])

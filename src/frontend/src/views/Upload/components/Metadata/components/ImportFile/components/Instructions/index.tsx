@@ -22,11 +22,11 @@ export default function Instructions({ headers, rows }: Props): JSX.Element {
           <SemiBold>
             Please refer to the Uploading Metadata help documentation for
             detailed instructions on{" "}
-            <NewTabLink href="https://help.czgenepi.org/hc/en-us/articles/6160372401172-Uploading-data#step3">
+            <NewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6160372401172-Uploading-data#step3">
               setting up your file
             </NewTabLink>{" "}
             and{" "}
-            <NewTabLink href="https://help.czgenepi.org/hc/en-us/articles/6186826565908-Troubleshooting-guide-Uploading-metadata">
+            <NewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6186826565908-Troubleshooting-guide-Uploading-metadata">
               troubleshooting error messages and warnings
             </NewTabLink>
             .

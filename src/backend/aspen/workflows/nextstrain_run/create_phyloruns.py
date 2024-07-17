@@ -48,7 +48,7 @@ def create_phylo_run(
     contextual_repository: PublicRepository,
 ) -> PhyloRun:
 
-    user = session.query(User).filter(User.email == "hello@czgenepi.org").one()
+    user = session.query(User).filter(User.email == "support@theiagenghi.org").one()
     aligned_repo_data = (
         session.query(AlignedRepositoryData)
         .join(AlignedRepositoryData.producing_workflow)
