@@ -658,14 +658,12 @@ export default function Terms(): JSX.Element {
             mail (signature for receipt required) to TGHI as follows:
             <br />
             <br />
-            Chan Zuckerberg Initiative Foundation
-            <br />
-            c/o The Chan Zuckerberg Initiative
+            Theiagen Global Health Initiative
             <br />
             Attn: General Counsel
             <br />
-            2682 Middlefield Road, Suite i<br />
-            Redwood City, CA 94063
+            1745 Shea Center Drive, Suite 400<br />
+            Highlands Ranch, CO, 80129, USA.
             <br />
             With a courtesy copy via email to:{" "}
             <NewTabLink href="mailto:support@theiagenghi.org">

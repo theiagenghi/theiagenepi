@@ -40,7 +40,7 @@ function getUploadTemplateHeaders(pathogen: Pathogen): string[] {
 
 const SAMPLE_EDIT_INSTRUCTIONS = [
   ["# Only fill out columns or cells where you want to update the content"],
-  ["# Empty cells will not change what is currently in CZ GEN EPI database"],
+  ["# Empty cells will not change what is currently in TheiaGenEpi database"],
   ["# Fill cells with 'Delete' if you want to remove the existing content"],
   ["# Save in .tsv .csv or .txt format"],
 ];

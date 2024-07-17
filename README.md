@@ -1,4 +1,4 @@
-# CZ GEN EPI (formerly Aspen)
+# TheiaGenEpi (formerly CZ GEN EPI)
 
 This repository contains the code for the Genomic Epidemiology project.
 

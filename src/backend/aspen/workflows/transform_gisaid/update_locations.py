@@ -63,7 +63,7 @@ def cli(
 ):
     """
     This utility rearranges Nextstrain's GISAID -> Nextstrain locations mapping file
-    to instead be a GISAID -> CZ GEN EPI locations mapping file. Some of the locations
+    to instead be a GISAID -> TheiaGenEpi locations mapping file. Some of the locations
     in our database don't follow the Nextstrain location conventions and upstream
     changes to Nextstrain's translations have broken our tree builds in the past.
 
@@ -75,7 +75,7 @@ def cli(
        into a larger area (ex: city into county). Remove these localities from the
        output file.
 
-    2. Remove any rules that translate a location in use by CZ GEN EPI into some other
+    2. Remove any rules that translate a location in use by TheiaGenEpi into some other
        name.
 
        For example, Nexstrain may have a rule like this:
@@ -86,7 +86,7 @@ def cli(
        displayed on a tree with the same location name.
 
     3. For any translations *to* a location that were skipped in #2 above, we need to
-       change the new location so it matches the value in use by CZ GEN EPI. For example,
+       change the new location so it matches the value in use by TheiaGenEpi. For example,
        Nextstrain often rolls up several smaller locations into a larger one like this:
        North America/USA/New York/Middletown    North America/USA/New York/Orange County NY
 

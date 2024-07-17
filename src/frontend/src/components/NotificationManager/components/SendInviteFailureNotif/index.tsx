@@ -14,7 +14,7 @@ const SendInviteFailureNotif = ({
     <>
       {numFailed} {pluralize("Invitation", numFailed)} could not be sent because
       the {pluralize("account", numFailed)} already{" "}
-      {pluralizeVerb("exist", numFailed)} in CZ GEN EPI:
+      {pluralizeVerb("exist", numFailed)} in TheiaGenEpi:
       {failedToSendAddresses.map((a) => (
         <StyledDiv key={a}>{a}</StyledDiv>
       ))}
