@@ -18,7 +18,7 @@ export const qualityControlColumn: ColumnDef<Sample, any> = {
         regularText:
           "Overall QC score from Nextclade which considers genome completion and screens for potential contamination and sequencing or bioinformatics errors.",
         link: {
-          href: "https://docs.nextstrain.org/projects/nextclade/en/stable/user/algorithm/07-quality-control.html",
+          href: "https://docs.nextstrain.org/projects/nextclade/en/stable/user/algorithm/06-quality-control.html",
           linkText: "Learn more",
         },
       }}

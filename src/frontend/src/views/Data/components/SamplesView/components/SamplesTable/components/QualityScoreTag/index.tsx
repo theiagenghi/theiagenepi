@@ -68,7 +68,7 @@ const GENERIC_STATUS_TOOLTIP_TEXT = (
       or bioinformatics errors.{" "}
       <NewTabLink
         href={
-          "https://docs.nextstrain.org/projects/nextclade/en/stable/user/algorithm/07-quality-control.html"
+          "https://docs.nextstrain.org/projects/nextclade/en/stable/user/algorithm/06-quality-control.html"
         }
       >
         Learn more
