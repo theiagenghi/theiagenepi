@@ -388,7 +388,7 @@ async def test_download_samples_unauthorized(
         async_session,
         noaccess_group,
         auth0_user_id="meanie",
-        email="meanie@czgenepi.org",
+        email="meanie@theiagenghi.org",
     )
     async_session.add(noaccess_user)
     async_session.add(noaccess_group)

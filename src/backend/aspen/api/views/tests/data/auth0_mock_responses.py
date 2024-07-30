@@ -9,14 +9,14 @@ DEFAULT_AUTH0_ORG: Auth0Org = {
 DEFAULT_AUTH0_USER: Auth0User = {
     "user_id": "testuserid",
     "name": "test user",
-    "email": "test@czgenepi.org",
+    "email": "test@theiagenghi.org",
 }
 DEFAULT_AUTH0_INVITATION: Auth0OrgInvitation = {
     "id": "inv_id",
     "created_at": "",
     "expires_at": "2022-06-01",
     "inviter": {"name": "Bob"},
-    "invitee": {"email": "invitee@czgenepi.org"},
+    "invitee": {"email": "invitee@theiagenghi.org"},
     "organization_id": "org-1234",
     "invitation_url": "",
     "roles": ["member"],

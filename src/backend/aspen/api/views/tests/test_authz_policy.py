@@ -59,28 +59,28 @@ async def users(async_session: AsyncSession, groups: List[Group]) -> List[User]:
         async_session,
         groups[0],
         roles=["member"],
-        email="user0@czgenepi.org",
+        email="user0@theiagenghi.org",
         auth0_user_id="User0",
     )
     user1 = await userrole_factory(
         async_session,
         groups[1],
         roles=["member"],
-        email="user1@czgenepi.org",
+        email="user1@theiagenghi.org",
         auth0_user_id="User1",
     )
     user2 = await userrole_factory(
         async_session,
         groups[2],
         roles=["admin"],
-        email="user2@czgenepi.org",
+        email="user2@theiagenghi.org",
         auth0_user_id="User2",
     )
     user3 = await userrole_factory(
         async_session,
         groups[3],
         roles=["admin"],
-        email="user3@czgenepi.org",
+        email="user3@theiagenghi.org",
         auth0_user_id="User3",
     )
     users: List[User] = [user0, user1, user2, user3]

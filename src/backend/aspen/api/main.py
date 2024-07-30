@@ -43,8 +43,8 @@ def get_allowed_origins() -> List[str]:
     current process.
     """
     allowed_origins = [
-        "https://galago.czgenepi.org",
-        "https://galago-labs.czgenepi.org",
+        "https://galago.theiagenepi.org",
+        "https://galago-labs.theiagenepi.org",
     ]
     frontend_url = os.getenv("FRONTEND_URL")
     if frontend_url:

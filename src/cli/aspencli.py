@@ -222,9 +222,9 @@ class ApiClient:
 
 class CliConfig:
     api_urls = {
-        "staging": "https://api.staging.czgenepi.org",
-        "prod": "https://api.czgenepi.org",
-        "rdev": "https://{stack}-backend.dev.czgenepi.org",
+        "staging": "https://api.staging.theiagenepi.org",
+        "prod": "https://api.theiagenepi.org",
+        "rdev": "https://{stack}-backend.dev.theiagenepi.org",
         "local": "http://backend.genepinet.localdev:3000",
     }
     default_oauth_api = {

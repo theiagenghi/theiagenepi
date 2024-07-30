@@ -2,19 +2,19 @@ import { createTheme } from "@mui/material/styles";
 import { defaultAppTheme, makeThemeOptions } from "czifui";
 
 const primaryColors = {
-  "100": "#FCFAFF",
-  "200": "#F6F2FC",
-  "300": "#D4BFFF",
-  "400": "#511CC1",
-  "500": "#4317A1",
-  "600": "#371680",
+  "100": "#A8E2FF",
+  "200": "#88C4FF",
+  "300": "#67A6F5",
+  "400": "#438AD6",
+  "500": "#116EB7",
+  "600": "#001A54",
 };
 
 const infoColors = {
-  "100": "#F6F2FC",
-  "200": "#F3EDFC",
-  "400": "#511CC1",
-  "600": "#371680",
+  "100": "#A8E2FF",
+  "200": "#67A6F5",
+  "400": "#116EB7",
+  "600": "#001A54",
 };
 
 const primaryBorders = {

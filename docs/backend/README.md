@@ -27,8 +27,8 @@ The root of our backend application is in `src/backend`. noteworthy subdirectori
 
 ## Discoverability
 Our backend API is self-documenting via OpenAPI and JSON-Schema:
-- API documentation: https://api.czgenepi.org/v2/docs
-- JSON Schema: https://api.czgenepi.org/v2/openapi.json
+- API documentation: https://api.theiagenepi.org/v2/docs
+- JSON Schema: https://api.theiagenepi.org/v2/openapi.json
 
 ## Creating a new API endpoint.
 Some endpoints will only need the last few steps, but this is the maximal case:
