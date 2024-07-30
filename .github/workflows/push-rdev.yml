@@ -61,6 +61,7 @@ jobs:
         # TODO: figure out how to pipe the results into new file
         run: |
           echo "hello world"
+      # TODO: figure out whether {{ secrets.GITHUB_TOKEN }} is enough for this step:
       # - name: Update the file
       #   uses: EndBug/add-and-commit@v9
       #   with:
