@@ -29,7 +29,7 @@ html body #onetrust-consent-sdk #onetrust-policy #onetrust-policy-title::before 
 }
 html body #onetrust-consent-sdk #ot-pc-desc a {
   margin-left: 0;
-  color: #511CC1;
+  color: #438AD6;
   text-decoration: none;
 }
 html body #onetrust-consent-sdk #onetrust-button-group {
@@ -111,11 +111,11 @@ html body #onetrust-consent-sdk #onetrust-reject-all-handler {
 }
 html body #onetrust-consent-sdk button#onetrust-pc-btn-handler {
   background-color: #FFFFFF !important;
-  color: #511CC1 !important;
+  color: #438AD6 !important;
   order: 3;
 }
 html body #onetrust-consent-sdk button#onetrust-pc-btn-handler:hover {
-  background-color: #511CC1 !important;
+  background-color: #438AD6 !important;
   color: #FFFFFF !important;
   opacity: 1;
 }
@@ -199,7 +199,7 @@ html body #onetrust-consent-sdk .ot-cat-grp {
 }
 html body #onetrust-consent-sdk #onetrust-policy-text a,
 html body #onetrust-consent-sdk .ot-always-active {
-  color: #511CC1 !important;
+  color: #438AD6 !important;
 }
 html body #onetrust-consent-sdk .ot-always-active {
   font-weight: 400;
@@ -220,7 +220,7 @@ html body #onetrust-consent-sdk #onetrust-pc-btn-handler {
   letter-spacing: 0.3px !important;
   padding: 7px 13px !important;
   min-width: 120px;
-  background-color: #511CC1 !important;
+  background-color: #438AD6 !important;
   color: #FFFFFF !important;
 }
 html body #onetrust-consent-sdk #onetrust-reject-all-handler:hover, html body #onetrust-consent-sdk #onetrust-reject-all-handler:active, html body #onetrust-consent-sdk #onetrust-reject-all-handler:focus,
@@ -255,7 +255,7 @@ html body #onetrust-consent-sdk #accept-recommended-btn-handler:hover,
 html body #onetrust-consent-sdk .ot-pc-refuse-all-handler:hover,
 html body #onetrust-consent-sdk .save-preference-btn-handler:hover,
 html body #onetrust-consent-sdk #onetrust-pc-btn-handler:hover {
-  background-color: #511CC1 !important;
+  background-color: #438AD6 !important;
   color: #FFFFFF;
 }
 html body #onetrust-consent-sdk #onetrust-reject-all-handler:active,
@@ -264,7 +264,7 @@ html body #onetrust-consent-sdk #accept-recommended-btn-handler:active,
 html body #onetrust-consent-sdk .ot-pc-refuse-all-handler:active,
 html body #onetrust-consent-sdk .save-preference-btn-handler:active,
 html body #onetrust-consent-sdk #onetrust-pc-btn-handler:active {
-  background-color: #511CC1 !important;
+  background-color: #438AD6 !important;
   color: #FFFFFF;
 }
 html body #onetrust-consent-sdk #accept-recommended-btn-handler {
@@ -292,15 +292,15 @@ html body #onetrust-consent-sdk .ot-tgl .ot-switch-nob::before {
   transform: translateX(2px) !important;
 }
 html body #onetrust-consent-sdk .ot-tgl input:checked + .ot-switch .ot-switch-nob {
-  border-color: #511CC1 !important;
+  border-color: #438AD6 !important;
 }
 html body #onetrust-consent-sdk .ot-tgl input:checked + .ot-switch .ot-switch-nob::after {
   content: "On";
   padding-left: 10px;
 }
 html body #onetrust-consent-sdk .ot-tgl input:checked + .ot-switch .ot-switch-nob::before {
-  background-color: #511CC1 !important;
-  border-color: #511CC1 !important;
+  background-color: #438AD6 !important;
+  border-color: #438AD6 !important;
   transform: translateX(37px) !important;
 }
 
