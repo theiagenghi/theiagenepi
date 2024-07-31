@@ -1,0 +1,50 @@
+name: Build staging images
+
+on:
+  pull_request:
+    types: [ labeled, synchronize ]
+
+# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  build-push-images:
+    if: contains(github.event.pull_request.labels.*.name, 'build-staging')
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        image:
+          - dockerfile: src/backend/Dockerfile.gisaid
+            context: ./src/backend/
+            name: genepi-gisaid
+          - dockerfile: src/backend/Dockerfile.nextstrain
+            context: ./src/backend/
+            name: genepi-nextstrain
+          - dockerfile: src/backend/Dockerfile.pangolin
+            context: ./src/backend/
+            name: genepi-pangolin
+          - dockerfile: src/backend/Dockerfile.lineage_qc
+            context: ./src/backend/
+            name: genepi-lineage-qc
+          - dockerfile: src/backend/Dockerfile
+            context: ./src/backend/
+            name: genepi-backend
+          - dockerfile: src/frontend/Dockerfile
+            context: ./src/frontend/
+            name: genepi-frontend
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: us-west-2
+          aws-access-key-id: ${{ secrets.THEIAGEN_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.THEIAGEN_AWS_SECRET_ACCESS_KEY }}
+      - name: Build And Push
+        uses: chanzuckerberg/github-actions/.github/actions/docker-build-push@docker-build-push-v1.3.1
+        with:
+          dockerfile: ${{ matrix.image.dockerfile }}
+          context: ${{ matrix.image.context }}
+          name: ${{ matrix.image.name }}
+          registry: 654654542669.dkr.ecr.us-west-2.amazonaws.com

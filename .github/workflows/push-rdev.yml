@@ -45,10 +45,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-session-name: BuildAndPushRdevImage
           aws-region: us-west-2
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          role-duration-seconds: 900
+          aws-access-key-id: ${{ secrets.THEIAGEN_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.THEIAGEN_AWS_SECRET_ACCESS_KEY }}
       - name: Build And Push
         uses: chanzuckerberg/github-actions/.github/actions/docker-build-push@docker-build-push-v1.3.1
         with:
@@ -56,17 +55,6 @@ jobs:
           context: ${{ matrix.image.context }}
           name: ${{ matrix.image.name }}
           registry: ${{ secrets.ECR_REPO }}
-      - name: Update Manifest
-        shell: bash
-        # TODO: figure out how to pipe the results into new file
-        run: |
-          echo "hello world"
-      # TODO: figure out whether {{ secrets.GITHUB_TOKEN }} is enough for this step:
-      # - name: Update the file
-      #   uses: EndBug/add-and-commit@v9
-      #   with:
-      #     add: -A
-      #     message: 'chore: Updated locals.tf.json file with new image tag'
 
   create-update-rdev:
     runs-on: ubuntu-20.04

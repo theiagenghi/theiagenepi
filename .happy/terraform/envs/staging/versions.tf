@@ -10,11 +10,11 @@ terraform {
 
   backend "s3" {
     region  = "us-west-2"
-    bucket  = "genepi-prod-s3-tf-state-prod-prod-genepi-stacks-state"
-    key     = "terraform.tfstate"
+    bucket  = "genepi-prod-s3-tf-state-prod-prod-genepi-theia-stacks-state"
+    key     = "czgenepi-staging.tfstate"
     profile = "theia"
     encrypt = "true"
 
-    dynamodb_table = "genepi-prod-s3-tf-state-prod-prod-genepi-stacks-state-lock"
+    dynamodb_table = "genepi-prod-s3-tf-state-prod-prod-genepi-theia-stacks-state-lock"
   }
 }

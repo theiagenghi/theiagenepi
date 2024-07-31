@@ -1,7 +1,7 @@
 variable "aws_account_id" {
   type        = string
   description = "AWS account ID to apply changes to"
-  default     = "473004499091"
+  default     = "654654542669"
 }
 
 variable "aws_role" {
