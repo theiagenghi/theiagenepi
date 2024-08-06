@@ -12,8 +12,8 @@ module "stack" {
   delete_protected    = false
   require_okta        = false
   sql_import_file     = "db_snapshots/dev_backup.sql"
-  frontend_url        = "https://czgenepi.org"
-  backend_url         = "https://api.czgenepi.org"
+  frontend_url        = "https://theiagenepi.org"
+  backend_url         = "https://api.theiagenepi.org"
   stack_prefix        = ""
 
   wait_for_steady_state = var.wait_for_steady_state

@@ -13,7 +13,7 @@ export default function EmailForm(): JSX.Element {
 
     if (emailRegex.test(enteredEmail)) {
       window.open(
-        `https://airtable.com/shrblHnTRd9dtu6c0?prefill_Email=${enteredEmail}`, // <-- replace url with new airtable form
+        `https://forms.gle/cdHv5nZcs3Xwd5uB7`, 
         "_blank"
       );
     } else {

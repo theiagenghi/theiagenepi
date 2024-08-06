@@ -3,7 +3,7 @@ import { StyledDiv, StyledNewTabLink, StyledSpan } from "./styles";
 
 const TreeCreateHelpLink = (): JSX.Element => {
   const HREF =
-    "https://help.czgenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees#customizing";
+    "https://help.theiagenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees#customizing";
   return (
     <StyledDiv>
       <StyledNewTabLink href={HREF}>

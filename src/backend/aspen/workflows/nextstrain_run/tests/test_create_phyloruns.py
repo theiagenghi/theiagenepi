@@ -98,7 +98,7 @@ def test_launch_one(mocker, session, split_client, postgres_database):
     mock_remote_db_uri(mocker, postgres_database.as_uri())
 
     group, pathogen = create_test_data(
-        session, split_client, 10, 10, 10, user_email="hello@czgenepi.org"
+        session, split_client, 10, 10, 10, user_email="support@theiagenghi.org"
     )
     split_repo_value = split_client.get_pathogen_treatment(
         "PATHOGEN_public_repository", pathogen
@@ -121,7 +121,7 @@ def test_launch_all(mocker, session, split_client, postgres_database):
     mock_remote_db_uri(mocker, postgres_database.as_uri())
 
     group, pathogen = create_test_data(
-        session, split_client, 10, 10, 10, user_email="hello@czgenepi.org"
+        session, split_client, 10, 10, 10, user_email="support@theiagenghi.org"
     )
 
     runner = CliRunner()

@@ -254,7 +254,7 @@ export const UsherPlacementModal = ({
                     closely-related contextual sequences, or to enable more
                     Nextstrain visualization features, use the Nextstrain tree
                     build option.{" "}
-                    <NewTabLink href="https://help.czgenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees">
+                    <NewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees">
                       Learn more.
                     </NewTabLink>
                   </div>

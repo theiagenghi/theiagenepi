@@ -24,7 +24,7 @@ export const Announcements = (): JSX.Element => {
             THEIAGEN GLOBAL HEALTH INITIATIVE IS NOW MANAGING CZ GEN EPI. CLICK&nbsp;
           </B>
           <StyledNewTabLink
-            href="https://help.czgenepi.org/hc/en-us/articles/20083077583764-FAQs-CZ-GEN-EPI-Transfer-to-Theiagen-Global-Health-Initiative-TGHI"
+            href="https://help.theiagenepi.org/hc/en-us/articles/20083077583764-FAQs-CZ-GEN-EPI-Transfer-to-Theiagen-Global-Health-Initiative-TGHI"
             sdsStyle="dashed"
           >
             HERE
