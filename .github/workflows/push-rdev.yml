@@ -15,7 +15,7 @@ env:
 # https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
 permissions:
   id-token: write
-  contents: read
+  contents: write
 
 jobs:
   build-push-images:
@@ -45,10 +45,9 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-session-name: BuildAndPushRdevImage
           aws-region: us-west-2
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          role-duration-seconds: 900
+          aws-access-key-id: ${{ secrets.THEIAGEN_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.THEIAGEN_AWS_SECRET_ACCESS_KEY }}
       - name: Build And Push
         uses: chanzuckerberg/github-actions/.github/actions/docker-build-push@docker-build-push-v1.3.1
         with:
