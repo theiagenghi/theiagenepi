@@ -3,7 +3,7 @@ name: Push Remote Dev
 on:
   push:
     branches:
-      - "rdev-*"
+      - "tghi-docker-*"
 
 env:
   # Force using BuildKit instead of normal Docker, required so that metadata
