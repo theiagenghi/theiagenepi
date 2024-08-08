@@ -35,7 +35,7 @@ jobs:
           - dockerfile: src/backend/Dockerfile.lineage_qc
             context: ./src/backend/
             name: genepi-lineage-qc
-          - dockerfile: src/backend/Dockerfile
+          - dockerfile: src/backend/Dockerfile.backend
             context: ./src/backend/
             name: genepi-backend
           - dockerfile: src/frontend/Dockerfile
