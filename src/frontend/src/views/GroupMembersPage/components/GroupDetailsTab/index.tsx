@@ -41,7 +41,7 @@ const GroupDetailsTab = ({
         <StyledCallout intent="info">
           Contact us at{" "}
           <Link sdsStyle="dashed" href="mailto:support@theiagenghi.org">
-          support@theiagenghi.org
+            support@theiagenghi.org
           </Link>{" "}
           to add or update your group’s details.
         </StyledCallout>
@@ -62,7 +62,8 @@ const GroupDetailsTab = ({
         <DetailSection>
           <DetailHeader>GISAID Submission Details</DetailHeader>
           <Text>
-            The information in this section is used to pre-fill metadata in TheiaGenEpi’s GISAID sample submission template.
+            The information in this section is used to pre-fill metadata in
+            TheiaGenEpi’s GISAID sample submission template.
           </Text>
           <DetailSubheader>
             Submitting Lab

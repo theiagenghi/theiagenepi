@@ -32,8 +32,8 @@ const PrivacyPolicy = (): JSX.Element => {
       </Title>
       <P>
         The Theiagen Global Health Initiative, a 501(c)(3) nonprofit private
-        foundation pending approval (&quot;<B>TGHI</B>,&quot; &quot;we,&quot; &quot;us,&quot; or
-        &quot;our&quot;), provides the TheiaGenEpi product
+        foundation pending approval (&quot;<B>TGHI</B>,&quot; &quot;we,&quot;
+        &quot;us,&quot; or &quot;our&quot;), provides the TheiaGenEpi product
         (&quot;Services&quot; or &quot;TheiaGenEpi&quot;) in close collaboration
         with Theiagen Genomics LLC (&quot;<B>TG LLC</B>&quot;). This Privacy
         Policy describes the types of information we collect or that is uploaded
@@ -49,9 +49,9 @@ const PrivacyPolicy = (): JSX.Element => {
         you infer how pathogens are moving through a population and how cases
         and outbreaks are related. In order to become a User of TheiaGenEpi you
         must be acting in your organizational capacity, which means a couple
-        things: (1) your use of TheiaGenEpi may be subject to your organization’s
-        policies and (2) upon sign-up, you’ll be placed into a group with other
-        users from your organization.
+        things: (1) your use of TheiaGenEpi may be subject to your
+        organization’s policies and (2) upon sign-up, you’ll be placed into a
+        group with other users from your organization.
       </P>
       <P>
         Here’s how TheiaGenEpi processes and manages Upload Data: Users submit
@@ -69,7 +69,8 @@ const PrivacyPolicy = (): JSX.Element => {
         <B>
           By default, these analytical outputs will be visible to the User that
           uploaded the Sample and other members of the User’s organization
-          (&quot;Group&quot;, ex: a Department of Public Health) using TheiaGenEpi.
+          (&quot;Group&quot;, ex: a Department of Public Health) using
+          TheiaGenEpi.
         </B>
       </P>
       <P>
@@ -104,9 +105,9 @@ const PrivacyPolicy = (): JSX.Element => {
           time.
         </ListItem>
         <ListItem>
-          You’re using TheiaGenEpi in your professional capacity, which means any
-          pathogen sample data you upload, and any data that we generate on the
-          basis of this, are visible to other members (Users) in your Group.
+          You’re using TheiaGenEpi in your professional capacity, which means
+          any pathogen sample data you upload, and any data that we generate on
+          the basis of this, are visible to other members (Users) in your Group.
           This data is only available to anyone outside of your organization
           when it is shared by you, or by your Group. Other organizations that
           you share your data with can see your samples, but not your private,
@@ -196,7 +197,7 @@ const PrivacyPolicy = (): JSX.Element => {
                 Metadata, Pathogen Consensus Genomes, analytical outputs, or
                 their TheiaGenEpi account data by contacting us at{" "}
                 <NewTabLink href="mailto:support@theiagenghi.org">
-                support@theiagenghi.org
+                  support@theiagenghi.org
                 </NewTabLink>{" "}
                 and we will fulfill the request within the timelines set forth
                 under applicable privacy laws. You can learn more about your
@@ -228,10 +229,10 @@ const PrivacyPolicy = (): JSX.Element => {
                 </P>
 
                 <P>
-                  This data is also accessible by technical partners (TG, LLC) and Service Providers (ex: AWS) that help
-                  operate, secure, and improve TheiaGenEpi. For example, we need
-                  to be able to access your data in order to back up and
-                  maintain the database.
+                  This data is also accessible by technical partners (TG, LLC)
+                  and Service Providers (ex: AWS) that help operate, secure, and
+                  improve TheiaGenEpi. For example, we need to be able to access
+                  your data in order to back up and maintain the database.
                 </P>
 
                 <P>
@@ -306,12 +307,14 @@ const PrivacyPolicy = (): JSX.Element => {
             </td>
             <td>
               Data about researchers with TheiaGenEpi accounts such as name,
-              email, institution, basic information about how they are using TheiaGenEpi, and information provided through surveys, during an
+              email, institution, basic information about how they are using
+              TheiaGenEpi, and information provided through surveys, during an
               in-person event, or for user support (ex: resolving support
               requests).
             </td>
             <td>
-              We use this data only to operate, secure, and improve the TheiaGenEpi services.
+              We use this data only to operate, secure, and improve the
+              TheiaGenEpi services.
             </td>
             <td>
               <P>
@@ -319,8 +322,9 @@ const PrivacyPolicy = (): JSX.Element => {
                 institution may be visible to other TheiaGenEpi Users.
               </P>
               <P>
-                This data is also shared with technical partners (TG LLC) and Service Providers (ex: AWS) that help operate,
-                secure, and improve TheiaGenEpi.
+                This data is also shared with technical partners (TG LLC) and
+                Service Providers (ex: AWS) that help operate, secure, and
+                improve TheiaGenEpi.
               </P>
               <P>
                 This Privacy Policy applies to all parties that access data to
@@ -349,9 +353,10 @@ const PrivacyPolicy = (): JSX.Element => {
             <td>
               Device Data (ex: browser type and operating system, and IP
               address) and Analytics Information (ex: links within TheiaGenEpi
-              you click on and how often you log into TheiaGenEpi) includes basic
-              information about how Users and Visitors are interacting with TheiaGenEpi and a general location (i.e. country) of where they are
-              accessing the Services.
+              you click on and how often you log into TheiaGenEpi) includes
+              basic information about how Users and Visitors are interacting
+              with TheiaGenEpi and a general location (i.e. country) of where
+              they are accessing the Services.
             </td>
             <td>See above.</td>
             <td>See above.</td>
@@ -422,7 +427,8 @@ const PrivacyPolicy = (): JSX.Element => {
             &quot;Pathogen Consensus Genomes&quot; are genetic sequences of
             pathogens, such as SARS-CoV-2, mapped to pathogen-specific reference
             genomes. These may either be uploaded directly to TheiaGenEpi or
-            generated by TheiaGenEpi from uploaded Raw Sequence Data (see below).
+            generated by TheiaGenEpi from uploaded Raw Sequence Data (see
+            below).
           </span>
         </ListItem>
         <ListItem>
@@ -472,8 +478,9 @@ const PrivacyPolicy = (): JSX.Element => {
           phylogenetic trees.
         </ListItem>
         <ListItem>
-          To improve the way TheiaGenEpi processes Pathogen Consensus Genomes and
-          Users’ ability to use TheiaGenEpi to create useful analytical outputs.
+          To improve the way TheiaGenEpi processes Pathogen Consensus Genomes
+          and Users’ ability to use TheiaGenEpi to create useful analytical
+          outputs.
         </ListItem>
         <ListItem>
           To troubleshoot in the event you reach out to us with a specific issue
@@ -517,8 +524,9 @@ const PrivacyPolicy = (): JSX.Element => {
         share it more broadly. <B>We don’t own, rent, or sell your data.</B>
       </P>
       <P>
-        Pathogen Consensus Genomes, whether uploaded by you or generated by TheiaGenEpi, will be disclosed by us with public repositories (as set out
-        below) unless you choose to mark this information as
+        Pathogen Consensus Genomes, whether uploaded by you or generated by
+        TheiaGenEpi, will be disclosed by us with public repositories (as set
+        out below) unless you choose to mark this information as
         &quot;private.&quot; In the event that the Pathogen Consensus Genome is
         created by us, it will automatically be marked as private if the
         corresponding Raw Sequence Data is marked private.
@@ -543,9 +551,9 @@ const PrivacyPolicy = (): JSX.Element => {
         In the rare event that human genetic data is not successfully deleted in
         the initial upload process, TheiaGenEpi may process this data only
         insofar as necessary in order to delete it. This processing is in our
-        legitimate interest, and in the legitimate interests of TG LLC,
-        in order for us to ensure that no personal data is contained within the
-        genomic data stored on TheiaGenEpi.
+        legitimate interest, and in the legitimate interests of TG LLC, in order
+        for us to ensure that no personal data is contained within the genomic
+        data stored on TheiaGenEpi.
       </P>
       <P>
         The remaining pathogen genome does not contain personal data, as it
@@ -679,7 +687,8 @@ const PrivacyPolicy = (): JSX.Element => {
           log in to and use TheiaGenEpi.
         </ListItem>
         <ListItem>
-          To provide you with notices about your account and updates about TheiaGenEpi.
+          To provide you with notices about your account and updates about
+          TheiaGenEpi.
         </ListItem>
         <ListItem>To respond to your inquiries and requests.</ListItem>
         <ListItem>
@@ -701,12 +710,12 @@ const PrivacyPolicy = (): JSX.Element => {
         bases to use and disclose personal data in User Data:
       </P>
       <P>
-        We (along with TG LLC) have a legitimate interest in using
-        personal data within User Data in the ways described in this Privacy
-        Policy to operate, secure, and improve TheiaGenEpi. This allows us to
-        improve the service that we provide to Users which, in turn, supports
-        research regarding the study of infectious disease with the potential to
-        benefit global public health.
+        We (along with TG LLC) have a legitimate interest in using personal data
+        within User Data in the ways described in this Privacy Policy to
+        operate, secure, and improve TheiaGenEpi. This allows us to improve the
+        service that we provide to Users which, in turn, supports research
+        regarding the study of infectious disease with the potential to benefit
+        global public health.
       </P>
       <P>
         We rely on consent as a legal basis when processing data through the use
@@ -769,13 +778,13 @@ const PrivacyPolicy = (): JSX.Element => {
         <Number>5.</Number>Vendors and Service Providers
       </H2>
       <P>
-        TG LLC collaborate closely in order to build, design,
-        and operate TheiaGenEpi so that it can be as useful as possible to
-        researchers and the public health community. TG LLC provide
-        scientific and data analysis leadership and TG LLC focuses on
-        maintaining TheiaGenEpi’s infrastructure, security, and compliance. The
-        parties are all data controllers for TheiaGenEpi and will all only
-        use data as described in this Privacy Policy.
+        TG LLC collaborate closely in order to build, design, and operate
+        TheiaGenEpi so that it can be as useful as possible to researchers and
+        the public health community. TG LLC provide scientific and data analysis
+        leadership and TG LLC focuses on maintaining TheiaGenEpi’s
+        infrastructure, security, and compliance. The parties are all data
+        controllers for TheiaGenEpi and will all only use data as described in
+        this Privacy Policy.
       </P>
       <P>
         We also use service providers, such as a database provider, analytics
@@ -802,8 +811,8 @@ const PrivacyPolicy = (): JSX.Element => {
         results from their Group.
       </P>
       <P>
-        In the unlikely event that we can no longer keep operating TheiaGenEpi or
-        believe that its purpose is better served by having another entity
+        In the unlikely event that we can no longer keep operating TheiaGenEpi
+        or believe that its purpose is better served by having another entity
         operating it, we may transfer TheiaGenEpi and all data existing therein
         (Upload Data, analytical outputs, and User Data) so that Users can
         continue to be served. We will always let you know <B>before</B> this
@@ -832,11 +841,13 @@ const PrivacyPolicy = (): JSX.Element => {
       </H2>
       <P>
         We use industry standard security measures to ensure the
-        confidentiality, integrity and availability of data uploaded into TheiaGenEpi. This includes practices like encrypting connections to TheiaGenEpi
-        using TLS (encrypting data while in transit), hosting TheiaGenEpi on
-        leading cloud providers with robust physical security, and ensuring that
-        access to any personal data within TheiaGenEpi by TG LLC
-        staff is limited to those staff who need access to operate the Service.
+        confidentiality, integrity and availability of data uploaded into
+        TheiaGenEpi. This includes practices like encrypting connections to
+        TheiaGenEpi using TLS (encrypting data while in transit), hosting
+        TheiaGenEpi on leading cloud providers with robust physical security,
+        and ensuring that access to any personal data within TheiaGenEpi by TG
+        LLC staff is limited to those staff who need access to operate the
+        Service.
       </P>
       <P>
         Security takes ongoing work and we will continue to monitor and adjust
@@ -860,10 +871,10 @@ const PrivacyPolicy = (): JSX.Element => {
       <List>
         <ListItem>
           Users are able to request the deletion of User Data that constitutes
-          their personal data, or Upload Data that they submitted to TheiaGenEpi.
-          Users may also request the deletion from TheiaGenEpi of the Pathogen
-          Consensus Genomes created by TheiaGenEpi on the basis of their Upload
-          Data.
+          their personal data, or Upload Data that they submitted to
+          TheiaGenEpi. Users may also request the deletion from TheiaGenEpi of
+          the Pathogen Consensus Genomes created by TheiaGenEpi on the basis of
+          their Upload Data.
         </ListItem>
         <ListItem>
           Users have full control over any analytical outputs created by any
@@ -1067,7 +1078,8 @@ const PrivacyPolicy = (): JSX.Element => {
             months: (1) identifiers; (2) professional or employment-related
             information; (3) internet or other electronic network activity
             within TheiaGenEpi; (4) geolocation data; (5) inferences drawn from
-            your internet or other electronic network activity within TheiaGenEpi; and (6) information provided within survey responses.
+            your internet or other electronic network activity within
+            TheiaGenEpi; and (6) information provided within survey responses.
           </span>
         </ListItem>
         <ListItem>
@@ -1094,10 +1106,10 @@ const PrivacyPolicy = (): JSX.Element => {
             <B>Information we disclose.</B> We have disclosed the following
             categories of personal information within the past 12 months: (1)
             identifiers; (2) professional or employment-related information; (3)
-            internet or other electronic network activity within TheiaGenEpi; (4)
-            geolocation data; (5) inferences drawn from your internet or other
-            electronic network activity within TheiaGenEpi; and (6) information
-            provided within survey responses.
+            internet or other electronic network activity within TheiaGenEpi;
+            (4) geolocation data; (5) inferences drawn from your internet or
+            other electronic network activity within TheiaGenEpi; and (6)
+            information provided within survey responses.
           </span>
         </ListItem>
         <ListItem>

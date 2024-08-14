@@ -21,18 +21,21 @@ export default function Terms(): JSX.Element {
         <H4>Last Updated: July 11, 2024</H4>
       </Title>
       <P>
-        Please read these Terms of Use (&quot;Terms&quot;) before using TheiaGenEpi (&quot;Services&quot; or &quot;TheiaGenEpi&quot;).
-        These Terms are entered into between the Theiagen Global Health Initiative, a 501(c)(3) nonprofit private foundation pending approval, (&quot;TGHI&quot;,
-        &quot;we&quot;, &quot;us&quot; or &quot;our&quot;) and you
-        (&quot;User&quot; or &quot;you&quot;) and govern your and your
+        Please read these Terms of Use (&quot;Terms&quot;) before using
+        TheiaGenEpi (&quot;Services&quot; or &quot;TheiaGenEpi&quot;). These
+        Terms are entered into between the Theiagen Global Health Initiative, a
+        501(c)(3) nonprofit private foundation pending approval,
+        (&quot;TGHI&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;)
+        and you (&quot;User&quot; or &quot;you&quot;) and govern your and your
         organization’s use of TheiaGenEpi.
       </P>
       <P>
         TheiaGenEpi is a tool that helps you infer how pathogens are moving
-        through a population and how cases are related to one another. TheiaGenEpi comprises our Genomic Epidemiology portal, any associated online
-        services or platforms that link to or refer to these Terms, and any
-        databases or data accessible through the portal, associated services or
-        platforms.
+        through a population and how cases are related to one another.
+        TheiaGenEpi comprises our Genomic Epidemiology portal, any associated
+        online services or platforms that link to or refer to these Terms, and
+        any databases or data accessible through the portal, associated services
+        or platforms.
       </P>
       <P>
         TheiaGenEpi is offered by Theiagen Global Health Initiative
@@ -55,9 +58,9 @@ export default function Terms(): JSX.Element {
         AND TGHI (AND ITS PARTNERS AND AFFILIATES, INCLUDING WITHOUT LIMITATION
         TG LLC) AGREE THAT (1) DISPUTES BETWEEN US WILL BE RESOLVED BY
         INDIVIDUAL BINDING ARBITRATION, AND (2) YOU AND TGHI (AND ITS PARTNERS
-        AND AFFILIATES, INCLUDING WITHOUT LIMITATION TG LLC) WAIVE ANY
-        RIGHT TO PARTICIPATE IN A CLASS-ACTION LAWSUIT, CLASS-WIDE ARBITRATION,
-        OR ANY OTHER REPRESENTATIVE ACTION.
+        AND AFFILIATES, INCLUDING WITHOUT LIMITATION TG LLC) WAIVE ANY RIGHT TO
+        PARTICIPATE IN A CLASS-ACTION LAWSUIT, CLASS-WIDE ARBITRATION, OR ANY
+        OTHER REPRESENTATIVE ACTION.
       </P>
     </>
   );
@@ -69,14 +72,16 @@ export default function Terms(): JSX.Element {
         <List>
           <ListItem>
             <span>
-              TheiaGenEpi is a tool that helps you infer how pathogens are moving
-              through a population and how cases are related to one another.
+              TheiaGenEpi is a tool that helps you infer how pathogens are
+              moving through a population and how cases are related to one
+              another.
             </span>
           </ListItem>
           <ListItem>
             <span>
               TheiaGenEpi is offered by the Theiagen Global Health Initiative
-              (TGHI), in close collaboration with the Theiagen Genomics LLC (TG LLC).
+              (TGHI), in close collaboration with the Theiagen Genomics LLC (TG
+              LLC).
             </span>
           </ListItem>
           <ListItem>
@@ -103,19 +108,21 @@ export default function Terms(): JSX.Element {
           <ListItem>
             <span>
               The outputs (ex: analytical outputs, such as phylogenetic trees)
-              you create with TheiaGenEpi are <B>not</B> personally identifiable.
-              You must also ensure that the data you upload to TheiaGenEpi (Raw
-              Sequence Data, Pathogen Consensus Genomes, and Sample Metadata)
-              are similarly <B>not</B> personally identifiable. This means
-              removing all direct identifiers (see Direct personal identifiers below)
-              like name, address, dates, telephone numbers, e-mail addresses, or
-              medical record numbers from data you upload to TheiaGenEpi.
+              you create with TheiaGenEpi are <B>not</B> personally
+              identifiable. You must also ensure that the data you upload to
+              TheiaGenEpi (Raw Sequence Data, Pathogen Consensus Genomes, and
+              Sample Metadata) are similarly <B>not</B> personally identifiable.
+              This means removing all direct identifiers (see Direct personal
+              identifiers below) like name, address, dates, telephone numbers,
+              e-mail addresses, or medical record numbers from data you upload
+              to TheiaGenEpi.
             </span>
           </ListItem>
           <ListItem>
-            TheiaGenEpi does not provide medical advice. The output from TheiaGenEpi does not constitute and should not be relied upon to provide
-            medical advice, diagnosis or treatment. It is intended for research,
-            educational, or informational purposes only.
+            TheiaGenEpi does not provide medical advice. The output from
+            TheiaGenEpi does not constitute and should not be relied upon to
+            provide medical advice, diagnosis or treatment. It is intended for
+            research, educational, or informational purposes only.
           </ListItem>
         </List>
       </>
@@ -135,33 +142,39 @@ export default function Terms(): JSX.Element {
             Pathogen Consensus Genomes, and Sample Metadata (ex: date collected
             and county-level location data). You should <B>not</B> be uploading
             any information that would allow identification of any specific
-            individuals to which the Samples may relate, such as direct identifiers (see Direct personal identifiers below)
-            like name, address, symptom onset dates or case interview dates,
-            telephone numbers, e-mail addresses, or medical record numbers.
+            individuals to which the Samples may relate, such as direct
+            identifiers (see Direct personal identifiers below) like name,
+            address, symptom onset dates or case interview dates, telephone
+            numbers, e-mail addresses, or medical record numbers.
           </span>
         </ListItem>
         <ListItem>
           <span>
             <ListItemLabel>Direct personal identifiers</ListItemLabel>
-            The below categories are considered 'direct personal identifiers' and are informed
-            by the {" "}
+            The below categories are considered &lsquo;direct personal
+            identifiers&rsquo; and are informed by the{" "}
             <NewTabLink href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">
               HIPAA Privacy Rule
-            </NewTabLink>{" "} as well as other regulations (e.g. GDPR):
-
+            </NewTabLink>{" "}
+            as well as other regulations (e.g. GDPR):
             <List>
               <ListItem>
                 <span>Names</span>
               </ListItem>
               <ListItem>
                 <span>
-                  For US: All geographic subdivisions smaller than a state, except for the initial three digits of the ZIP code if the geographic unit formed by combining all ZIP codes with the same three initial digits contains more than 20,000 people.
-                  For non-US: any geographic subdivision smaller than a city (e.g. neighborhood, mailing address).
+                  For US: All geographic subdivisions smaller than a state,
+                  except for the initial three digits of the ZIP code if the
+                  geographic unit formed by combining all ZIP codes with the
+                  same three initial digits contains more than 20,000 people.
+                  For non-US: any geographic subdivision smaller than a city
+                  (e.g. neighborhood, mailing address).
                 </span>
               </ListItem>
               <ListItem>
                 <span>
-                  All elements of dates except year, and all ages over 89 or elements indicative of such age
+                  All elements of dates except year, and all ages over 89 or
+                  elements indicative of such age
                 </span>
               </ListItem>
               <ListItem>
@@ -208,8 +221,8 @@ export default function Terms(): JSX.Element {
               </ListItem>
               <ListItem>
                 <span>
-                  any other unique, identifying characteristic or code, except as permitted for re-identification in the
-                  {" "}
+                  any other unique, identifying characteristic or code, except
+                  as permitted for re-identification in the{" "}
                   <NewTabLink href="https://www.hhs.gov/hipaa/for-professionals/privacy/index.html">
                     Privacy Rule.
                   </NewTabLink>{" "}
@@ -236,7 +249,7 @@ export default function Terms(): JSX.Element {
           <span>
             <ListItemLabel>Our rights and your rights.</ListItemLabel>
             We need some basic rights to use your Upload data in order to offer
-            TheiaGenEpi's services to you. Specifically, you grant to us a
+            TheiaGenEpi&apos;s services to you. Specifically, you grant to us a
             license to use (ex: store your data in the TheiaGenEpi database),
             reproduce (ex: backing up the TheiaGenEpi database), distribute,
             display, and create derivative works (ex: produce phylogenetic trees
@@ -268,7 +281,7 @@ export default function Terms(): JSX.Element {
                   us to share this information with Users outside your
                   organization. In certain circumstances, we may also share your
                   data with third party entities, through the TheiaGenEpi tool,
-                  in line with your organization's policies or in line with
+                  in line with your organization&apos;s policies or in line with
                   applicable law. Samples marked &quot;private&quot; will never
                   be shared with any 3rd parties unless you choose to mark them
                   &quot;public&quot; later on.
@@ -295,9 +308,10 @@ export default function Terms(): JSX.Element {
           organization for questions related to their policies.
         </ListItem>
         <ListItem>
-          TheiaGenEpi may not be used to provide medical or other services to any
-          third party (for instance, to inform or provide disease diagnoses). TheiaGenEpi is not intended to diagnose, treat, cure, or prevent any
-          disease and is not a substitute for medical advice.
+          TheiaGenEpi may not be used to provide medical or other services to
+          any third party (for instance, to inform or provide disease
+          diagnoses). TheiaGenEpi is not intended to diagnose, treat, cure, or
+          prevent any disease and is not a substitute for medical advice.
         </ListItem>
       </List>
     </>
@@ -310,7 +324,8 @@ export default function Terms(): JSX.Element {
       </H2>
       <List>
         <ListItem>
-          You shall not otherwise access or use, or attempt to access or use, TheiaGenEpi to take any action that could harm us, TheiaGenEpi or its
+          You shall not otherwise access or use, or attempt to access or use,
+          TheiaGenEpi to take any action that could harm us, TheiaGenEpi or its
           Users, or any third party, or use TheiaGenEpi in any manner that
           violates applicable law or infringes or otherwise violates third party
           rights.
@@ -339,11 +354,12 @@ export default function Terms(): JSX.Element {
       <List>
         <ListItem>
           <span>
-            <ListItemLabel>Changes to TheiaGenEpi.</ListItemLabel>TheiaGenEpi is a
-            free tool. We can’t promise TheiaGenEpi will always be up and offered
-            as it is today, but if we are making material changes to its
+            <ListItemLabel>Changes to TheiaGenEpi.</ListItemLabel>TheiaGenEpi is
+            a free tool. We can’t promise TheiaGenEpi will always be up and
+            offered as it is today, but if we are making material changes to its
             features or that impact its availability, we will give you a chance
-            to download and/or delete your data so you can take it off of TheiaGenEpi.
+            to download and/or delete your data so you can take it off of
+            TheiaGenEpi.
           </span>
         </ListItem>
         <ListItem>
@@ -377,14 +393,14 @@ export default function Terms(): JSX.Element {
         <ListItem>
           <span>
             We and our service providers do not review or correct any data
-            uploaded into TheiaGenEpi. If you would like to report any issue with
-            TheiaGenEpi please contact us at{" "}
+            uploaded into TheiaGenEpi. If you would like to report any issue
+            with TheiaGenEpi please contact us at{" "}
             <NewTabLink href="mailto:support@theiagenghi.org">
               support@theiagenghi.org
             </NewTabLink>
-            . TheiaGenEpi is not intended as a storage service, so please back up
-            your Upload Data using a secure service of your choice, such as the
-            NCBI’s Sequence Read Archive (SRA) repository.
+            . TheiaGenEpi is not intended as a storage service, so please back
+            up your Upload Data using a secure service of your choice, such as
+            the NCBI’s Sequence Read Archive (SRA) repository.
           </span>
         </ListItem>
         <ListItem>
@@ -395,8 +411,8 @@ export default function Terms(): JSX.Element {
                 <span>
                   YOUR ACCESS AND USE TheiaGenEpi AT YOUR SOLE RISK AND AGREE
                   THAT WE AND OUR SERVICE PROVIDERS WILL NOT BE RESPONSIBLE FOR
-                  ANY ACTIONS YOU TAKE BASED ON TheiaGenEpi OR FOR ANY INACCURATE
-                  DATA OR OUTPUTS OF TheiaGenEpi.
+                  ANY ACTIONS YOU TAKE BASED ON TheiaGenEpi OR FOR ANY
+                  INACCURATE DATA OR OUTPUTS OF TheiaGenEpi.
                 </span>
               </ListItem>
               <ListItem>
@@ -407,10 +423,10 @@ export default function Terms(): JSX.Element {
                   (INCLUDING, WITHOUT LIMITATION, IMPLIED WARRANTIES OF TITLE,
                   NON-INFRINGEMENT, MERCHANTABILITY, FITNESS FOR A PARTICULAR
                   PURPOSE, AND ALL WARRANTIES ARISING FROM THE COURSE OF
-                  DEALING, USAGE, OR TRADE PRACTICE) WITH RESPECT TO TheiaGenEpi.
-                  TheiaGenEpi IS NOT INTENDED TO BE USED AND SHOULD NOT BE USED
-                  AS A MEDICAL DEVICE OR FOR PURPOSES OF MEDICAL DIAGNOSIS OR
-                  TREATMENT.
+                  DEALING, USAGE, OR TRADE PRACTICE) WITH RESPECT TO
+                  TheiaGenEpi. TheiaGenEpi IS NOT INTENDED TO BE USED AND SHOULD
+                  NOT BE USED AS A MEDICAL DEVICE OR FOR PURPOSES OF MEDICAL
+                  DIAGNOSIS OR TREATMENT.
                 </span>
               </ListItem>
               <ListItem>
@@ -443,8 +459,7 @@ export default function Terms(): JSX.Element {
         <ListItem>
           <span>
             TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, TGHI AND
-            AFFILIATES (INCLUDING WITHOUT LIMITATION THEIAGEN GENOMICS,
-            LLC, THE{" "}
+            AFFILIATES (INCLUDING WITHOUT LIMITATION THEIAGEN GENOMICS, LLC, THE{" "}
             <B>&quot;PROTECTED PARTIES&quot;</B>) WILL NOT BE LIABLE FOR ANY
             INDIRECT, INCIDENTAL, SPECIAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES OF
             ANY KIND (INCLUDING LOST PROFITS, LOST DATA, BUSINESS INTERRUPTION,
@@ -597,9 +612,9 @@ export default function Terms(): JSX.Element {
         </ListItem>
         <ListItem>
           Entire Agreement. These Terms (along with the Privacy Notice)
-          constitute the entire agreement between you and us regarding TheiaGenEpi. 
-          If you wish to modify these Terms, any amendment must be provided
-          to us in writing and signed by our authorized representative.
+          constitute the entire agreement between you and us regarding
+          TheiaGenEpi. If you wish to modify these Terms, any amendment must be
+          provided to us in writing and signed by our authorized representative.
         </ListItem>
       </List>
     </>
@@ -633,7 +648,8 @@ export default function Terms(): JSX.Element {
             <br />
             Attn: General Counsel
             <br />
-            1745 Shea Center Drive, Suite 400<br />
+            1745 Shea Center Drive, Suite 400
+            <br />
             Highlands Ranch, CO, 80129, USA.
             <br />
             With a courtesy copy via email to:{" "}

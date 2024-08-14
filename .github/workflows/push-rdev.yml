@@ -1,4 +1,4 @@
-name: Push Remote Dev
+name: Build and Push Docker to ECR
 
 on:
   push:
