@@ -147,10 +147,6 @@ export default function Review({
           <CheckboxText onClick={handleConsentCheck}>
             <StyledCheckbox
               checked={isConsentChecked}
-
-
-
-              
               stage={isConsentChecked ? "checked" : "unchecked"}
             />
             <span>

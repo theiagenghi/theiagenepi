@@ -155,7 +155,9 @@ export default function Upload({
           </AlertTitle>
           <div>
             You may retry or{" "}
-            <NewTabLink href="mailto:support@theiagenghi.org">contact us</NewTabLink>{" "}
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              contact us
+            </NewTabLink>{" "}
             for help.
           </div>
           {message && <div>System message: {message}</div>}
