@@ -1,14 +1,14 @@
-name: Frontend Lint and Format
+name: Frontend TypeScript/React CI
 
 on:
   push:
+    branches: [ main ]
     paths:
-      - 'src/frontend/**/*.ts'
-      - 'src/frontend/**/*.tsx'
+      - 'src/frontend/**'
   pull_request:
+    branches: [ main ]
     paths:
-      - 'src/frontend/**/*.ts'
-      - 'src/frontend/**/*.tsx'
+      - 'src/frontend/**'
   workflow_dispatch:
     inputs:
       git-ref:
@@ -16,41 +16,30 @@ on:
         required: false
 
 jobs:
-  lint-and-format:
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.inputs.git-ref }}
+        ref: ${{ github.event.inputs.git-ref || github.ref }}
 
     - name: Use Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v2
       with:
-        node-version: '16'  # Adjust this to your project's Node.js version
+        node-version: '14'
 
     - name: Install dependencies
-      run: |
-        cd src/frontend
-        npm ci
+      run: npm ci
+
+    - name: Check formatting
+      run: npx prettier --check "src/frontend/**/*.{ts,tsx}"
 
     - name: Run ESLint
-      run: |
-        cd src/frontend
-        npx eslint . --ext .ts,.tsx
+      run: npx eslint "src/frontend/**/*.{ts,tsx}" --format stylish
 
-    - name: Check Prettier formatting
-      run: |
-        cd src/frontend
-        npx prettier --check .
+    - name: Run type check
+      run: npx tsc --noEmit
 
-    # - name: Run Prettier (if check fails)
-    #   if: failure()
-    #   run: |
-    #     cd src/frontend
-    #     npx prettier --write .
-    #     git config user.name github-actions
-    #     git config user.email github-actions@github.com
-    #     git add .
-    #     git commit -m "Apply Prettier formatting" || echo "No changes to commit"
-    #     git push
+    - name: Build
+      run: npm run build
