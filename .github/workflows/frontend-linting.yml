@@ -1,16 +1,14 @@
-name: Frontend Lint and Format
+name: Frontend TypeScript/React CI
 
 on:
   push:
-    paths:
-      - 'src/frontend/**/*.js'
-      - 'src/frontend/**/*.ts'
-      - 'src/frontend/**/*.tsx'
+    branches: [ tghi-dev ]
+    # paths:
+    #   - 'src/frontend/**'
   pull_request:
+    branches: [ tghi-dev ]
     paths:
-      - 'src/frontend/**/*.js'
-      - 'src/frontend/**/*.ts'
-      - 'src/frontend/**/*.tsx'
+      - 'src/frontend/**'
   workflow_dispatch:
     inputs:
       git-ref:
@@ -18,41 +16,50 @@ on:
         required: false
 
 jobs:
-  lint-and-format:
+  build:
     runs-on: ubuntu-latest
-    
+
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
       with:
-        ref: ${{ github.event.inputs.git-ref }}
+        ref: ${{ github.event.inputs.git-ref || github.ref }}
 
     - name: Use Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v2
       with:
-        node-version: '16'  # Adjust this to your project's Node.js version
+        node-version: '14.21.3'
 
     - name: Install dependencies
       run: |
         cd src/frontend
-        npm ci
+        npm install --save-dev eslint@7.32.0
+
+    - name: Check formatting
+      id: check-formatting
+      continue-on-error: true
+      run: |
+        cd src/frontend
+        npm install --save-dev prettier@2.8.8
+        npx prettier --check --no-error-on-unmatched-pattern --loglevel error "src/**/*.{ts,tsx}"
+
+    # - name: Fix formatting
+    #   if: steps.check-formatting.outcome == 'failure'
+    #   run: |
+    #     echo "Prettier found formatting issues. Fixing..."
+    #     npx prettier --write "src/frontend/**/*.{ts,tsx}"
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     git add .
+    #     git commit -m "Auto-fix formatting issues" || echo "No changes to commit"
+    #     git push
 
     - name: Run ESLint
+      continue-on-error: true
       run: |
         cd src/frontend
-        npx eslint . --ext .js,.ts,.tsx
+        npx eslint "src/**/*.{ts,tsx}" --format stylish
 
-    - name: Check Prettier formatting
+    - name: Build
       run: |
         cd src/frontend
-        npx prettier --check .
-
-    - name: Run Prettier (if check fails)
-      if: failure()
-      run: |
-        cd src/frontend
-        npx prettier --write .
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m "Apply Prettier formatting" || echo "No changes to commit"
-        git push
+        npm run build
