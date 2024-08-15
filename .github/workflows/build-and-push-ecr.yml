@@ -3,7 +3,8 @@ name: Build and Push Docker to ECR
 on:
   push:
     branches:
-      - "rdev-*"
+      - "tghi-docker-*"
+  workflow_dispatch:
 
 env:
   # Force using BuildKit instead of normal Docker, required so that metadata
@@ -35,7 +36,7 @@ jobs:
           - dockerfile: src/backend/Dockerfile.lineage_qc
             context: ./src/backend/
             name: genepi-lineage-qc
-          - dockerfile: src/backend/Dockerfile
+          - dockerfile: src/backend/Dockerfile.backend
             context: ./src/backend/
             name: genepi-backend
           - dockerfile: src/frontend/Dockerfile
@@ -55,40 +56,3 @@ jobs:
           context: ${{ matrix.image.context }}
           name: ${{ matrix.image.name }}
           registry: ${{ secrets.ECR_REPO }}
-
-  create-update-rdev:
-    runs-on: ubuntu-20.04
-    needs:
-      - build-push-images
-    steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-session-name: CreateUpdateRdev
-          aws-region: us-west-2
-          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
-          role-duration-seconds: 900
-      - name: Calculate Branch and Base Names
-        id: refs
-        uses: chanzuckerberg/github-actions/.github/actions/get-github-ref-names@get-github-ref-names-v1.4.0
-      - name: Get Stack Name
-        id: stack-name
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const prefix = "rdev-";
-            const ref = "${{ steps.refs.outputs.headRef }}";
-            if (!ref.startsWith(prefix)) {
-              core.setFailed(`ref ${ref} did not start with ${prefix}`)
-              return
-            }
-            // Must be compatible with DNS charset, replace chars not allowed with '-'
-            const stackName = ref.slice(prefix.length).replaceAll(/[^a-zA-Z0-9/-]+/g, "-")
-            console.log(`stackName: ${stackName}`)
-            core.setOutput('stack-name', stackName)
-      - name: Create or update rdev
-        uses: chanzuckerberg/github-actions/.github/actions/deploy-happy-stack@deploy-happy-stack-v1.7.0
-        with:
-          tfe-token: ${{ secrets.TFE_TOKEN }}
-          stack-name: ${{ steps.stack-name.outputs.stack-name }}
-          happy_version: "0.41.3"

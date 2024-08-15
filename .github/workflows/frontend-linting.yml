@@ -1,0 +1,58 @@
+name: Frontend Lint and Format
+
+on:
+  push:
+    paths:
+      - 'src/frontend/**/*.js'
+      - 'src/frontend/**/*.ts'
+      - 'src/frontend/**/*.tsx'
+  pull_request:
+    paths:
+      - 'src/frontend/**/*.js'
+      - 'src/frontend/**/*.ts'
+      - 'src/frontend/**/*.tsx'
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)
+        required: false
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: ${{ github.event.inputs.git-ref }}
+
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Adjust this to your project's Node.js version
+
+    - name: Install dependencies
+      run: |
+        cd src/frontend
+        npm ci
+
+    - name: Run ESLint
+      run: |
+        cd src/frontend
+        npx eslint . --ext .js,.ts,.tsx
+
+    - name: Check Prettier formatting
+      run: |
+        cd src/frontend
+        npx prettier --check .
+
+    - name: Run Prettier (if check fails)
+      if: failure()
+      run: |
+        cd src/frontend
+        npx prettier --write .
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "Apply Prettier formatting" || echo "No changes to commit"
+        git push
