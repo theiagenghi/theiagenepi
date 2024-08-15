@@ -1,0 +1,58 @@
+name: Build and Push Docker to ECR
+
+on:
+  push:
+    branches:
+      - "tghi-docker-*"
+  workflow_dispatch:
+
+env:
+  # Force using BuildKit instead of normal Docker, required so that metadata
+  # is written/read to allow us to use layers of previous builds as cache.
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+  DOCKER_REPO: ${{ secrets.ECR_REPO }}/
+
+# https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  build-push-images:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        image:
+          - dockerfile: src/backend/Dockerfile.gisaid
+            context: ./src/backend/
+            name: genepi-gisaid
+          - dockerfile: src/backend/Dockerfile.nextstrain
+            context: ./src/backend/
+            name: genepi-nextstrain
+          - dockerfile: src/backend/Dockerfile.pangolin
+            context: ./src/backend/
+            name: genepi-pangolin
+          - dockerfile: src/backend/Dockerfile.lineage_qc
+            context: ./src/backend/
+            name: genepi-lineage-qc
+          - dockerfile: src/backend/Dockerfile.backend
+            context: ./src/backend/
+            name: genepi-backend
+          - dockerfile: src/frontend/Dockerfile
+            context: ./src/frontend/
+            name: genepi-frontend
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: us-west-2
+          aws-access-key-id: ${{ secrets.THEIAGEN_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.THEIAGEN_AWS_SECRET_ACCESS_KEY }}
+      - name: Build And Push
+        uses: chanzuckerberg/github-actions/.github/actions/docker-build-push@docker-build-push-v1.3.1
+        with:
+          dockerfile: ${{ matrix.image.dockerfile }}
+          context: ${{ matrix.image.context }}
+          name: ${{ matrix.image.name }}
+          registry: ${{ secrets.ECR_REPO }}
