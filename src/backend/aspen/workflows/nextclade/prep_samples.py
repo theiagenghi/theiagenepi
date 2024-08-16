@@ -15,6 +15,7 @@ other types of QC calling tool, make sure to go through this script carefully
 if you're tweaking it to support multiple tools. Especially look closely at
 the function `get_sample_ids_to_refresh` in here.
 """
+
 import io
 import json
 import subprocess
