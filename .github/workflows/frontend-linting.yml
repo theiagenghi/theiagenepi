@@ -1,0 +1,65 @@
+name: Frontend TypeScript/React CI
+
+on:
+  push:
+    branches: [ tghi-dev ]
+    # paths:
+    #   - 'src/frontend/**'
+  pull_request:
+    branches: [ tghi-dev ]
+    paths:
+      - 'src/frontend/**'
+  workflow_dispatch:
+    inputs:
+      git-ref:
+        description: Git Ref (Optional)
+        required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.event.inputs.git-ref || github.ref }}
+
+    - name: Use Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.21.3'
+
+    - name: Install dependencies
+      run: |
+        cd src/frontend
+        npm install --save-dev eslint@7.32.0
+
+    - name: Check formatting
+      id: check-formatting
+      continue-on-error: true
+      run: |
+        cd src/frontend
+        npm install --save-dev prettier@2.8.8
+        npx prettier --check --no-error-on-unmatched-pattern --loglevel error "src/**/*.{ts,tsx}"
+
+    # - name: Fix formatting
+    #   if: steps.check-formatting.outcome == 'failure'
+    #   run: |
+    #     echo "Prettier found formatting issues. Fixing..."
+    #     npx prettier --write "src/frontend/**/*.{ts,tsx}"
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     git add .
+    #     git commit -m "Auto-fix formatting issues" || echo "No changes to commit"
+    #     git push
+
+    - name: Run ESLint
+      continue-on-error: true
+      run: |
+        cd src/frontend
+        npx eslint "src/**/*.{ts,tsx}" --format stylish
+
+    - name: Build
+      run: |
+        cd src/frontend
+        npm run build
