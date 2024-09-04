@@ -1,13 +1,13 @@
 variable "aws_account_id" {
   type        = string
   description = "AWS account ID to apply changes to"
-  default     = "829407189049"
+  default     = "010928203514"
 }
 
 variable "aws_role" {
   type        = string
   description = "Name of the AWS role to assume to apply changes"
-  default     = "tfe-si"
+  default     = ""
 }
 
 variable "priority" {
