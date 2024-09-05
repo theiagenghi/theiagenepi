@@ -154,6 +154,9 @@ def cli(
 
 
 # For local debugging of our yaml building process.
+# Would be better to re-structure the main `export_run_config` process so yaml
+# output happens earlier and we just exit early if --builds-file-only flag is
+# on rather than having a separate code path for that flag being on.
 def dump_yaml_template(
     phylo_run_id: int,
     builds_file_fh: io.TextIOWrapper,
@@ -177,7 +180,11 @@ def dump_yaml_template(
             session, phylo_run.pathogen, phylo_run.template_args, group
         )
         builder: TemplateBuilder = TemplateBuilder(
-            phylo_run.tree_type, phylo_run.group, resolved_template_args, **context
+            phylo_run.tree_type,
+            phylo_run.pathogen,
+            phylo_run.group,
+            resolved_template_args,
+            **context,
         )
         builder.write_file(builds_file_fh)
 
