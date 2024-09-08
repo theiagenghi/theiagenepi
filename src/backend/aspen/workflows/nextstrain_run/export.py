@@ -154,6 +154,9 @@ def cli(
 
 
 # For local debugging of our yaml building process.
+# Would be better to re-structure the main `export_run_config` process so yaml
+# output happens earlier and we just exit early if --builds-file-only flag is
+# on rather than having a separate code path for that flag being on.
 def dump_yaml_template(
     phylo_run_id: int,
     builds_file_fh: io.TextIOWrapper,
@@ -177,7 +180,11 @@ def dump_yaml_template(
             session, phylo_run.pathogen, phylo_run.template_args, group
         )
         builder: TemplateBuilder = TemplateBuilder(
-            phylo_run.tree_type, phylo_run.group, resolved_template_args, **context
+            phylo_run.tree_type,
+            phylo_run.pathogen,
+            phylo_run.group,
+            resolved_template_args,
+            **context,
         )
         builder.write_file(builds_file_fh)
 
@@ -484,6 +491,7 @@ def populate_aligned_row(sample, sequence):
     row: MutableMapping[str, Any] = {
         # NOTE: mpox tree builds can't handle "/" in accessions names!
         # However, it uses the "strain" metadata field to populate labels in the final tree.
+        # QC_ columns are left empty since these stats aren't readily available in our database
         "accession": sample.public_identifier.replace("/", "_"),
         "strain": sample.public_identifier,
         "date": sample.collection_date.strftime("%Y-%m-%d"),
