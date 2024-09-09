@@ -9,12 +9,11 @@ terraform {
   }
 
   backend "s3" {
-    region  = "us-west-2"
-    bucket  = "genepi-prod-s3-tf-state-prod-prod-genepi-theia-stacks-state"
-    key     = "czgenepi-prod.tfstate"
-    profile = "theia"
-    encrypt = "true"
-
-    dynamodb_table = "genepi-prod-s3-tf-state-prod-prod-genepi-theia-stacks-state-lock"
+    bucket         = "genepi-prod-s3-tf-state-prod-prod-genepi-theia-stacks-new-state"
+    dynamodb_table = "genepi-prod-s3-tf-state-prod-prod-genepi-theia-stacks-new-state-lock"
+    key            = "czgenepi-prod.tfstate"
+    encrypt        = true
+    region         = "us-west-2"
+    profile        = "theia-prod"
   }
 }
