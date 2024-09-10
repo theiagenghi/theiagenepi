@@ -9,11 +9,17 @@ import { isUserFlagOn } from "src/components/Split";
 
 // Show Banner to let users know we are transferring the app
 export const Announcements = (): JSX.Element => {
-  const flag = useTreatments([USER_FEATURE_FLAGS.transfer_banner]);
+  const transferFlag = useTreatments([USER_FEATURE_FLAGS.transfer_banner]);
+  const mpoxUpdateFlag = useTreatments([USER_FEATURE_FLAGS.mpox_update_banner]);
 
   const shouldShowTransferBanner = isUserFlagOn(
-    flag,
+    transferFlag,
     USER_FEATURE_FLAGS.transfer_banner
+  );
+
+  const shouldShowMpoxUpdateBanner = isUserFlagOn(
+    mpoxUpdateFlag,
+    USER_FEATURE_FLAGS.mpox_update_banner
   );
 
   return (
@@ -31,6 +37,18 @@ export const Announcements = (): JSX.Element => {
             HERE
           </StyledNewTabLink>
           <B>&nbsp;FOR MORE INFORMATION.</B>
+        </StyledBanner>
+      )}
+      {shouldShowMpoxUpdateBanner && (
+        <StyledBanner sdsType="primary">
+          <B>MPOX TREE BUILDS ARE NOW UPDATED.&nbsp;</B>
+          <StyledNewTabLink
+            href="https://help.czgenepi.org/hc/en-us/articles/30224919249684-Tree-Building-Updates-09-06-2024"
+            sdsStyle="dashed"
+          >
+            LEARN MORE
+          </StyledNewTabLink>
+          <B>.</B>
         </StyledBanner>
       )}
     </>
