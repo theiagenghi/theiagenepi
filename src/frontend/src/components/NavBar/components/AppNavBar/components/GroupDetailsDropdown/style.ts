@@ -67,10 +67,13 @@ export const Details = styled.div`
 export const StyledButton = styled(Button)`
   ${(props: CommonThemeProps) => {
     const spaces = getSpaces(props);
-
+    const colors = getColors(props);
     return `
       margin-top: ${spaces?.xl}px;
       margin-right: ${spaces?.m}px;
+      &:hover {
+        border-color: ${colors?.primary[500]};
+      }
     `;
   }}
 `;
