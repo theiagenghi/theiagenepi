@@ -17,7 +17,6 @@ import { defaultAppTheme, makeThemeOptions } from "czifui";
 //   "600": "#001A54",
 // };
 
-// New colors set
 const primaryColors = {
   "100": "#A4E1F3",
   "200": "#E5F6FB",
