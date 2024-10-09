@@ -2,7 +2,8 @@ import Image from "next/image";
 import { useEffect } from "react";
 import BiohubLogoImg from "src/common/images/biohub-sf-logo.png";
 import CZILogoImg from "src/common/images/czi-logo.png";
-import FooterLogo from "src/common/images/gen-epi-logo.svg";
+// import FooterLogo from "src/common/images/gen-epi-logo.svg";
+import FooterLogo from "src/common/images/theiagenpi-white-logo.svg";
 import { ROUTES } from "src/common/routes";
 import {
   CZBiohubLogo,
