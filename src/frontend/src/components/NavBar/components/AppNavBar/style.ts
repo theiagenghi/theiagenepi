@@ -1,15 +1,15 @@
 import styled from "@emotion/styled";
 import { CommonThemeProps, getColors, getSpaces } from "czifui";
-import LogoImage from "src/common/images/logo_complete_white.svg";
+import LogoImage from "src/common/images/theiagenpi-color-logo-user-data.svg";
 
 export const Logo = styled(LogoImage)`
-  height: 25px;
-
+  height: 50px;
+  width: 250px;
   ${(props: CommonThemeProps) => {
     const spaces = getSpaces(props);
 
     return `
-      margin-right: ${spaces?.l}px;
+      margin-right: ${spaces?.l ? `${spaces.l - 25}px` : "0px"};
     `;
   }}
 `;
