@@ -12,7 +12,7 @@ export enum ROUTES {
   CZI = THEIAGENGHI_URL,
   DATA = "/data",
   DATA_SAMPLES = "/data/samples",
-  GALAGO = "https://galago.theiagenepi.org/",
+  GALAGO = "https://galago.czgenepi.org/",
   GISAID = "https://www.gisaid.org/",
   GITHUB = "https://github.com/theiagenghi/theiagenepi",
   GROUP = "/group",
