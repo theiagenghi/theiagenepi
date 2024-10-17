@@ -27,7 +27,7 @@ export enum ROUTES {
   PHYLO_TREES = "/data/phylogenetic_trees",
   PRIVACY = "/privacy",
   PRIVACY_DATA_COLLECTION = "/privacy#privacy-data-collection",
-  PRIVACY_DATA_SHARING_FAQ = HELP_CENTER_URL,
+  PRIVACY_DATA_SHARING_FAQ = "https://theiagenepi.zendesk.com/hc/en-us/sections/29435334722459-Privacy-Data-Sharing",
   REQUEST_ACCESS = "https://forms.gle/cdHv5nZcs3Xwd5uB7",
   RESOURCES = HELP_CENTER_URL,
   TERMS = "/terms",
