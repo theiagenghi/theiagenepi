@@ -895,8 +895,8 @@ const PrivacyPolicy = (): JSX.Element => {
           <span>
             If you have any questions about our processing of any data, please
             contact us at{" "}
-            <NewTabLink href="mailto:theiagenghi.org">
-              theiagenghi.org
+            <NewTabLink href="mailto:support@theiagenghi.org">
+              support@theiagenghi.org
             </NewTabLink>
             .
           </span>
