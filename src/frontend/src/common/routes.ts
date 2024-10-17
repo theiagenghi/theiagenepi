@@ -1,7 +1,7 @@
 export enum ROUTES {
   THEIAGENGHI_URL = "https://www.theiagenghi.org/",
   UPLOAD_STEP_BASE = "/upload/step",
-  HELP_CENTER_URL = "https://help.theiagenepi.org",
+  HELP_CENTER_URL = "https://theiagenepi.zendesk.com",
 
   HOMEPAGE = "/",
   ACCOUNT = "/account",
