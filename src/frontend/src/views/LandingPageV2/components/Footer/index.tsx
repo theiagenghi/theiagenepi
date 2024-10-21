@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useEffect } from "react";
-import BiohubLogoImg from "src/common/images/biohub-sf-logo.png";
+import BiohubLogoImg from "src/common/images/TGHI_HorzLogo_White.png";
 import CZILogoImg from "src/common/images/czi-logo.png";
 // import FooterLogo from "src/common/images/gen-epi-logo.svg";
 import FooterLogo from "src/common/images/theiagenpi-white-logo.svg";
@@ -89,7 +89,7 @@ export default function Footer(): JSX.Element {
                 <Image src={CZILogoImg} alt="Chan Zuckerberg Initiative" />
               </CZILogo>
               <CZBiohubLogo href={ROUTES.BIOHUB} target="_blank">
-                <Image src={BiohubLogoImg} alt="CZ Bio Hub" />
+                <Image src={BiohubLogoImg} alt="Theiagen Global Health Initiative" />
               </CZBiohubLogo>
             </CZLogoContainer>
           </CZContainer>
