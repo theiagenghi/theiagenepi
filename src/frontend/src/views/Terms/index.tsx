@@ -24,7 +24,7 @@ export default function Terms(): JSX.Element {
         Please read these Terms of Use (&quot;Terms&quot;) before using
         TheiaGenEpi (&quot;Services&quot; or &quot;TheiaGenEpi&quot;). These
         Terms are entered into between the Theiagen Global Health Initiative, a
-        501(c)(3) nonprofit private foundation pending approval,
+        501(c)(3) nonprofit private foundation,
         (&quot;TGHI&quot;, &quot;we&quot;, &quot;us&quot; or &quot;our&quot;)
         and you (&quot;User&quot; or &quot;you&quot;) and govern your and your
         organization’s use of TheiaGenEpi.
@@ -545,18 +545,16 @@ export default function Terms(): JSX.Element {
             shall be resolved per the following arbitration terms. As the
             exclusive, final and binding means of initiating adversarial
             proceedings, you agree that it be resolved fully and finally by
-            neutral and binding arbitration administered by JAMS in San Mateo
-            County, California, in accordance with its Streamlined Arbitration
+            neutral and binding arbitration in Colorado, in accordance with its Streamlined Arbitration
             Rules & Procedures, the Federal Arbitration Act, and the substantive
-            laws of the State of California, exclusive of conflict or choice of
-            law rules. In-person proceedings will take place in San Mateo
-            County, California and your reasonable and documented travel
+            laws of the State of Colorado, exclusive of conflict or choice of
+            law rules. In-person proceedings will take place in Colorado and your reasonable and documented travel
             expenses will be paid by TGHI. The arbitrator shall have the power
             to award any type of relief that would be available in a court of
             competent jurisdiction and will issue a written decision at the end
             of the arbitration, which will be final and binding. Judgment on any
             award rendered in any such arbitration may be entered in any court
-            having jurisdiction in San Mateo County, California.
+            having jurisdiction in Colorado.
           </span>
         </ListItem>
       </List>
@@ -571,7 +569,7 @@ export default function Terms(): JSX.Element {
       <List>
         <ListItem>
           This Agreement and any Disputes will be governed, controlled, and
-          interpreted by and under the laws of the State of California, without
+          interpreted by and under the laws of the State of Colorado, without
           giving effect to any conflicts of laws principles that require the
           application of the law of a different state. Notwithstanding the
           foregoing, to the extent such laws are inconsistent with the Federal
@@ -579,8 +577,7 @@ export default function Terms(): JSX.Element {
           that is not subject to arbitration (e.g., if arbitration is deemed
           unenforceable or inapplicable) shall be, and any judgement on any
           arbitration award may be, brought in the U.S. District Court for the
-          Northern District of California or a state court located in San Mateo
-          County, California.
+           District of Colorado or a state court located in Colorado.
         </ListItem>
       </List>
     </>
