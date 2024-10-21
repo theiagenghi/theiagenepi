@@ -28,11 +28,11 @@ const PrivacyPolicy = (): JSX.Element => {
     <>
       <Title>
         <H1>TheiaGenEpi Privacy Policy</H1>
-        <H4>Last Updated: July 11, 2024</H4>
+        <H4>Last Updated: October 21, 2024</H4>
       </Title>
       <P>
         The Theiagen Global Health Initiative, a 501(c)(3) nonprofit private
-        foundation pending approval (&quot;<B>TGHI</B>,&quot; &quot;we,&quot;
+        foundation (&quot;<B>TGHI</B>,&quot; &quot;we,&quot;
         &quot;us,&quot; or &quot;our&quot;), provides the TheiaGenEpi product
         (&quot;Services&quot; or &quot;TheiaGenEpi&quot;) in close collaboration
         with Theiagen Genomics LLC (&quot;<B>TG LLC</B>&quot;). This Privacy
