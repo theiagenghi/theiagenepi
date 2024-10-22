@@ -9,7 +9,7 @@ export enum ROUTES {
   BIOHUB = THEIAGENGHI_URL,
   CAREERS = THEIAGENGHI_URL,
   CONTACT_US_EMAIL = "mailto:support@theiagenghi.org",
-  CZI = THEIAGENGHI_URL,
+  CZI = "https://chanzuckerberg.com/",
   DATA = "/data",
   DATA_SAMPLES = "/data/samples",
   GALAGO = "https://galago.czgenepi.org/",
