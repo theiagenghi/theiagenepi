@@ -4,6 +4,7 @@ import { SmallerThanBreakpoint } from "src/common/styles/mixins/global";
 
 export const CZBiohubLogo = styled.a`
   padding-left: 20px;
+  width: 209px;
 `;
 
 export const CZContainer = styled.div`

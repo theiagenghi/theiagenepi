@@ -32,14 +32,14 @@ const PrivacyPolicy = (): JSX.Element => {
       </Title>
       <P>
         The Theiagen Global Health Initiative, a 501(c)(3) nonprofit private
-        foundation (&quot;<B>TGHI</B>,&quot; &quot;we,&quot;
-        &quot;us,&quot; or &quot;our&quot;), provides the TheiaGenEpi product
-        (&quot;Services&quot; or &quot;TheiaGenEpi&quot;) in close collaboration
-        with Theiagen Genomics LLC (&quot;<B>TG LLC</B>&quot;). This Privacy
-        Policy describes the types of information we collect or that is uploaded
-        by TheiaGenEpi Users (collectively &quot;Users&quot; or &quot;you&quot;,
-        ex: registered public health officials at state and/or county level
-        Departments of Public Health (&quot;<B>DPH</B>&quot;), other public
+        foundation (&quot;<B>TGHI</B>,&quot; &quot;we,&quot; &quot;us,&quot; or
+        &quot;our&quot;), provides the TheiaGenEpi product (&quot;Services&quot;
+        or &quot;TheiaGenEpi&quot;) in close collaboration with Theiagen
+        Genomics LLC (&quot;<B>TG LLC</B>&quot;). This Privacy Policy describes
+        the types of information we collect or that is uploaded by TheiaGenEpi
+        Users (collectively &quot;Users&quot; or &quot;you&quot;, ex: registered
+        public health officials at state and/or county level Departments of
+        Public Health (&quot;<B>DPH</B>&quot;), other public health health
         health researchers), and how we use, disclose, and protect that
         information.
       </P>

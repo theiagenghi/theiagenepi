@@ -89,7 +89,10 @@ export default function Footer(): JSX.Element {
                 <Image src={CZILogoImg} alt="Chan Zuckerberg Initiative" />
               </CZILogo>
               <CZBiohubLogo href={ROUTES.BIOHUB} target="_blank">
-                <Image src={BiohubLogoImg} alt="Theiagen Global Health Initiative" />
+                <Image
+                  src={BiohubLogoImg}
+                  alt="Theiagen Global Health Initiative"
+                />
               </CZBiohubLogo>
             </CZLogoContainer>
           </CZContainer>
