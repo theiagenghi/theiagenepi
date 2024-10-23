@@ -293,7 +293,7 @@ export const CreateNSTreeModal = ({
     <div>
       Select the Tree Type best suited for the question you are trying to
       answer.{" "}
-      <NewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6707491998996-Understand-phylogenetic-tree-types">
+      <NewTabLink href="https://theiagenepi.zendesk.com/hc/en-us/articles/29434781069083-Understand-phylogenetic-tree-types">
         Read our guide to learn more.
       </NewTabLink>
     </div>
@@ -302,7 +302,7 @@ export const CreateNSTreeModal = ({
   const HEADER_TOOLTIP_TEXT = (
     <div>
       Visit our help center to{" "}
-      <NewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees">
+      <NewTabLink href="https://theiagenepi.zendesk.com/hc/en-us/articles/29454978786715-Build-on-demand-trees">
         learn more about building Nextstrain trees in TheiaGenEpi.
       </NewTabLink>
     </div>
@@ -407,7 +407,7 @@ export const CreateNSTreeModal = ({
               Samples already selected on the sample table or included by ID in
               the bottom section will always be force-included on your tree.{" "}
               <Link
-                href="https://help.theiagenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees#generating"
+                href="https://theiagenepi.zendesk.com/hc/en-us/articles/29454978786715-Build-on-demand-trees#generating"
                 target="_blank"
               >
                 Learn More.

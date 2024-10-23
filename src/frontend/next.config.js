@@ -87,7 +87,7 @@ module.exports = {
       {
         source: "/faq",
         destination:
-          "https://help.theiagenepi.org/hc/en-us/sections/5686564086548-FAQ",
+          "https://theiagenepi.zendesk.com/hc/en-us/sections/29433800234139-FAQ",
         permanent: true,
       },
     ];

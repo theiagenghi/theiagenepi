@@ -24,7 +24,7 @@ export const BlankStateTrees = (): JSX.Element => {
           <StyledLinkText>Go to samples</StyledLinkText>
           <StyledLinkIcon sdsIcon="chevronRight" sdsSize="s" sdsType="static" />
         </StyledLink>
-        <StyledNewTabLink href="https://help.theiagenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees">
+        <StyledNewTabLink href="https://theiagenepi.zendesk.com/hc/en-us/articles/29454978786715-Build-on-demand-trees">
           <StyledLinkText>Learn how to create trees</StyledLinkText>
           <StyledLinkIcon sdsIcon="chevronRight" sdsSize="s" sdsType="static" />
         </StyledNewTabLink>

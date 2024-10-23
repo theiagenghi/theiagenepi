@@ -158,7 +158,7 @@ const DownloadModal = ({
                 metrics for the selected samples.{" "}
                 <NewTabLink
                   href={
-                    "https://help.theiagenepi.org/hc/en-us/articles/11569567939604-Download-QC-Metrics-and-Mutation-Data"
+                    "https://theiagenepi.zendesk.com/hc/en-us/articles/29434379102619-Download-QC-metrics-and-mutation-data"
                   }
                 >
                   Learn more
@@ -175,7 +175,7 @@ const DownloadModal = ({
                   Download concatenated consensus genomes and metadata files
                   formatted to prepare samples for submission to GISAID.{" "}
                   <Link
-                    href="https://help.theiagenepi.org/hc/en-us/articles/8179880474260"
+                    href="https://theiagenepi.zendesk.com/hc/en-us/articles/29490901886491-Download-data-and-upload-it-into-the-GISAID-data-repository"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -193,7 +193,7 @@ const DownloadModal = ({
                 Download concatenated consensus genomes and metadata files
                 formatted to prepare samples for submission to Genbank.{" "}
                 <Link
-                  href="https://help.theiagenepi.org/hc/en-us/articles/8179961027604"
+                  href="https://theiagenepi.zendesk.com/hc/en-us/articles/29495572218139-Download-data-and-submit-it-to-GenBank"
                   target="_blank"
                   rel="noreferrer"
                 >

@@ -11,7 +11,7 @@ export const SampleFilteringTooltip = (): JSX.Element => {
           Changing your tree’s samples of interest default definitions will
           enable you to customize your tree.{" "}
           <Link
-            href="https://help.theiagenepi.org/hc/en-us/articles/6712563575956-Build-on-demand-trees#customizing"
+            href="https://theiagenepi.zendesk.com/hc/en-us/articles/29454978786715-Build-on-demand-trees#customizing"
             target="_blank"
           >
             Learn More.
