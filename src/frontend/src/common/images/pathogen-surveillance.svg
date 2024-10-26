@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <!-- Thanh Le Viet 26/10/2024-->
+  <!-- Define circular clipping path -->
+  <defs>
+    <clipPath id="circularClip">
+      <circle cx="150" cy="150" r="140"/>
+    </clipPath>
+  </defs>
+
+  <!-- Main content group with clipping -->
+  <g clip-path="url(#circularClip)">
+    <!-- Background -->
+    <rect width="300" height="300" fill="#38A65F"/>
+    
+    <!-- Static background elements -->
+    <g id="static-elements">
+      <!-- Stationary concentric circles -->
+      <circle cx="150" cy="150" r="120" fill="none" stroke="white" stroke-width="2"/>
+      <circle cx="150" cy="150" r="80" fill="none" stroke="white" stroke-width="1"/>
+      <circle cx="150" cy="150" r="40" fill="none" stroke="white" stroke-width="1"/>
+      
+      <!-- Cross lines -->
+      <line x1="30" y1="150" x2="270" y2="150" stroke="white" stroke-width="1"/>
+      <line x1="150" y1="30" x2="150" y2="270" stroke="white" stroke-width="1"/>
+    </g>
+
+    <!-- Static radar indicator -->
+    <path d="M150,150 L150,30 A120,120 0 0,1 270,150 Z" fill="white" opacity="0.25"/>
+
+    <!-- Viral symbols -->
+    <g class="virus" transform="translate(180,100) scale(0.7)">
+      <circle r="8" fill="#e74c3c"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#e74c3c" stroke-width="2"/>
+    </g>
+
+    <g class="virus" transform="translate(90,190) scale(0.6)">
+      <circle r="8" fill="#e74c3c"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#e74c3c" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#e74c3c" stroke-width="2"/>
+    </g>
+
+    <g class="virus" transform="translate(210,160) scale(0.8)">
+      <circle r="8" fill="#9b59b6"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#9b59b6" stroke-width="2"/>
+    </g>
+
+    <g class="virus" transform="translate(120,80) scale(0.85)">
+      <circle r="8" fill="#34495e"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#34495e" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#34495e" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#34495e" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#34495e" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#34495e" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#34495e" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#34495e" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#34495e" stroke-width="2"/>
+    </g>
+
+    <g class="virus" transform="translate(160,220) scale(0.7)">
+      <circle r="8" fill="#dc903f"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#dc903f" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#dc903f" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#dc903f" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#dc903f" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#dc903f" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#dc903f" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#dc903f" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#dc903f" stroke-width="2"/>
+    </g>
+
+    <g class="virus" transform="translate(80,130) scale(1.125)">
+      <circle r="8" fill="#dc903f"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#dc903f" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#dc903f" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#dc903f" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#dc903f" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#dc903f" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#dc903f" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#dc903f" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#dc903f" stroke-width="2"/>
+    </g>
+
+    <!-- New purple virus -->
+    <g class="virus" transform="translate(190,50) scale(0.9)">
+      <circle r="8" fill="#9b59b6"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#9b59b6" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#9b59b6" stroke-width="2"/>
+    </g>
+
+    <!-- New dark blue virus -->
+    <g class="virus" transform="translate(240,120) scale(0.95)">
+      <circle r="8" fill="#34495e"/>
+      <line x1="0" y1="-12" x2="0" y2="-8" stroke="#34495e" stroke-width="2"/>
+      <line x1="0" y1="8" x2="0" y2="12" stroke="#34495e" stroke-width="2"/>
+      <line x1="-12" y1="0" x2="-8" y2="0" stroke="#34495e" stroke-width="2"/>
+      <line x1="8" y1="0" x2="12" y2="0" stroke="#34495e" stroke-width="2"/>
+      <line x1="-8.5" y1="-8.5" x2="-5.5" y2="-5.5" stroke="#34495e" stroke-width="2"/>
+      <line x1="8.5" y1="8.5" x2="5.5" y2="5.5" stroke="#34495e" stroke-width="2"/>
+      <line x1="-8.5" y1="8.5" x2="-5.5" y2="5.5" stroke="#34495e" stroke-width="2"/>
+      <line x1="8.5" y1="-8.5" x2="5.5" y2="-5.5" stroke="#34495e" stroke-width="2"/>
+    </g>
+
+    <!-- Center dot -->
+    <circle cx="150" cy="150" r="3" fill="white"/>
+  </g>
+  
+  <!-- Outer border -->
+  <circle cx="150" cy="150" r="140" fill="none" stroke="white" stroke-width="3"/>
+</svg>
