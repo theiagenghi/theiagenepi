@@ -1,6 +1,6 @@
 import Image from "next/image";
-import UseCasesImg from "src/common/images/tghi-gen-epi-chart-desktop.png";
-import UseCasesImgMobile from "src/common/images/tghi-gen-epi-chart-mobile.png";
+import UseCasesImg from "src/common/images/tghi-gen-epi-chart-desktop-v2.png";
+import UseCasesImgMobile from "src/common/images/tghi-gen-epi-chart-mobile-v2.png";
 import {
   UseCasesContainer,
   UseCasesHeader,
