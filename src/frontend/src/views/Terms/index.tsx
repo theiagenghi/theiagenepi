@@ -270,22 +270,22 @@ export default function Terms(): JSX.Element {
             further analytical outputs from them (ex: phylogenetic trees) that
             allow you to better understand the relationship between different
             pathogen genomes.
-              <ListItem>
-                <span>
-                  <ListItemLabel>Within your organization:</ListItemLabel>
-                  The pathogen genomes created from your Samples and the
-                  analytical outputs you create using TheiaGenEpi are visible to
-                  other Users at your organization (ex: your DPH). You, along
-                  with other members of your Group, control whether you permit
-                  us to share this information with Users outside your
-                  organization. In certain circumstances, we may also share your
-                  data with third party entities, through the TheiaGenEpi tool,
-                  in line with your organization&apos;s policies or in line with
-                  applicable law. Samples marked &quot;private&quot; will never
-                  be shared with any 3rd parties unless you choose to mark them
-                  &quot;public&quot; later on.
-                </span>
-              </ListItem>
+            <ListItem>
+              <span>
+                <ListItemLabel>Within your organization:</ListItemLabel>
+                The pathogen genomes created from your Samples and the
+                analytical outputs you create using TheiaGenEpi are visible to
+                other Users at your organization (ex: your DPH). You, along with
+                other members of your Group, control whether you permit us to
+                share this information with Users outside your organization. In
+                certain circumstances, we may also share your data with third
+                party entities, through the TheiaGenEpi tool, in line with your
+                organization&apos;s policies or in line with applicable law.
+                Samples marked &quot;private&quot; will never be shared with any
+                3rd parties unless you choose to mark them &quot;public&quot;
+                later on.
+              </span>
+            </ListItem>
           </span>
         </ListItem>
       </List>
