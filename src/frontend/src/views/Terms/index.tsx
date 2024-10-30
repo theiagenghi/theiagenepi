@@ -18,7 +18,7 @@ export default function Terms(): JSX.Element {
     <>
       <Title>
         <H1>TheiaGenEpi Terms of Use</H1>
-        <H4>Last Updated: July 11, 2024</H4>
+        <H4>Last Updated: October 30, 2024</H4>
       </Title>
       <P>
         Please read these Terms of Use (&quot;Terms&quot;) before using

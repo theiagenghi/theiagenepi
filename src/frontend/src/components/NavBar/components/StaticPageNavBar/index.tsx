@@ -108,7 +108,7 @@ export default function StaticPageNavBar(): JSX.Element {
     RightNav = (
       <>
         <TextLink href={ROUTES.RESOURCES} target="_blank">
-          Learning Center
+          Help Center
         </TextLink>
         <ButtonLink
           data-test-id="navbar-sign-in-link"
