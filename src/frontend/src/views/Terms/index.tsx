@@ -270,7 +270,6 @@ export default function Terms(): JSX.Element {
             further analytical outputs from them (ex: phylogenetic trees) that
             allow you to better understand the relationship between different
             pathogen genomes.
-            <List>
               <ListItem>
                 <span>
                   <ListItemLabel>Within your organization:</ListItemLabel>
@@ -287,7 +286,6 @@ export default function Terms(): JSX.Element {
                   &quot;public&quot; later on.
                 </span>
               </ListItem>
-            </List>
           </span>
         </ListItem>
       </List>
@@ -387,7 +385,7 @@ export default function Terms(): JSX.Element {
   const renderDisclaimerTerms = () => (
     <>
       <H2>
-        <Number>5.</Number>Disclaimers.
+        <Number>5.</Number>Disclaimers
       </H2>
       <List>
         <ListItem>
@@ -405,7 +403,7 @@ export default function Terms(): JSX.Element {
         </ListItem>
         <ListItem>
           <span>
-            <P>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW:</P>
+            TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW:
             <List>
               <ListItem>
                 <span>
@@ -635,7 +633,7 @@ export default function Terms(): JSX.Element {
           </span>
         </ListItem>
         <ListItem>
-          <P>
+          <span>
             Notice under these Terms must be in writing and deemed to have been
             given on the date delivered by a nationally recognized express mail
             service, such as Federal Express, or by certified and registered
@@ -654,9 +652,9 @@ export default function Terms(): JSX.Element {
             <NewTabLink href="mailto:support@theiagenghi.org">
               support@theiagenghi.org
             </NewTabLink>{" "}
-            (email does not constitute notice)
+            (email does not constitute notice).
             <br />
-          </P>
+          </span>
         </ListItem>
       </List>
     </>
