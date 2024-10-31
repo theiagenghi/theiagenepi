@@ -50,7 +50,10 @@ export default function IntroSection(): JSX.Element {
           </LogoItem>
           <LogoItem>
             <TghiLogoLink href={ROUTES.BIOHUB} target="_blank">
-              <Image alt="Theiagen Global Health Initiative" src={TghiLogoImg} />
+              <Image
+                alt="Theiagen Global Health Initiative"
+                src={TghiLogoImg}
+              />
             </TghiLogoLink>
           </LogoItem>
         </PartnerLinkRow>
