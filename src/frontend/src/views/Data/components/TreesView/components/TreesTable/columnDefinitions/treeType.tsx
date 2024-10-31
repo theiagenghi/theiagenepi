@@ -16,7 +16,7 @@ export const treeType: ColumnDef<PhyloRun, any> = {
       tooltipStrings={{
         boldText: "Tree Type",
         link: {
-          href: "https://theiagengenomics5614.zendesk.com/hc/en-us/article_attachments/27402419300507",
+          href: "https://theiagenepi.zendesk.com/hc/en-us/articles/29434781069083-Understand-phylogenetic-tree-types",
           linkText: "Read our guide to learn more.",
         },
         regularText:
