@@ -3,7 +3,7 @@ import NcbiVirusLogoImg from "src/common/images/ncbi-logo.png";
 import NextcladeLogoImg from "src/common/images/nextclade-logo.png";
 import NextstrainLogoImg from "src/common/images/nextstrain-logo-full.png";
 import PangolinLogoImg from "src/common/images/pangolin-logo.png";
-import TghiLogoImg from "src/common/images/TGHI_HorzLogo_2color.svg";
+import TghiLogoImg from "src/common/images/tghi-logo-2color.png";
 import UsherLogoImg from "src/common/images/usher-logo.png";
 import { ROUTES } from "src/common/routes";
 import {
@@ -34,6 +34,14 @@ export default function IntroSection(): JSX.Element {
             </NextstrainLogoLink>
           </LogoItem>
           <LogoItem>
+            <TghiLogoLink href={ROUTES.BIOHUB} target="_blank">
+              <Image
+                alt="Theiagen Global Health Initiative"
+                src={TghiLogoImg}
+              />
+            </TghiLogoLink>
+          </LogoItem>
+          <LogoItem>
             <UsherLogoLink href={ROUTES.USHER} target="_blank">
               <Image alt="Usher" src={UsherLogoImg} />
             </UsherLogoLink>
@@ -47,14 +55,6 @@ export default function IntroSection(): JSX.Element {
             <NextcladeLogoLink href={ROUTES.NEXTCLADE} target="_blank">
               <Image alt="Nextclade" src={NextcladeLogoImg} />
             </NextcladeLogoLink>
-          </LogoItem>
-          <LogoItem>
-            <TghiLogoLink href={ROUTES.BIOHUB} target="_blank">
-              <Image
-                alt="Theiagen Global Health Initiative"
-                src={TghiLogoImg}
-              />
-            </TghiLogoLink>
           </LogoItem>
         </PartnerLinkRow>
       </PartnersSectionContainer>
