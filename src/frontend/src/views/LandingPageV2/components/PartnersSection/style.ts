@@ -39,6 +39,11 @@ export const NcbiVirusLogoLink = styled(NewTabLink)`
   max-width: 196px;
 `;
 
+export const TghiLogoLink = styled(NewTabLink)`
+  ${centeredFlex}
+  max-width: 196px;
+`;
+
 export const LogoItem = styled.li`
   list-style: none;
   ${centeredFlex}
