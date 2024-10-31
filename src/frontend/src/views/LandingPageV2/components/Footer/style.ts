@@ -3,8 +3,9 @@ import { CommonThemeProps, getColors, getSpaces } from "czifui";
 import { SmallerThanBreakpoint } from "src/common/styles/mixins/global";
 
 export const CZBiohubLogo = styled.a`
-  padding-left: 20px;
+  padding-left: 15px;
   width: 209px;
+  height: 87px;
 `;
 
 export const CZContainer = styled.div`
@@ -35,8 +36,8 @@ export const CZILogo = styled.a`
     `;
   }}
   margin-left: 32px;
-  padding-right: 20px;
-  max-width: 100px;
+  padding-right: 15px;
+  max-width: 120px;
 `;
 
 export const FooterBottomContainer = styled.div`

@@ -77,12 +77,13 @@ export default function Footer(): JSX.Element {
         <FooterBottomSeparator />
         <FooterPartnerships>
           <CZContainer>
-            <Span>In partnership with:</Span>
             <CZLogoContainer>
               <CZILogo href={ROUTES.CZI} target="_blank">
+                <Span>Supported by</Span>
                 <Image src={CZILogoImg} alt="Chan Zuckerberg Initiative" />
               </CZILogo>
               <CZBiohubLogo href={ROUTES.BIOHUB} target="_blank">
+                <Span>In partnership with </Span>
                 <Image
                   src={BiohubLogoImg}
                   alt="Theiagen Global Health Initiative"
