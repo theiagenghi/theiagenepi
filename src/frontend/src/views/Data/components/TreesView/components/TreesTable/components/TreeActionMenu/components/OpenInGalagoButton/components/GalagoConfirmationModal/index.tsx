@@ -21,7 +21,7 @@ export const GalagoConfirmationModal = ({
   const content = (
     <>
       By clicking “Continue” you agree to send a copy of your tree JSON to
-      Galago, a separate, but related service from TheiaGenEpi. Galago is a
+      Galago. Galago is a separate service from TheiaGenEpi. Galago is a
       serverless web application which runs entirely in the browser. Galago does
       not store or share your data; however, you may choose to share the URL
       with others.
