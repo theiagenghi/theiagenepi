@@ -20,7 +20,7 @@ test("shows NS and GISAID attribution", async () => {
   );
 
   // attribution text
-  expect(screen.getByText(/Built in partnership with/g)).toBeInTheDocument();
+  expect(screen.getByText(/Powered with/g)).toBeInTheDocument();
 
   // indicates image loaded in component (gisaid logo)
   expect(screen.getByText(/next.js image stub/g)).toBeInTheDocument();
