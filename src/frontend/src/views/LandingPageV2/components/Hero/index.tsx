@@ -31,7 +31,7 @@ export default function Hero(): JSX.Element {
           <HeroBackgroundSvg aria-hidden="true" />
         </HeroImage>
         <NextstrainContainer>
-          <PartnershipText>In partnership with</PartnershipText>
+          <PartnershipText>Powered by</PartnershipText>
           <NextstrainLink href={ROUTES.NEXTSTRAIN} target="_blank">
             <Image src={NextstrainLogo} alt="NextStrain" />
           </NextstrainLink>

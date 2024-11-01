@@ -1,6 +1,6 @@
 import Image from "next/image";
 import NcbiVirusLogoImg from "src/common/images/ncbi-logo.png";
-import NextcladeLogoImg from "src/common/images/nextclade-logo.png";
+import NextcladeLogoImg from "src/common/images/nextclade-logov2.png";
 import NextstrainLogoImg from "src/common/images/nextstrain-logo-full.png";
 import PangolinLogoImg from "src/common/images/pangolin-logo.png";
 import TghiLogoImg from "src/common/images/tghi-logo-2color.png";
