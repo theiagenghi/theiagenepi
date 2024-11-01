@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import BiohubLogoImg from "src/common/images/TGHI_HorzLogo_White.png";
 import CZILogoImg from "src/common/images/czi-logo.png";
 import FooterLogo from "src/common/images/theiagenpi-white-logo.svg";
