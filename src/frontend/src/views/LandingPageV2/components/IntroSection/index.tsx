@@ -1,5 +1,6 @@
 import Image from "next/image";
-import ComputerImg from "src/common/images/landingv2-gen-epi-comp.png";
+// import ComputerImg from "src/common/images/landingv2-gen-epi-comp.png";
+import ComputerImg from "src/common/images/tghi-computer.png";
 import {
   IntroContainer,
   IntroDescription,

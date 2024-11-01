@@ -61,7 +61,7 @@ export const IntroImage = styled.div`
   z-index: 4;
   height: auto;
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1400px) {
     margin-top: -80px;
   }
 
