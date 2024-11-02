@@ -61,7 +61,7 @@ RUN mkdir /ncov && \
 RUN mkdir /mpox && \
     cd /mpox && \
     git init && \
-    git remote add origin https://github.com/chanzuckerberg/mpox.git && \
+    git remote add origin https://github.com/theiagenghi/mpox.git && \
     git fetch origin subsample_by_distance && \
     git reset --hard origin/subsample_by_distance
 RUN chown nextstrain:nextstrain /mpox/phylogenetic/defaults/exclude_accessions.txt /mpox/phylogenetic/defaults/clades.tsv
