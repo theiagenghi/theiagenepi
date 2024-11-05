@@ -1,5 +1,5 @@
 import Image from "next/image";
-import HeroBackgroundSvg from "src/common/images/mark_genepi_fullcolor_hero_animated.svg";
+import HeroBackgroundSvg from "src/common/images/mark_genepi_fullcolor_hero.svg";
 import NextstrainLogo from "src/common/images/Nextstrain-Logo-crop.png";
 import { ROUTES } from "src/common/routes";
 import EmailForm from "./components/HeroEmailForm";
