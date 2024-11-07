@@ -29,7 +29,7 @@ export enum ROUTES {
   PRIVACY_DATA_COLLECTION = "/privacy#privacy-data-collection",
   PRIVACY_DATA_SHARING_FAQ = "https://theiagenepi.zendesk.com/hc/en-us/sections/29435334722459-Privacy-Data-Sharing",
   REQUEST_ACCESS = "https://forms.gle/cdHv5nZcs3Xwd5uB7",
-  RESOURCES = HELP_CENTER_URL,
+  RESOURCES = "https://www.czbiohub.org/rapid-response/resources/#genomic-epidemiology",
   TERMS = "/terms",
   UPLOAD = "/upload",
   UPLOAD_STEP1 = "/upload/step/1",
