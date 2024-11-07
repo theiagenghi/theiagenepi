@@ -110,7 +110,7 @@ module frontend_service {
   vpc                   = local.vpc_id
   image                 = local.frontend_image
   cluster               = local.cluster
-  desired_count         = 2
+  desired_count         = 1
   listener              = local.frontend_listener_arn
   subnets               = local.subnets
   security_groups       = local.security_groups
@@ -142,7 +142,7 @@ module backend_service {
   vpc                   = local.vpc_id
   image                 = local.backend_image
   cluster               = local.cluster
-  desired_count         = 2
+  desired_count         = 1
   listener              = local.backend_listener_arn
   subnets               = local.subnets
   security_groups       = local.security_groups
