@@ -31,7 +31,7 @@ export const Announcements = (): JSX.Element => {
             CLICK&nbsp;
           </B>
           <StyledNewTabLink
-            href="https://help.czgenepi.org/hc/en-us/articles/20083077583764-FAQs-CZ-GEN-EPI-Transfer-to-Theiagen-Global-Health-Initiative-TGHI"
+            href="https://theiagenepi.zendesk.com/hc/en-us/articles/30732707396763-FAQs-CZ-GEN-EPI-Transfer-to-Theiagen-Global-Health-Initiative-TGHI"
             sdsStyle="dashed"
           >
             HERE
