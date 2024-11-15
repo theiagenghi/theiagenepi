@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
           />
           <meta
             property="og:image"
-            content="https://theiagenepi.org/cz-gen-epi-meta.png"
+            content="https://theiagenepi.org/theiagen-epi-meta.png"
           />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
           />
           <meta
             name="twitter:image"
-            content="https://theiagenepi.org/cz-gen-epi-meta.png"
+            content="https://theiagenepi.org/theiagen-epi-meta.png"
           />
 
           {/* TODO Make this load async to fix render blocking */}
