@@ -73,7 +73,6 @@ GENBANK_CSV_FIELDS = [
     "host",
     "date_submitted",
     "sra_accession",
-    "abbr_authors",
     "clade",
     "outbreak",
     "lineage",
