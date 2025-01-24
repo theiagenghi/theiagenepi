@@ -28,10 +28,13 @@ from aspen.database.models import (
     PathogenLineage,
     PhyloRun,
     Sample,
+    SampleQCMetric
 )
 from aspen.database.models.workflow import WorkflowStatusType
 from aspen.util.lineage import expand_lineage_wildcards
 from aspen.workflows.nextstrain_run.build_config import TemplateBuilder
+
+QC_STATUS = ["good", "mediocre"]
 
 NCOV_CSV_FIELDS = [
     "strain",
@@ -273,6 +276,10 @@ def get_county_samples(session, group: Group, pathogen: Pathogen):
         session.query(Sample)
         .filter(Sample.submitting_group_id == group.id)
         .filter(Sample.pathogen_id == pathogen.id)
+        .join(Sample.qc_metrics) # Join with qc_metrics table and filter for good/mediocre status only
+        .filter(Sample.qc_metrics.any(
+            SampleQCMetric.qc_status.in_(QC_STATUS)
+        ))
         .options(
             joinedload(Sample.uploaded_pathogen_genome, innerjoin=True).undefer(
                 PathogenGenome.sequence
@@ -289,6 +296,10 @@ def get_aligned_county_samples(session, group: Group, pathogen: Pathogen):
         session.query(Sample)
         .filter(Sample.submitting_group_id == group.id)
         .filter(Sample.pathogen_id == pathogen.id)
+        .join(Sample.qc_metrics)
+        .filter(Sample.qc_metrics.any(
+            SampleQCMetric.qc_status.in_(QC_STATUS)
+        ))
         .options(
             joinedload(Sample.aligned_pathogen_genome, innerjoin=True).undefer(
                 PathogenGenome.sequence
