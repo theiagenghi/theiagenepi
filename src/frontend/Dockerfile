@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -y make wget \
   && rm -rf /var/lib/apt/lists/*
 COPY package*.json ./
 USER node
-RUN npm ci --verbose --no-optional && npm cache clean --force
+# RUN npm ci --verbose --no-optional && npm cache clean --force
+RUN npm install --verbose && npm cache clean --force
 COPY . .
 ENTRYPOINT ["./entrypoint.sh"]
 ARG HAPPY_COMMIT="unknown"
