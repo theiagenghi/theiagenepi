@@ -33,7 +33,7 @@ set -x
 
 # Download the latest mpox exclusions and clades list. This happens at RUN time, not BUILD time so that
 # we are always building trees with the latest upstream filters.
-wget https://raw.githubusercontent.com/nextstrain/mpox/master/phylogenetic/defaults/exclude_accessions.txt -O /mpox/phylogenetic/defaults/exclude_accessions.txt
+wget https://raw.githubusercontent.com/nextstrain/mpox/master/phylogenetic/defaults/exclude.txt -O /mpox/phylogenetic/defaults/exclude_accessions.txt
 wget https://raw.githubusercontent.com/nextstrain/mpox/master/phylogenetic/defaults/clades.tsv -O /mpox/phylogenetic/defaults/clades.tsv
 
 mkdir -p /mpox/phylogenetic/data
