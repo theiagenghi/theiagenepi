@@ -77,6 +77,14 @@ subsampling:
       seq_per_group: 2
       query: --query "(country != '{country}')"
 
+    # to always include some sequences outside focal location but within same lineage
+    international_same_lineage:
+      group_by: "region year month"
+      max_sequences: 100
+      query: --query "(country != '{country}')"
+      priorities:
+        type: "proximity"
+        focus: "group"
 
 
   TARGETED:
@@ -128,6 +136,14 @@ subsampling:
       group_by: "region year month"
       seq_per_group: 2
       query: --query "(country != '{country}')"
+
+    international_same_lineage:
+      group_by: "region year month"
+      max_sequences: 50
+      query: --query "(country != '{country}')"
+      priorities:
+        type: "proximity"
+        focus: "focal"
 
 
   NON_CONTEXTUALIZED:
