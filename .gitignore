@@ -312,3 +312,6 @@ static
 # e2e tests
 src/frontend/.env.staging
 src/frontend/e2e/report/
+
+# Git worktrees
+.worktrees/
