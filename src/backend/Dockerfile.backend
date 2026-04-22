@@ -67,8 +67,8 @@ COPY --from=build \
 ENV PYTHONPATH=.
 
 COPY . .
-# By default, Poetry installs deps, dev deps, and the project package (aspen)
-RUN cd aspen && poetry install --no-cache --only main
+# pip avoids Poetry's startup import of charset_normalizer, which breaks on stale sdist artifacts copied from the build stage
+RUN pip install --no-cache-dir --no-deps ./aspen
 # FIXME Should figure out how to fold biopython install into poetry, but poetry
 # breaks right now trying to add it to deps.
 RUN pip install --no-cache-dir biopython
