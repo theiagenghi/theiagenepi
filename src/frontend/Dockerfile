@@ -4,7 +4,11 @@ RUN chown node:node /usr/src/app
 ENV NODE_ENV=development
 ENV BUILD_PATH=build
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
-RUN apt-get update && apt-get install -y make wget \
+# Debian Buster hit EOL June 2024; packages moved to archive.debian.org
+RUN printf "deb http://archive.debian.org/debian/ buster main\n\
+deb http://archive.debian.org/debian-security buster/updates main\n" \
+    > /etc/apt/sources.list
+RUN apt-get -o Acquire::Check-Valid-Until=false update && apt-get install -y make wget \
   gettext-base libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 \
   libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 \
   libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 \
