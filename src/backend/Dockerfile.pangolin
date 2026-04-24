@@ -19,11 +19,6 @@ RUN chmod 775 *
 # v0.6.3 is the last safe version for pangolin 4.3.x + pangolin-data 1.38.
 RUN git clone https://github.com/yatisht/usher.git
 RUN cd usher && git checkout v0.6.3 && ./install/installUbuntu.sh
-# Expose the TBB 2020.3 libraries compiled from source by UShER's FetchContent
-# so the runtime stage can COPY them by a known path.
-RUN find /usherbuild -name "libtbb*.so*" 2>/dev/null | sort > /usherbuild/tbb_libs.txt && \
-    cat /usherbuild/tbb_libs.txt && \
-    xargs -a /usherbuild/tbb_libs.txt cp -t /usherbuild/ 2>/dev/null || true
 
 FROM python:3.10-slim-bookworm AS base
 ENV FLASK_APP=aspen.main
@@ -65,10 +60,12 @@ RUN pip3 install git+https://github.com/cov-lineages/scorpio.git@v0.3.19
 RUN pip3 install git+https://github.com/cov-lineages/constellations.git@v0.1.12
 
 # libtbb soname changed from .so.2 (bullseye/TBB 2020) to .so.12 (bookworm/oneTBB 2021).
-# libtbb2 compat package creates .so.2 symlinks for libtbb/libtbbmalloc/libtbbmalloc_proxy but
-# NOT for libtbb_preview — create it manually so usher-sampled can load at startup.
-RUN ln -s /usr/lib/x86_64-linux-gnu/libtbb.so.12 /usr/lib/x86_64-linux-gnu/libtbb_preview.so.12 && \
-    ln -s /usr/lib/x86_64-linux-gnu/libtbb_preview.so.12 /usr/lib/x86_64-linux-gnu/libtbb_preview.so.2
+# libtbb12 on bookworm does not include libtbb_preview.so.12 so create that symlink.
+# libtbb_preview.so.2 is the TBB 2020.3 preview lib compiled from source by UShER's
+# CMake FetchContent at tbb_cmake_build/tbb_cmake_build_subdir_release/. We copy it
+# directly rather than symlinking to libtbb_preview.so.12 (oneTBB 2021.x) because
+# oneTBB removed tbb::task — required by usher-sampled — causing a symbol lookup error.
+RUN ln -s /usr/lib/x86_64-linux-gnu/libtbb.so.12 /usr/lib/x86_64-linux-gnu/libtbb_preview.so.12
 
 # Download gofasta and minimap2 for Pangolin
 RUN curl -fsSL https://github.com/virus-evolution/gofasta/releases/download/v1.2.0/gofasta-linux-amd64 \
@@ -93,6 +90,13 @@ COPY --from=usher \
     /usherbuild/usher/build/usher \
     /usherbuild/usher/build/usher-sampled \
     /usr/local/bin
+
+# Copy TBB 2020.3 libtbb_preview.so.2 built by UShER's CMake FetchContent.
+# This provides tbb::task (removed in oneTBB 2021.x) which usher-sampled requires.
+COPY --from=usher \
+    /usherbuild/usher/build/tbb_cmake_build/tbb_cmake_build_subdir_release/libtbb_preview.so.2 \
+    /usr/lib/x86_64-linux-gnu/libtbb_preview.so.2
+RUN ldconfig
 
 # Poetry: install app
 COPY pyproject.toml poetry.lock environment.yaml ./
