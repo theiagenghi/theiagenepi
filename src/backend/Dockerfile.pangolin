@@ -31,7 +31,7 @@ RUN python3 -m pip install poetry==$POETRY_VERSION
 
 WORKDIR /usr/src/app
 
-# boost and tbb are for supporting usher, which is for supporting pangolin.
+# boost, tbb, mpi, and isal are runtime deps for the usher binaries.
 RUN apt-get update && apt-get install -y  \
         make wget git jq gcc unzip curl bzip2 \
         libboost-filesystem1.74.0 \
@@ -39,7 +39,9 @@ RUN apt-get update && apt-get install -y  \
         libboost-iostreams1.74.0 \
         libboost-date-time1.74.0 \
         libprotobuf32 \
-        libtbb12
+        libtbb12 \
+        libopenmpi3 \
+        libisal2
 
 # Install DB certs.
 ADD https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem /usr/local/share/ca-certificates/global-bundle.crt
@@ -57,8 +59,11 @@ RUN pip3 install git+https://github.com/cov-lineages/pangolin-data.git@v1.38
 RUN pip3 install git+https://github.com/cov-lineages/scorpio.git@v0.3.19
 RUN pip3 install git+https://github.com/cov-lineages/constellations.git@v0.1.12
 
-# libtbb soname changed from .so.2 (bullseye/TBB 2020) to .so.12 (bookworm/oneTBB 2021)
-RUN ln -s /usr/lib/x86_64-linux-gnu/libtbb.so.12 /usr/lib/x86_64-linux-gnu/libtbb_preview.so.12
+# libtbb soname changed from .so.2 (bullseye/TBB 2020) to .so.12 (bookworm/oneTBB 2021).
+# libtbb2 compat package creates .so.2 symlinks for libtbb/libtbbmalloc/libtbbmalloc_proxy but
+# NOT for libtbb_preview — create it manually so usher-sampled can load at startup.
+RUN ln -s /usr/lib/x86_64-linux-gnu/libtbb.so.12 /usr/lib/x86_64-linux-gnu/libtbb_preview.so.12 && \
+    ln -s /usr/lib/x86_64-linux-gnu/libtbb_preview.so.12 /usr/lib/x86_64-linux-gnu/libtbb_preview.so.2
 
 # Download gofasta and minimap2 for Pangolin
 RUN curl -fsSL https://github.com/virus-evolution/gofasta/releases/download/v1.2.0/gofasta-linux-amd64 \
