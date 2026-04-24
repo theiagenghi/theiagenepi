@@ -4,6 +4,17 @@
 set -Eeuxo pipefail
 shopt -s inherit_errexit  # no silent breaking
 
+# On any exit, dump usher.log to stderr so the error appears in CloudWatch.
+# usher-sampled redirects all output to this log file by default, making
+# failures invisible without this trap.
+trap '
+  while IFS= read -r -d "" log; do
+    echo "=== usher.log: $log ===" >&2
+    cat "$log" >&2
+    echo "=== end usher.log ===" >&2
+  done < <(find /tmp -name "usher.log" -print0 2>/dev/null)
+' EXIT
+
 # check pangolin is present:
 pangolin -pv
 
