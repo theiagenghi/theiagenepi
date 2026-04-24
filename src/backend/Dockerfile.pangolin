@@ -19,6 +19,11 @@ RUN chmod 775 *
 # v0.6.3 is the last safe version for pangolin 4.3.x + pangolin-data 1.38.
 RUN git clone https://github.com/yatisht/usher.git
 RUN cd usher && git checkout v0.6.3 && ./install/installUbuntu.sh
+# Expose the TBB 2020.3 libraries compiled from source by UShER's FetchContent
+# so the runtime stage can COPY them by a known path.
+RUN find /usherbuild -name "libtbb*.so*" 2>/dev/null | sort > /usherbuild/tbb_libs.txt && \
+    cat /usherbuild/tbb_libs.txt && \
+    xargs -a /usherbuild/tbb_libs.txt cp -t /usherbuild/ 2>/dev/null || true
 
 FROM python:3.10-slim-bookworm AS base
 ENV FLASK_APP=aspen.main
