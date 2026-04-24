@@ -4,16 +4,17 @@
 set -Eeuxo pipefail
 shopt -s inherit_errexit  # no silent breaking
 
-# On any exit, dump usher.log to stderr so the error appears in CloudWatch.
-# usher-sampled redirects all output to this log file by default, making
-# failures invisible without this trap.
-trap '
-  while IFS= read -r -d "" log; do
-    echo "=== usher.log: $log ===" >&2
-    cat "$log" >&2
-    echo "=== end usher.log ===" >&2
-  done < <(find /tmp -name "usher.log" -print0 2>/dev/null)
-' EXIT
+# Dump UShER binary diagnostics before any Snakemake invocation.
+# Snakemake cleans up its tmpdir on exit, so the log file is gone by the time
+# an EXIT trap fires. Running ldd and a direct binary test here captures any
+# shared-library loading errors in CloudWatch before cleanup can occur.
+echo "=== ldd usher-sampled ===" >&2
+ldd /usr/local/bin/usher-sampled >&2 || echo "ldd usher-sampled FAILED (exit $?)" >&2
+echo "=== ldd faToVcf ===" >&2
+ldd /usr/local/bin/faToVcf >&2 || echo "ldd faToVcf FAILED (exit $?)" >&2
+echo "=== usher-sampled --help ===" >&2
+timeout 5 usher-sampled --help >&2 || echo "usher-sampled --help FAILED (exit $?)" >&2
+echo "=== end diagnostics ===" >&2
 
 # check pangolin is present:
 pangolin -pv
