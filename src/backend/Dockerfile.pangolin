@@ -15,9 +15,10 @@ WORKDIR /usherbuild
 RUN wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faSomeRecords
 RUN wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faSize
 RUN chmod 775 *
-## Checkout latest release
+# v0.6.4 and v0.6.5 are excluded by pangolin (known broken, see cov-lineages/pangolin#560).
+# v0.6.3 is the last safe version for pangolin 4.3.x + pangolin-data 1.38.
 RUN git clone https://github.com/yatisht/usher.git
-RUN cd usher && git checkout v0.6.4 && ./install/installUbuntu.sh
+RUN cd usher && git checkout v0.6.3 && ./install/installUbuntu.sh
 
 FROM python:3.10-slim-bookworm AS base
 ENV FLASK_APP=aspen.main
