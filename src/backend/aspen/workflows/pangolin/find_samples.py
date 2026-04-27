@@ -1,7 +1,8 @@
 import io
 import re
 import subprocess
-from typing import Collection
+from datetime import date, timedelta
+from typing import Collection, Optional
 
 import click
 from sqlalchemy.orm import joinedload
@@ -36,19 +37,27 @@ def should_sample_be_updated(sample: Sample, most_recent_pango_version: str) -> 
     return sample_lineage_version != most_recent_pango_version
 
 
-def find_samples(pathogen: str) -> Collection[str]:
+def find_samples(
+    pathogen: str, max_collection_age_days: Optional[int] = None
+) -> Collection[str]:
     interface: SqlAlchemyInterface = init_db(get_db_uri(Config()))
     most_recent_pango_version: str = check_latest_pangolin_version()
 
     with session_scope(interface) as session:
         # filter for sequences that were run with an older version of pangolin
 
-        all_samples: Collection[Sample] = (
+        query = (
             session.query(Sample)
             .options(joinedload(Sample.lineages))
             .join(Sample.pathogen)
             .where(Pathogen.slug == pathogen)
         )
+
+        if max_collection_age_days is not None:
+            cutoff = date.today() - timedelta(days=max_collection_age_days)
+            query = query.where(Sample.collection_date >= cutoff)
+
+        all_samples: Collection[Sample] = query
 
         # TODO: update this comparison to be <= most_recent_pango_version
         # once we update this field to be a date instead of string
@@ -65,12 +74,26 @@ def find_samples(pathogen: str) -> Collection[str]:
 @click.command("find_samples")
 @click.option("samples_fh", "--output-file", type=click.File("w"), required=True)
 @click.option("--pathogen", type=str, required=True, default="SC2")
+@click.option(
+    "--max-collection-age-days",
+    type=int,
+    default=None,
+    help=(
+        "If set, only include samples whose collection_date is within this many "
+        "days of today. Omit to include all samples (default behavior)."
+    ),
+)
 @click.option("--test", type=bool, is_flag=True)
-def run_command(samples_fh: io.TextIOWrapper, pathogen: str, test: bool):
+def run_command(
+    samples_fh: io.TextIOWrapper,
+    pathogen: str,
+    max_collection_age_days: Optional[int],
+    test: bool,
+):
     if test:
         print("Success!")
         return
-    samples = find_samples(pathogen)
+    samples = find_samples(pathogen, max_collection_age_days=max_collection_age_days)
     for sample_id in samples:
         samples_fh.write(f"{sample_id}\n")
     print(f"{len(samples)} sample ids dumped to {samples_fh.name}")

@@ -1,3 +1,4 @@
+import datetime
 import random
 from pathlib import Path, PosixPath
 from typing import Collection
@@ -85,6 +86,52 @@ def test_pangolin_find_samples(pango_version_mock, mocker, session, postgres_dat
     found_samples: Collection[str] = find_samples(pathogen.slug)
 
     assert found_samples == [sample.public_identifier for sample in samples]
+
+
+@patch("aspen.workflows.pangolin.find_samples.check_latest_pangolin_version")
+def test_pangolin_find_samples_max_collection_age(
+    pango_version_mock, mocker, session, postgres_database
+):
+    pango_version_mock.return_value = "1.1.234"
+
+    group: Group = group_factory()
+    pathogen = random_pathogen_factory()
+    user = user_factory(group)
+    location = location_factory(
+        "North America", "USA", "California", "Santa Barbara County"
+    )
+
+    today = datetime.date.today()
+    recent = sample_factory(
+        group,
+        user,
+        location,
+        pathogen=pathogen,
+        private_identifier="recent_priv",
+        public_identifier="recent_pub",
+        collection_date=today - datetime.timedelta(days=30),
+    )
+    old = sample_factory(
+        group,
+        user,
+        location,
+        pathogen=pathogen,
+        private_identifier="old_priv",
+        public_identifier="old_pub",
+        collection_date=today - datetime.timedelta(days=400),
+    )
+    session.add_all([recent, old])
+    session.commit()
+
+    mock_remote_db_uri(mocker, postgres_database.as_uri())
+
+    found = find_samples(pathogen.slug, max_collection_age_days=365)
+    assert "recent_pub" in found
+    assert "old_pub" not in found
+
+    found_all = find_samples(pathogen.slug)
+    assert "recent_pub" in found_all
+    assert "old_pub" in found_all
 
 
 def _write_sample_ids(pathogen):
