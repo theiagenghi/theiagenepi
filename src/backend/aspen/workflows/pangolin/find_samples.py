@@ -38,7 +38,9 @@ def should_sample_be_updated(sample: Sample, most_recent_pango_version: str) -> 
 
 
 def find_samples(
-    pathogen: str, max_collection_age_days: Optional[int] = None
+    pathogen: str,
+    max_collection_age_days: Optional[int] = None,
+    submitting_group_ids: Optional[Collection[int]] = None,
 ) -> Collection[str]:
     interface: SqlAlchemyInterface = init_db(get_db_uri(Config()))
     most_recent_pango_version: str = check_latest_pangolin_version()
@@ -56,6 +58,11 @@ def find_samples(
         if max_collection_age_days is not None:
             cutoff = date.today() - timedelta(days=max_collection_age_days)
             query = query.where(Sample.collection_date >= cutoff)
+
+        if submitting_group_ids:
+            query = query.where(
+                Sample.submitting_group_id.in_(submitting_group_ids)
+            )
 
         all_samples: Collection[Sample] = query
 
@@ -83,17 +90,34 @@ def find_samples(
         "days of today. Omit to include all samples (default behavior)."
     ),
 )
+@click.option(
+    "--submitting-group-id",
+    "submitting_group_ids",
+    type=int,
+    multiple=True,
+    default=(),
+    help=(
+        "If provided, only include samples whose submitting_group_id is in this "
+        "set. Pass multiple times to include multiple groups. Omit to include all "
+        "groups (default behavior)."
+    ),
+)
 @click.option("--test", type=bool, is_flag=True)
 def run_command(
     samples_fh: io.TextIOWrapper,
     pathogen: str,
     max_collection_age_days: Optional[int],
+    submitting_group_ids: tuple,
     test: bool,
 ):
     if test:
         print("Success!")
         return
-    samples = find_samples(pathogen, max_collection_age_days=max_collection_age_days)
+    samples = find_samples(
+        pathogen,
+        max_collection_age_days=max_collection_age_days,
+        submitting_group_ids=submitting_group_ids or None,
+    )
     for sample_id in samples:
         samples_fh.write(f"{sample_id}\n")
     print(f"{len(samples)} sample ids dumped to {samples_fh.name}")

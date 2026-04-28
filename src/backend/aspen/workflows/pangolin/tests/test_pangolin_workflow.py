@@ -134,6 +134,59 @@ def test_pangolin_find_samples_max_collection_age(
     assert "old_pub" in found_all
 
 
+@patch("aspen.workflows.pangolin.find_samples.check_latest_pangolin_version")
+def test_pangolin_find_samples_submitting_group_ids(
+    pango_version_mock, mocker, session, postgres_database
+):
+    pango_version_mock.return_value = "1.1.234"
+
+    target_group: Group = group_factory(name="target")
+    other_group: Group = group_factory(name="other")
+    pathogen = random_pathogen_factory()
+    target_user = user_factory(target_group, email="t@example.com", auth0_user_id="t")
+    other_user = user_factory(other_group, email="o@example.com", auth0_user_id="o")
+    location = location_factory(
+        "North America", "USA", "California", "Santa Barbara County"
+    )
+
+    target_sample = sample_factory(
+        target_group,
+        target_user,
+        location,
+        pathogen=pathogen,
+        private_identifier="target_priv",
+        public_identifier="target_pub",
+    )
+    other_sample = sample_factory(
+        other_group,
+        other_user,
+        location,
+        pathogen=pathogen,
+        private_identifier="other_priv",
+        public_identifier="other_pub",
+    )
+    session.add_all([target_sample, other_sample])
+    session.commit()
+
+    mock_remote_db_uri(mocker, postgres_database.as_uri())
+
+    found_target_only = find_samples(
+        pathogen.slug, submitting_group_ids=[target_group.id]
+    )
+    assert "target_pub" in found_target_only
+    assert "other_pub" not in found_target_only
+
+    found_both = find_samples(
+        pathogen.slug, submitting_group_ids=[target_group.id, other_group.id]
+    )
+    assert "target_pub" in found_both
+    assert "other_pub" in found_both
+
+    found_unfiltered = find_samples(pathogen.slug)
+    assert "target_pub" in found_unfiltered
+    assert "other_pub" in found_unfiltered
+
+
 def _write_sample_ids(pathogen):
     found_samples: Collection[str] = find_samples(pathogen.slug)
     ids_filename = "/tmp/sample_ids.txt"
