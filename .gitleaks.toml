@@ -1,0 +1,38 @@
+# gitleaks configuration for theiagenepi.
+# https://github.com/gitleaks/gitleaks#configuration
+#
+# Inherits the upstream default ruleset, then layers project-specific
+# allowlist entries below for known false positives.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Project-specific false positives (dev fixtures, test data)"
+
+# File-level exclusions — directories that contain only test fixtures or
+# documentation, never real secrets.
+paths = [
+  '''^src/backend/aspen/test_infra/''',
+  '''^src/backend/aspen/.+/tests/''',
+  '''^src/frontend/.*\.test\.(js|jsx|ts|tsx)$''',
+  '''node_modules/''',
+  '''^\.worktrees/''',
+]
+
+# Regex-level exclusions — specific literal strings that gitleaks's
+# generic-api-key rule trips on, but which are demonstrably non-secrets.
+regexes = [
+  # base64('auspice-mac-key') == 'YXVzcGljZS1tYWMta2V5'. Fixed local-dev
+  # fixture used by scripts/{auth0_login,setup_dev_data}.sh — there's a
+  # comment in those scripts spelling this out.
+  '''YXVzcGljZS1tYWMta2V5''',
+
+  # Local dev placeholders embedded in setup_dev_data.sh — never real.
+  '''local-client-id''',
+  '''local-client-secret''',
+
+  # Test-fixture GISAID accession ID used in sample factories. Format
+  # mimics a real EPI_ISL_* ID but the digits are 8675309 (Jenny reference).
+  '''EPI_ISL_8675309''',
+]

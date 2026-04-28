@@ -33,3 +33,7 @@ repos:
                 src/frontend/build/
             )$
         types_or: [javascript,jsx,ts,tsx,css,scss]
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks

@@ -315,3 +315,29 @@ src/frontend/e2e/report/
 
 # Git worktrees
 .worktrees/
+
+# Operational state snapshots (SSM params, EventBridge rules, etc.)
+# These are local working copies only. Long-term backups belong in private
+# storage (private S3 bucket / private repo). Files here may contain
+# `aws ssm get-parameter --with-decryption` output so they MUST NOT be
+# committed to a public repo. See ssm-backups/README.md.
+ssm-backups/*.json
+
+# Local secrets / per-user dev config — never commit these to a public repo.
+# Listed broadly so a stray `git add -A` cannot leak them.
+.env
+.env.*
+!.env.example
+!.env.test       # this one IS expected in tree (used by CI)
+!.env.ecr        # this one IS expected in tree (used by docker-compose)
+
+# Google Cloud service account keys (auto-named `<project>-<hash>.json`)
+**/spreadsheet-*.json
+**/*-service-account*.json
+**/*-credentials.json
+
+# Local CLI sandboxes that historically held service account keys + .env
+src/cli/check-users/
+src/cli/fetch-groups/
+src/cli/lambda-user-analytics/
+src/cli/Onboarding_WebApp/
