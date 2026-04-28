@@ -1,0 +1,10 @@
+{
+    "Targets": [
+        {
+            "Id": "genepi-geprod-geprodstack-pangolin-sfn",
+            "Arn": "arn:aws:states:us-west-2:010928203514:stateMachine:genepi-geprod-swipe-default-wdl",
+            "RoleArn": "arn:aws:iam::010928203514:role/genepi-cloudwatch-prod",
+            "Input": "{\"Input\":{\"Run\":{\"aws_region\":\"us-west-2\",\"docker_image_id\":\"654654542669.dkr.ecr.us-west-2.amazonaws.com/genepi-pangolin:sha-6b2eb26\",\"genepi_config_secret_name\":\"geprod/genepi-config\",\"remote_dev_prefix\":\"\"}},\"OutputPrefix\":\"s3://swipe-genepi-geprod-genepi/swipe/pangolin-sfn/results\",\"RUN_WDL_URI\":\"s3://swipe-wdl-genepi-geprod-genepi/pangolin.wdl-v0.0.1.wdl\",\"RunEC2Memory\":48000,\"RunEC2Vcpu\":1,\"RunSPOTMemory\":48000,\"RunSPOTVcpu\":1,\"StateMachineArn\":\"arn:aws:states:us-west-2:010928203514:stateMachine:genepi-geprod-swipe-default-wdl\"}"
+        }
+    ]
+}

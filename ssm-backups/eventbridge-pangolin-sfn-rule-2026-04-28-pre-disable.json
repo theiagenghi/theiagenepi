@@ -1,0 +1,9 @@
+{
+    "Name": "genepi-geprod-geprodstack-pangolin-sfn",
+    "Arn": "arn:aws:events:us-west-2:010928203514:rule/genepi-geprod-geprodstack-pangolin-sfn",
+    "ScheduleExpression": "cron(0 23 ? * THU *)",
+    "State": "ENABLED",
+    "Description": "Scheduled task for pangolin-sfn",
+    "EventBusName": "default",
+    "CreatedBy": "010928203514"
+}

@@ -1,0 +1,11 @@
+{
+    "Parameter": {
+        "Name": "/genepi/geprod/geprodstack/pangolin-sfn",
+        "Type": "String",
+        "Value": "{\n  \"Input\": {\n    \"Run\": {\n      \"aws_region\": \"us-west-2\",\n      \"docker_image_id\": \"654654542669.dkr.ecr.us-west-2.amazonaws.com/genepi-pangolin:sha-6b2eb26\",\n      \"genepi_config_secret_name\": \"geprod/genepi-config\",\n      \"remote_dev_prefix\": \"\"\n    }\n  },\n  \"OutputPrefix\": \"s3://swipe-genepi-geprod-genepi/swipe/pangolin-sfn/results\",\n  \"RUN_WDL_URI\": \"s3://swipe-wdl-genepi-geprod-genepi/pangolin.wdl-v0.0.1.wdl\",\n  \"RunEC2Memory\": 118000,\n  \"RunEC2Vcpu\": 1,\n  \"RunSPOTMemory\": 118000,\n  \"RunSPOTVcpu\": 1,\n  \"StateMachineArn\": \"arn:aws:states:us-west-2:010928203514:stateMachine:genepi-geprod-swipe-default-wdl\"\n}",
+        "Version": 15,
+        "LastModifiedDate": 1777300664.69,
+        "ARN": "arn:aws:ssm:us-west-2:010928203514:parameter/genepi/geprod/geprodstack/pangolin-sfn",
+        "DataType": "text"
+    }
+}
