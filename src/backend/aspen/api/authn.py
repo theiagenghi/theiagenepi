@@ -20,7 +20,9 @@ import aspen.api.error.http_exceptions as ex
 from aspen.api.deps import get_db, get_settings
 from aspen.api.settings import APISettings
 from aspen.auth.auth0_management import Auth0Client
+from aspen.auth.auth0_provisioning import Auth0Provisioning
 from aspen.auth.device_auth import validate_auth_header
+from aspen.auth.identity_provider import IdentityProvider
 from aspen.database.models import Group, GroupRole, User, UserRole
 
 
@@ -177,12 +179,30 @@ async def get_admin_user(auth_user: User = Depends(get_auth_user)) -> None:
         raise ex.UnauthorizedException("Not authorized")
 
 
-async def get_auth0_apiclient(settings: APISettings = Depends(get_settings)):
-    client_id: str = settings.AUTH0_MANAGEMENT_CLIENT_ID
-    client_secret: str = settings.AUTH0_MANAGEMENT_CLIENT_SECRET
-    domain: str = settings.AUTH0_MANAGEMENT_DOMAIN
-    auth0_client = Auth0Client(client_id, client_secret, domain)
-    return auth0_client
+async def get_identity_provider(
+    request: Request,
+    settings: APISettings = Depends(get_settings),
+) -> IdentityProvider:
+    # The Auth0 client is cached on app state: constructing it performs a
+    # client-credentials token exchange, which we do not want to repeat on every
+    # request. It is built on first use rather than at startup because local dev
+    # and CI run with placeholder management credentials that would make startup
+    # fail. There is no await between the read and the write, so the event loop
+    # cannot interleave another request between them.
+    provider: Optional[IdentityProvider] = getattr(
+        request.app.state, "identity_provider", None
+    )
+    if provider is None:
+        provider = Auth0Provisioning(
+            Auth0Client(
+                settings.AUTH0_MANAGEMENT_CLIENT_ID,
+                settings.AUTH0_MANAGEMENT_CLIENT_SECRET,
+                settings.AUTH0_MANAGEMENT_DOMAIN,
+            ),
+            settings.AUTH0_CLIENT_ID,
+        )
+        request.app.state.identity_provider = provider
+    return provider
 
 
 class ACGroupRole(TypedDict):

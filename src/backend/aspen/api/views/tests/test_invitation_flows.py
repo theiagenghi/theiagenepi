@@ -300,8 +300,6 @@ async def test_process_invitation_success(
         auth0_apiclient, group=group, email=invitation_email, expires_at=expires_at
     )
     auth_headers = {"user_id": user1.auth0_user_id}
-    auth0_apiclient.get_user_orgs.side_effect = [[{"id": group.auth0_org_id}]]  # type: ignore
-    auth0_apiclient.get_org_user_roles.side_effect = [["admin"]]  # type: ignore
     res = await http_client.get(
         "/v2/auth/process_invitation",
         params=login_params,
@@ -317,7 +315,9 @@ async def test_process_invitation_success(
     )
     # make sure user roles made it to the db.
     userrole = (await async_session.execute(sa.select(UserRole).options(joinedload(UserRole.role)).where(and_(UserRole.user_id == user1.id, UserRole.group_id == group.id)))).scalars().one()  # type: ignore
-    assert userrole.role.name == "admin"
+    # The roles come from the invitation itself now, rather than from a
+    # follow-up read of the user's roles in the identity provider.
+    assert userrole.role.name == "member"
     # Make sure we redirected to the correct welcome
     assert f"/welcome/{group.id}" in res.headers["Location"]
 

@@ -12,10 +12,11 @@ from fastapi import Depends, FastAPI, Request
 from httpx import AsyncClient
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from aspen.api.authn import get_auth0_apiclient, get_cookie_userid
+from aspen.api.authn import get_cookie_userid, get_identity_provider
 from aspen.api.deps import get_auth0_client, get_db, get_splitio
 from aspen.api.main import get_app
 from aspen.auth.auth0_management import Auth0Client
+from aspen.auth.auth0_provisioning import Auth0Provisioning
 from aspen.database import connection as aspen_connection
 from aspen.database import schema
 from aspen.database.connection import init_async_db
@@ -157,7 +158,12 @@ async def api(
     api = get_app()
     api.dependency_overrides[get_db] = partial(override_get_db, async_db)
     api.dependency_overrides[get_cookie_userid] = override_get_cookie_userid
-    api.dependency_overrides[get_auth0_apiclient] = lambda: auth0_apiclient
+    # The tests stub the Auth0Client mock directly, so we wrap it in the real
+    # adapter rather than mocking the provider itself. That keeps the existing
+    # expectations meaningful and exercises the adapter's translation layer.
+    api.dependency_overrides[get_identity_provider] = lambda: Auth0Provisioning(
+        auth0_apiclient, "test_client_id"
+    )
     api.dependency_overrides[get_auth0_client] = lambda: auth0_oauth
     api.dependency_overrides[get_splitio] = lambda: split_client
     return api

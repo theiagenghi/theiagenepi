@@ -2,15 +2,14 @@ import re
 
 import sentry_sdk
 import sqlalchemy as sa
-from auth0.v3.exceptions import Auth0Error
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import contains_eager, joinedload
 from sqlalchemy.sql.expression import Select
 
-from aspen.api.authn import get_admin_user, get_auth0_apiclient, get_auth_user
+from aspen.api.authn import get_admin_user, get_auth_user, get_identity_provider
 from aspen.api.authz import fetch_authorized_row, require_access
-from aspen.api.deps import get_db, get_settings
+from aspen.api.deps import get_db
 from aspen.api.error import http_exceptions as ex
 from aspen.api.schemas.usergroup import (
     GroupCreationRequest,
@@ -20,18 +19,27 @@ from aspen.api.schemas.usergroup import (
     GroupMembersResponse,
     InvitationsResponse,
 )
-from aspen.api.settings import APISettings
-from aspen.auth.auth0_management import Auth0Client, Auth0Org
+from aspen.auth.identity_provider import IdentityProvider, InvitationInfo
 from aspen.database.models import Group, User, UserRole
 
 router = APIRouter()
+
+
+def _serialize_invitation(invitation: InvitationInfo) -> dict:
+    return {
+        "id": invitation["id"],
+        "created_at": invitation["created_at"],
+        "expires_at": invitation["expires_at"],
+        "inviter": {"name": invitation["inviter_name"]},
+        "invitee": {"email": invitation["invitee_email"]},
+    }
 
 
 @router.post("/", response_model=GroupInfoResponse)
 async def create_group(
     group_creation_request: GroupCreationRequest,
     db: AsyncSession = Depends(get_db),
-    auth0_client: Auth0Client = Depends(get_auth0_apiclient),
+    identity_provider: IdentityProvider = Depends(get_identity_provider),
     user: User = Depends(get_admin_user),
 ) -> GroupInfoResponse:
     # Auth0 requires we only have alphanumerics, "-" and "_" in a group name.
@@ -41,8 +49,10 @@ async def create_group(
     auth0_safe_prefix = re.sub(
         r"[^a-zA-Z0-9_-]+", "_", group_creation_request.prefix.lower()
     )
-    organization = auth0_client.add_org(auth0_safe_prefix, group_creation_request.name)
-    group_values = dict(group_creation_request) | {"auth0_org_id": organization["id"]}
+    org_id = await identity_provider.create_org(
+        auth0_safe_prefix, group_creation_request.name
+    )
+    group_values = dict(group_creation_request) | {"auth0_org_id": org_id}
     group = Group(**group_values)
     db.add(group)
     await db.commit()
@@ -105,38 +115,36 @@ async def get_group_members(
 @router.get("/{group_id}/invitations/", response_model=InvitationsResponse)
 async def get_group_invitations(
     group: Group = Depends(fetch_authorized_row("read", Group, "group_id")),
-    auth0_client: Auth0Client = Depends(get_auth0_apiclient),
+    identity_provider: IdentityProvider = Depends(get_identity_provider),
 ) -> InvitationsResponse:
     try:
-        auth0_org: Auth0Org = auth0_client.get_org_by_id(group.auth0_org_id)
+        invitations = await identity_provider.list_invitations(group.auth0_org_id)
     except Exception:
         raise ex.BadRequestException("Not found")
-    invitations = auth0_client.get_org_invitations(auth0_org)
-    return InvitationsResponse.parse_obj({"invitations": invitations})
+    return InvitationsResponse.parse_obj(
+        {"invitations": [_serialize_invitation(i) for i in invitations]}
+    )
 
 
 @router.post("/{group_id}/invitations/", response_model=GroupInvitationsResponse)
 async def invite_group_members(
     group_invitation_request: GroupInvitationsRequest,
-    auth0_client: Auth0Client = Depends(get_auth0_apiclient),
+    identity_provider: IdentityProvider = Depends(get_identity_provider),
     group: Group = Depends(fetch_authorized_row("invite_members", Group, "group_id")),
-    settings: APISettings = Depends(get_settings),
     user: User = Depends(get_auth_user),
 ) -> GroupInvitationsResponse:
-    organization = auth0_client.get_org_by_id(group.auth0_org_id)
-    client_id = settings.AUTH0_CLIENT_ID
     responses = []
     for email in group_invitation_request.emails:
         success = True
         try:
-            auth0_client.invite_member(
-                organization["id"],
-                client_id,
+            await identity_provider.invite_member(
+                group.auth0_org_id,
+                user.auth0_user_id,
                 user.name,
                 email,
                 group_invitation_request.role,
             )
-        except Auth0Error as err:
+        except Exception as err:
             # TODO - we need to learn more about possible exceptions here.
             sentry_sdk.capture_exception(err)
             success = False

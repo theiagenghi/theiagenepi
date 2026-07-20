@@ -1,6 +1,5 @@
 import os
-from datetime import datetime
-from typing import Optional, Tuple
+from typing import List, Optional, Tuple
 from urllib.parse import urlencode
 
 import sqlalchemy as sa
@@ -14,44 +13,63 @@ from starlette.requests import Request
 from starlette.responses import Response
 
 import aspen.api.error.http_exceptions as ex
-from aspen.api.authn import get_auth0_apiclient, get_auth_user, get_cookie_userid
-from aspen.api.deps import get_auth0_client, get_db, get_settings, get_splitio
+from aspen.api.authn import get_auth_user, get_cookie_userid, get_identity_provider
+from aspen.api.deps import get_auth0_client, get_db, get_settings
 from aspen.api.settings import APISettings
-from aspen.auth.auth0_management import Auth0Client, Auth0Org, Auth0OrgInvitation
-from aspen.auth.role_manager import RoleManager
-from aspen.database.models import Group, User
-from aspen.util.split import SplitClient
+from aspen.auth.identity_provider import IdentityProvider, InvitationInfo
+from aspen.database.models import Group, Role, User, UserRole
 
 # From the example here:
 # https://github.com/authlib/demo-oauth-client/tree/master/fastapi-google-login
 router = APIRouter()
 
 
-def get_invitation_ticket(
-    a0: Auth0Client, organization: str, invitation: str
-) -> Optional[Auth0OrgInvitation]:
-    org: Auth0Org = {
-        "id": organization,
-        "name": organization,
-        "display_name": organization,
-    }
-    # We can't query the auth0 org invitations api directly if we only have a ticket id,
-    # so this is the next best thing.
-    tickets = a0.get_org_invitations(org)
-    for ticket in tickets:
-        expires = ticket["expires_at"]
-        # Don't process expired invitations
-        if datetime.fromisoformat(expires.rstrip("Z")) < datetime.now():
+async def grant_invitation_roles(
+    db: AsyncSession, user: User, org_id: str, role_names: List[str]
+) -> Optional[Group]:
+    """Give a user the roles an invitation promised them.
+
+    Authorization lives entirely in our own database, so this is identical no
+    matter which identity provider issued the invitation.
+    """
+    try:
+        group = (
+            (await db.execute(sa.select(Group).where(Group.auth0_org_id == org_id)))  # type: ignore
+            .scalars()
+            .one()
+        )
+    except NoResultFound:
+        return None
+    for role_name in role_names:
+        role = (
+            (await db.execute(sa.select(Role).where(Role.name == role_name)))  # type: ignore
+            .scalars()
+            .one_or_none()
+        )
+        if role is None:
             continue
-        if ticket.get("ticket_id") == invitation:
-            return ticket
-    return None
+        existing = (
+            (
+                await db.execute(
+                    sa.select(UserRole)  # type: ignore
+                    .where(UserRole.user_id == user.id)
+                    .where(UserRole.group_id == group.id)
+                    .where(UserRole.role_id == role.id)
+                )
+            )
+            .scalars()
+            .one_or_none()
+        )
+        if existing is None:
+            db.add(UserRole(user_id=user.id, group_id=group.id, role_id=role.id))
+    await db.commit()
+    return group
 
 
 async def get_invitation_redirect(
     oauth: StarletteOAuth2App,
     settings: APISettings,
-    a0: Auth0Client,
+    identity_provider: IdentityProvider,
     db: AsyncSession,
     request: Request,
     invitation: str,
@@ -64,17 +82,21 @@ async def get_invitation_redirect(
     # account with the invitation. If we haven't seen that email address before,
     # we'll send them to the standard auth0 "create a new account" flow.
 
-    # Load more information about the invitation from auth0
-    ticket_info = get_invitation_ticket(a0, organization, invitation)
-    if not ticket_info:
+    # Load more information about the invitation from the identity provider.
+    invitation_info = await identity_provider.get_invitation(organization, invitation)
+    if not invitation_info:
         return None
     # Check to see if the user is already in our db.
-    invitee = ticket_info["invitee"]["email"]
+    invitee = invitation_info["invitee_email"]
     try:
         (await db.execute(sa.select(User).where(User.email == invitee))).scalars().one()  # type: ignore
     except NoResultFound:
-        # If the user isn't in our db, proceed with regular auth0 flow.
-        return None
+        # The invitee has no account yet. Auth0 owns its own signup flow and can
+        # redeem the invitation itself, so hand the invitation back to the
+        # caller to forward. Any other provider only does authentication, so we
+        # carry the invitation through login in the session instead.
+        if settings.PROVISIONING_BACKEND == "auth0":
+            return None
     # If we're already logged in as this user, just process the invitation and redirect to welcome.
     user = None
     try:
@@ -117,7 +139,7 @@ async def login(
     db: AsyncSession = Depends(get_db),
     organization_name: Optional[str] = None,
     oauth: StarletteOAuth2App = Depends(get_auth0_client),
-    a0: Auth0Client = Depends(get_auth0_apiclient),
+    identity_provider: IdentityProvider = Depends(get_identity_provider),
     settings: APISettings = Depends(get_settings),
     cookie_userid: Optional[str] = Depends(get_cookie_userid),
 ) -> Response:
@@ -126,7 +148,7 @@ async def login(
         resp = await get_invitation_redirect(
             oauth,
             settings,
-            a0,
+            identity_provider,
             db,
             request,
             invitation,
@@ -146,7 +168,9 @@ async def login(
     )
 
 
-async def create_user_if_not_exists(db, userinfo) -> Tuple[User, Optional[Group]]:
+async def create_user_if_not_exists(
+    db, userinfo, pending_org_id: Optional[str] = None
+) -> Tuple[User, Optional[Group]]:
     auth0_user_id = userinfo.get("sub")
     if not auth0_user_id:
         # User ID really needs to be present
@@ -160,11 +184,15 @@ async def create_user_if_not_exists(db, userinfo) -> Tuple[User, Optional[Group]
         return user, None
     except NoResultFound:
         pass
-    # We're currently only creating new users if they're confirming an org invitation
-    if "org_id" not in userinfo:
+    # We're currently only creating new users if they're confirming an org
+    # invitation. Auth0 signals that with an `org_id` claim; providers that only
+    # do authentication have no such claim, so the caller passes the org id from
+    # the invitation stashed in the session.
+    org_id = userinfo.get("org_id") or pending_org_id
+    if not org_id:
         raise ex.UnauthorizedException("Invalid group id")
     groupquery = await db.execute(
-        sa.select(Group).filter(Group.auth0_org_id == userinfo["org_id"])  # type: ignore
+        sa.select(Group).filter(Group.auth0_org_id == org_id)  # type: ignore
     )
     # If the group doesn't exist, we can't create a user for it
     try:
@@ -188,9 +216,7 @@ async def create_user_if_not_exists(db, userinfo) -> Tuple[User, Optional[Group]
 async def auth(
     request: Request,
     oauth: StarletteOAuth2App = Depends(get_auth0_client),
-    splitio: SplitClient = Depends(get_splitio),
     db: AsyncSession = Depends(get_db),
-    a0: Auth0Client = Depends(get_auth0_apiclient),
     error_description: Optional[str] = None,
     settings: APISettings = Depends(get_settings),
 ) -> Response:
@@ -219,20 +245,14 @@ async def auth(
         "user_id": userinfo["sub"],
         "name": userinfo["name"],
     }
-    user, newuser_group = await create_user_if_not_exists(db, userinfo)
-    # Always re-sync auth0 groups to our db on login!
-    # Make sure the user is in auth0 before sync'ing roles.
-    #  ex: User1 in local dev doesn't exist in auth0
-    sync_roles = splitio.get_usergroup_treatment("sync_auth0_roles", user)
-    if sync_roles == "on":
-        if user.auth0_user_id.startswith("auth0|"):
-            await RoleManager.sync_user_roles(db, a0, user)
-        await db.commit()
+    saved_invitation = request.session.get("process_invitation") or {}
+    user, newuser_group = await create_user_if_not_exists(
+        db, userinfo, saved_invitation.get("organization")
+    )
 
     # If we saved an org invitation in the users's session, redirect the user to the endpoint
     # that can process the invitation, and clear out the invitation info in their session.
-    if request.session.get("process_invitation"):
-        saved_invitation = request.session.get("process_invitation", {})
+    if saved_invitation:
         invitation = saved_invitation.get("invitation")
         organization = saved_invitation.get("organization")
         organization_name = saved_invitation.get("organization_name")
@@ -242,7 +262,9 @@ async def auth(
         )
         del request.session["process_invitation"]
         return RedirectResponse(redirect_url)
-    if userinfo.get("org_id") and newuser_group:
+    # `newuser_group` is only set when we just created the account from an
+    # organization, which is the case the welcome page exists for.
+    if newuser_group:
         return RedirectResponse(
             os.getenv("FRONTEND_URL", "") + f"/welcome/{newuser_group.id}"
         )
@@ -256,17 +278,18 @@ async def process_invitation(
     organization: str,
     invitation: str,
     db: AsyncSession = Depends(get_db),
-    splitio: SplitClient = Depends(get_splitio),
     organization_name: Optional[str] = None,
     oauth: StarletteOAuth2App = Depends(get_auth0_client),
-    a0: Auth0Client = Depends(get_auth0_apiclient),
+    identity_provider: IdentityProvider = Depends(get_identity_provider),
     settings: APISettings = Depends(get_settings),
     user=Depends(get_auth_user),
 ) -> Response:
-    # Load more information about the invitation from auth0
-    ticket_info = get_invitation_ticket(a0, organization, invitation)
-    if not ticket_info:
-        # Let Auth0 complain about the invalid invitation.
+    # Load more information about the invitation from the identity provider.
+    invitation_info: Optional[InvitationInfo] = await identity_provider.get_invitation(
+        organization, invitation
+    )
+    if not invitation_info:
+        # Let the identity provider complain about the invalid invitation.
         kwargs = {
             "invitation": invitation,
             "organization": organization,
@@ -277,45 +300,20 @@ async def process_invitation(
         )
 
     # Check to see if the user is the same as the one we're logged in as
-    invitee = ticket_info["invitee"]["email"]
-    if invitee != user.email:
+    if invitation_info["invitee_email"] != user.email:
         raise ex.BadRequestException("email address mismatch")
 
     # If we made it to this point, just process the invitation and redirect to welcome.
-
-    # Tell auth0 to make this user a member of the group and assign roles.
-    org: Auth0Org = {
-        "id": ticket_info["organization_id"],
-        "name": "",
-        "display_name": "",
-    }
-    a0.add_org_member(org, user.auth0_user_id, ticket_info["roles"], False)
-    # and our invitation is moot, delete it.
-    a0.delete_organization_invitation(ticket_info["organization_id"], ticket_info["id"])
-
-    # ok, now sync a0 roles to the db.
-    sync_roles = splitio.get_usergroup_treatment("sync_auth0_roles", user)
-    if sync_roles == "on":
-        await RoleManager.sync_user_roles(db, a0, user)
-        await db.commit()
-
-    try:
-        # redirect to the welcome page.
-        group = (
-            (
-                await db.execute(
-                    sa.select(Group).where(  # type: ignore
-                        Group.auth0_org_id == ticket_info["organization_id"]  # type: ignore
-                    )
-                )
-            )
-            .scalars()
-            .one()
-        )
-        return RedirectResponse(os.getenv("FRONTEND_URL", "") + f"/welcome/{group.id}")
-    except NoResultFound:
+    await identity_provider.accept_invitation(
+        organization, invitation_info, user.auth0_user_id
+    )
+    group = await grant_invitation_roles(
+        db, user, organization, invitation_info["roles"]
+    )
+    if not group:
         # This really shouldn't have happened, but send them to the frontend.
         return RedirectResponse(os.getenv("FRONTEND_URL", "") + "/data/samples")
+    return RedirectResponse(os.getenv("FRONTEND_URL", "") + f"/welcome/{group.id}")
 
 
 @router.get("/logout")

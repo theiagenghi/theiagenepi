@@ -4,8 +4,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from aspen.api.authn import (
     get_admin_user,
-    get_auth0_apiclient,
     get_auth_user,
+    get_identity_provider,
     get_usergroup_query,
 )
 from aspen.api.deps import get_db
@@ -15,7 +15,7 @@ from aspen.api.schemas.usergroup import (
     UserPostRequest,
     UserUpdateRequest,
 )
-from aspen.auth.auth0_management import Auth0Client
+from aspen.auth.identity_provider import IdentityProvider
 from aspen.database.models import User
 
 router = APIRouter()
@@ -45,22 +45,22 @@ async def get_current_user(user=Depends(get_auth_user)) -> UserMeResponse:
 async def update_user_info(
     user_update_request: UserUpdateRequest,
     db: AsyncSession = Depends(get_db),
-    auth0_client: Auth0Client = Depends(get_auth0_apiclient),
+    identity_provider: IdentityProvider = Depends(get_identity_provider),
     user=Depends(get_auth_user),
 ) -> UserMeResponse:
-    auth0_update_items = {}
-    auth0_attributes = ["name"]
+    idp_update_items = {}
+    idp_attributes = ["name"]
 
     for attribute, value in user_update_request:
         if value is not None:
             setattr(user, attribute, value)
-            if attribute in auth0_attributes:
-                auth0_update_items[attribute] = value
+            if attribute in idp_attributes:
+                idp_update_items[attribute] = value
 
     await db.commit()
 
-    if user.auth0_user_id and len(auth0_update_items) > 0:
-        auth0_client.update_user(user.auth0_user_id, **auth0_update_items)
+    if user.auth0_user_id and len(idp_update_items) > 0:
+        await identity_provider.update_user(user.auth0_user_id, **idp_update_items)
     set_user_groups(user)
     return UserMeResponse.from_orm(user)
 

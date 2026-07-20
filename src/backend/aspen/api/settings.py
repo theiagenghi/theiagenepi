@@ -126,6 +126,10 @@ class Settings(BaseSettings):
     SECRET_IDP_ISSUER: Optional[str] = None
     IDP_VERIFY_TLS: bool = True
 
+    # "auth0" keeps organizations, memberships and invitations in Auth0;
+    # "local" keeps them in our own database.
+    PROVISIONING_BACKEND: str = "auth0"
+
     # Env vars usually pulled from AWS SSM Parameters
     AWS_NEXTSTRAIN_SFN_PARAMETERS: Dict
     AWS_PANGOLIN_SFN_PARAMETERS: Dict
