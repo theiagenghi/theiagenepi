@@ -1,0 +1,9 @@
+.qodo
+
+# Credential-bearing files that must never be committed.
+# These hold a GCP service account private key and production RDS
+# credentials in plaintext. Rotate them; do not commit them.
+spreadsheet-*.json
+*-service-account*.json
+check-users/fetch_groups.py
+fetch-groups/fetch_groups.py
