@@ -129,6 +129,10 @@ class Settings(BaseSettings):
     # "auth0" keeps organizations, memberships and invitations in Auth0;
     # "local" keeps them in our own database.
     PROVISIONING_BACKEND: str = "auth0"
+    # "console" logs invitation emails instead of sending them.
+    EMAIL_BACKEND: str = "console"
+    EMAIL_FROM_ADDRESS: str = ""
+    INVITATION_EXPIRY_DAYS: int = 14
 
     # Env vars usually pulled from AWS SSM Parameters
     AWS_NEXTSTRAIN_SFN_PARAMETERS: Dict

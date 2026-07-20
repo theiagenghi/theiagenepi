@@ -17,6 +17,12 @@ from aspen.database.models.gisaid_dump import (  # noqa: F401
     RawGisaidDump,
 )
 from aspen.database.models.gisaid_metadata import GisaidMetadata  # noqa: F401
+from aspen.database.models.invitation import (  # noqa: F401
+    generate_invitation_token,
+    hash_invitation_token,
+    Invitation,
+    InvitationStatusType,
+)
 from aspen.database.models.lineages import (  # noqa: F401
     PangoLineage,
     PathogenLineage,

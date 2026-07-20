@@ -23,7 +23,9 @@ from aspen.auth.auth0_management import Auth0Client
 from aspen.auth.auth0_provisioning import Auth0Provisioning
 from aspen.auth.device_auth import validate_auth_header
 from aspen.auth.identity_provider import IdentityProvider
+from aspen.auth.local_provisioning import LocalProvisioning
 from aspen.database.models import Group, GroupRole, User, UserRole
+from aspen.util.email import get_email_sender
 
 
 def get_usergroup_query(
@@ -181,8 +183,18 @@ async def get_admin_user(auth_user: User = Depends(get_auth_user)) -> None:
 
 async def get_identity_provider(
     request: Request,
+    db: AsyncSession = Depends(get_db),
     settings: APISettings = Depends(get_settings),
 ) -> IdentityProvider:
+    if settings.PROVISIONING_BACKEND == "local":
+        # Built per request because it holds the request's database session.
+        return LocalProvisioning(
+            db,
+            get_email_sender(settings.EMAIL_BACKEND, settings.EMAIL_FROM_ADDRESS),
+            settings.API_URL,
+            settings.INVITATION_EXPIRY_DAYS,
+        )
+
     # The Auth0 client is cached on app state: constructing it performs a
     # client-credentials token exchange, which we do not want to repeat on every
     # request. It is built on first use rather than at startup because local dev
