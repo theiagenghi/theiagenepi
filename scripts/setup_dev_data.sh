@@ -66,6 +66,8 @@ ${local_aws} secretsmanager update-secret --secret-id genepi-config --secret-str
   "AUTH0_ACCESS_TOKEN_URL": "'"${OIDC_INTERNAL_URL}"'/connect/token",
   "AUTH0_AUTHORIZE_URL": "'"${OIDC_BROWSER_URL}"'/connect/authorize",
   "AUTH0_CLIENT_KWARGS": {"scope": "openid profile email offline_access"},
+  "IDP_JWKS_URL": "'"${OIDC_BROWSER_URL}"'/.well-known/openid-configuration/jwks",
+  "IDP_ISSUER": "'"${OIDC_BROWSER_URL}"'",
   "FLASK_SECRET": "DevelopmentKey",
   "SPLIT_BACKEND_KEY": "localhost",
   "DB_rw_username": "postgres",

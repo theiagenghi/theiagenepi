@@ -212,6 +212,24 @@ class Config(object):
         except KeyError:
             return "userinfo"
 
+    @property
+    def IDP_JWKS_URL(self) -> str:
+        try:
+            return self.AWS_SECRET["IDP_JWKS_URL"]
+        except KeyError:
+            return f"https://{self.AUTH0_DOMAIN}/.well-known/jwks.json"
+
+    @property
+    def IDP_ISSUER(self) -> str:
+        try:
+            return self.AWS_SECRET["IDP_ISSUER"]
+        except KeyError:
+            return f"https://{self.AUTH0_DOMAIN}/"
+
+    @property
+    def IDP_VERIFY_TLS(self) -> bool:
+        return os.environ.get("IDP_VERIFY_TLS", "true").lower() != "false"
+
     ####################################################################################
     # database properties
     @property

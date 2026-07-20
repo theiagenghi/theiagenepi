@@ -90,6 +90,9 @@ services:
       - DEPLOYMENT_STAGE=local
       - NEXTSTRAIN_SFN_ARN=arn:aws:states:us-west-2:000000000000:stateMachine:nextstrain-sfn
       - PYTHONPATH=.
+      # The local OIDC mock serves a self-signed cert. Passed as an env var rather
+      # than in the genepi-config secret, because the secret loader drops falsy values.
+      - IDP_VERIFY_TLS=false
     volumes:
       - ./src/backend:/usr/src/app
     entrypoint: []

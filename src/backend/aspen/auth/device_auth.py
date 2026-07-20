@@ -31,7 +31,9 @@ class InsecureJwksFetcher(JwksFetcher):
         return self._cache_value
 
 
-def validate_auth_header(auth_header, domain, client_id):
+def validate_auth_header(
+    auth_header, domain, client_id, jwks_url=None, issuer=None, verify_tls=True
+):
     parts = auth_header.split()
 
     if parts[0].lower() != "bearer":
@@ -43,17 +45,15 @@ def validate_auth_header(auth_header, domain, client_id):
 
     id_token = parts[1]
 
-    # TODO, this should probably be a part of aspen config.
-    if "genepinet.localdev" in domain:
-        jwks_url = f"https://{domain}/.well-known/openid-configuration/jwks"
-        issuer = f"https://{domain}"
-        # Adapted from https://github.com/auth0/auth0-python#id-token-validation
-        sv = AsymmetricSignatureVerifier(jwks_url)
-        sv._fetcher = InsecureJwksFetcher(jwks_url)
-    else:
+    if jwks_url is None:
         jwks_url = f"https://{domain}/.well-known/jwks.json"
+    if issuer is None:
         issuer = f"https://{domain}/"
-        sv = AsymmetricSignatureVerifier(jwks_url)
+
+    # Adapted from https://github.com/auth0/auth0-python#id-token-validation
+    sv = AsymmetricSignatureVerifier(jwks_url)
+    if not verify_tls:
+        sv._fetcher = InsecureJwksFetcher(jwks_url)
 
     payload = sv.verify_signature(id_token)
     tv = TokenVerifier(signature_verifier=sv, issuer=issuer, audience=client_id)

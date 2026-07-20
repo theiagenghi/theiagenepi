@@ -120,6 +120,12 @@ class Settings(BaseSettings):
     SECRET_AUTH0_ACCESS_TOKEN_URL: Optional[str] = None
     SECRET_AUTH0_SERVER_METADATA_URL: Optional[str] = None
 
+    # Identity provider details used to validate CLI device-auth tokens. They
+    # default to Auth0's layout; a different OIDC provider sets them explicitly.
+    SECRET_IDP_JWKS_URL: Optional[str] = None
+    SECRET_IDP_ISSUER: Optional[str] = None
+    IDP_VERIFY_TLS: bool = True
+
     # Env vars usually pulled from AWS SSM Parameters
     AWS_NEXTSTRAIN_SFN_PARAMETERS: Dict
     AWS_PANGOLIN_SFN_PARAMETERS: Dict
@@ -187,6 +193,8 @@ class Settings(BaseSettings):
             "AUTH0_ACCESS_TOKEN_URL": "SECRET_AUTH0_ACCESS_TOKEN_URL",
             "AUTH0_AUTHORIZE_URL": "SECRET_AUTH0_AUTHORIZE_URL",
             "AUTH0_SERVER_METADATA_URL": "SECRET_AUTH0_SERVER_METADATA_URL",
+            "IDP_JWKS_URL": "SECRET_IDP_JWKS_URL",
+            "IDP_ISSUER": "SECRET_IDP_ISSUER",
         }
         aws_secret_keys = [
             "SENTRY_BACKEND_DSN",
@@ -279,6 +287,20 @@ class APISettings(Settings):
             return self.SECRET_AUTH0_SERVER_METADATA_URL
         else:
             return f"https://{self.AUTH0_DOMAIN}/.well-known/openid-configuration"
+
+    @property
+    def IDP_JWKS_URL(self) -> str:
+        if self.SECRET_IDP_JWKS_URL:
+            return self.SECRET_IDP_JWKS_URL
+        else:
+            return f"https://{self.AUTH0_DOMAIN}/.well-known/jwks.json"
+
+    @property
+    def IDP_ISSUER(self) -> str:
+        if self.SECRET_IDP_ISSUER:
+            return self.SECRET_IDP_ISSUER
+        else:
+            return f"https://{self.AUTH0_DOMAIN}/"
 
 
 class CLISettings(Settings):

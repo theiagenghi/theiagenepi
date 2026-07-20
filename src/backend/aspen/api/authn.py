@@ -123,7 +123,12 @@ def get_token_userid(
         return None
     try:
         payload = validate_auth_header(
-            auth_header, settings.AUTH0_DOMAIN, settings.AUTH0_CLIENT_ID
+            auth_header,
+            settings.AUTH0_DOMAIN,
+            settings.AUTH0_CLIENT_ID,
+            jwks_url=settings.IDP_JWKS_URL,
+            issuer=settings.IDP_ISSUER,
+            verify_tls=settings.IDP_VERIFY_TLS,
         )
         return payload["sub"]
     except TokenValidationError as err:
