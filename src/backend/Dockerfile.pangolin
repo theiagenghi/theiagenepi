@@ -16,7 +16,7 @@ RUN wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faSomeRecords
 RUN wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/faSize
 RUN chmod 775 *
 # v0.6.4 and v0.6.5 are excluded by pangolin (known broken, see cov-lineages/pangolin#560).
-# v0.6.3 is the last safe version for pangolin 4.3.x + pangolin-data 1.38.
+# v0.6.3 is the last safe version for pangolin 4.3.x + pangolin-data 1.40.
 RUN git clone https://github.com/yatisht/usher.git
 RUN cd usher && git checkout v0.6.3 && ./install/installUbuntu.sh
 
@@ -55,7 +55,7 @@ RUN pip3 install snakemake==7.30.1
 # for now pinning pulp to 2.7.0 works
 RUN pip3 install pulp==2.7.0
 RUN pip3 install git+https://github.com/cov-lineages/pangolin.git@v4.3.4
-RUN pip3 install git+https://github.com/cov-lineages/pangolin-data.git@v1.38
+RUN pip3 install git+https://github.com/cov-lineages/pangolin-data.git@v1.40
 RUN pip3 install git+https://github.com/cov-lineages/scorpio.git@v0.3.19
 RUN pip3 install git+https://github.com/cov-lineages/constellations.git@v0.1.12
 
@@ -97,6 +97,21 @@ COPY --from=usher \
     /usherbuild/usher/build/tbb_cmake_build/tbb_cmake_build_subdir_release/libtbb_preview.so.2 \
     /usr/lib/x86_64-linux-gnu/libtbb_preview.so.2
 RUN ldconfig
+
+# Fail the build if pangolin cannot start or if the lineage data does not carry
+# the clades we pinned this version for. PQ.16.1.1 and its alias SV are absent
+# from pangolin-data 1.38, which made UShER fall back to the sibling PQ.17.
+RUN pangolin -pv
+RUN python3 - <<'PY'
+import json, pathlib, pangolin_data
+data = pathlib.Path(pangolin_data.__file__).parent / "data"
+aliases = json.loads((data / "alias_key.json").read_text())
+assert aliases.get("SV") == "XDV.1.5.1.1.8.1.16.1.1", aliases.get("SV")
+designated = {line.split(",")[1] for line in (data / "lineages.hash.csv").read_text().splitlines()[1:]}
+for lineage in ("PQ.16.1.1", "SV.1", "SV.2"):
+    assert lineage in designated, lineage
+print(f"pangolin-data {pangolin_data.__version__} lineage data verified")
+PY
 
 # Poetry: install app
 COPY pyproject.toml poetry.lock environment.yaml ./
