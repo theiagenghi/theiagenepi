@@ -1,0 +1,189 @@
+name: Nextclade Upgrade Check
+
+# Validates a Nextclade CLI version against the assumptions baked into the
+# lineage_qc workflow code (src/backend/aspen/workflows/nextclade/). Runs
+# entirely on GitHub-hosted Linux runners, so it needs no AWS/ECR secrets and
+# works for contributors on macOS (the nextclade binary is Linux x86_64 only).
+#
+# Trigger manually from the Actions tab, or it runs automatically on PRs that
+# touch the nextclade workflow or its Dockerfile.
+
+on:
+  workflow_dispatch:
+    inputs:
+      nextclade_version:
+        description: "Nextclade version to test"
+        required: true
+        default: "3.23.0"
+  pull_request:
+    paths:
+      - "src/backend/aspen/workflows/nextclade/**"
+      - "src/backend/Dockerfile.lineage_qc"
+      - ".github/workflows/nextclade-upgrade-check.yml"
+
+env:
+  # Default when triggered by pull_request (workflow_dispatch overrides below).
+  NEXTCLADE_VERSION: "3.23.0"
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Job 1: actually run the binary and assert output is still compatible.
+  # This is the job that answers "is the upgrade safe?" — it fails if any CSV
+  # column that save.py reads by name disappears, or if the pathogen.json tag
+  # structure that extract_dataset_info() depends on changes.
+  # ---------------------------------------------------------------------------
+  binary-smoke:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve nextclade version
+        env:
+          # Bind untrusted dispatch input to an env var, never inline it into
+          # the script body. Validate strictly before use.
+          INPUT_VERSION: ${{ github.event.inputs.nextclade_version }}
+        run: |
+          VERSION="${INPUT_VERSION:-$NEXTCLADE_VERSION}"
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Invalid nextclade version: '$VERSION' (expected X.Y.Z)"
+            exit 1
+          fi
+          echo "NEXTCLADE_VERSION=${VERSION}" >> "$GITHUB_ENV"
+          echo "Testing nextclade ${VERSION}"
+
+      - name: Download nextclade binary
+        run: |
+          curl -fsSL \
+            "https://github.com/nextstrain/nextclade/releases/download/${NEXTCLADE_VERSION}/nextclade-x86_64-unknown-linux-gnu" \
+            -o /usr/local/bin/nextclade
+          chmod +x /usr/local/bin/nextclade
+          nextclade --version
+
+      - name: Get datasets (sars-cov-2 + mpox) — mirrors prep_samples.py
+        run: |
+          nextclade dataset get \
+            --name "nextstrain/sars-cov-2/wuhan-hu-1/orfs" \
+            --output-dir "dataset_sc2"
+          nextclade dataset get \
+            --name "nextstrain/mpox/all-clades" \
+            --output-dir "dataset_mpox"
+
+      - name: Run nextclade — mirrors run_nextclade.sh flags
+        run: |
+          # The dataset bundle ships example sequences; use them as input so we
+          # exercise a real run without committing FASTA fixtures.
+          nextclade run \
+            --input-dataset "dataset_sc2" \
+            --retry-reverse-complement \
+            --output-all "output_sc2" \
+            "dataset_sc2/sequences.fasta"
+
+      - name: Assert CSV columns save.py depends on are present
+        run: |
+          python3 - <<'PY'
+          import csv, sys, json
+          from pathlib import Path
+
+          # Exact columns indexed by name in
+          # aspen/workflows/nextclade/save.py (semicolon-delimited CSV).
+          required_cols = {
+              "seqName", "clade",
+              "qc.overallScore", "qc.overallStatus",
+              "errors", "warnings",
+              "substitutions", "insertions", "deletions",
+              "aaSubstitutions", "aaInsertions", "aaDeletions",
+          }
+
+          csv_path = Path("output_sc2/nextclade.csv")
+          with csv_path.open() as fh:
+              header = next(csv.reader(fh, delimiter=";"))
+          cols = set(header)
+          missing = required_cols - cols
+          print("CSV columns found:", sorted(cols))
+          if missing:
+              print(f"::error::Missing required CSV columns: {sorted(missing)}")
+              sys.exit(1)
+          # 'lineage' is optional (get_lineage_from_row falls back to 'clade'),
+          # so we only report its presence, not fail on it.
+          print("Optional 'lineage' column present:", "lineage" in cols)
+          print("All required CSV columns present.")
+          PY
+
+      - name: Assert pathogen.json structure extract_dataset_info() depends on
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          from pathlib import Path
+
+          # extract_dataset_info() (aspen/workflows/nextclade/utils.py) reads:
+          #   attributes.name, attributes."reference accession", version.tag
+          for ds in ("dataset_sc2", "dataset_mpox"):
+              data = json.loads(Path(ds, "pathogen.json").read_text())
+              attrs = data.get("attributes", {})
+              problems = []
+              if "name" not in attrs:
+                  problems.append('attributes.name')
+              if "reference accession" not in attrs:
+                  problems.append('attributes."reference accession"')
+              if "tag" not in data.get("version", {}):
+                  problems.append("version.tag")
+              if problems:
+                  print(f"::error::{ds}/pathogen.json missing: {problems}")
+                  sys.exit(1)
+              print(f"{ds}: name={attrs['name']!r} "
+                    f"accession={attrs['reference accession']!r} "
+                    f"tag={data['version']['tag']!r}")
+          print("pathogen.json structure is compatible.")
+          PY
+
+  # ---------------------------------------------------------------------------
+  # Job 2: the existing fixture-replay test (test_nextclade_save.py). Builds the
+  # lineage_qc image locally (no ECR cache, no secrets) and runs the test
+  # against a throwaway Postgres on a shared Docker network. Validates the
+  # CSV/FASTA -> DB save logic; independent of the binary version.
+  # ---------------------------------------------------------------------------
+  save-test:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Docker network
+        run: docker network create genepinet
+
+      - name: Start Postgres (alias 'database', matching the test fixtures)
+        run: |
+          docker run -d --name database \
+            --network genepinet --network-alias database \
+            -e POSTGRES_USER=postgres \
+            -e POSTGRES_PASSWORD=password_postgres \
+            -e POSTGRES_DB=aspen_db \
+            postgres:13.1-alpine
+          # Wait for Postgres to accept connections.
+          for i in $(seq 1 30); do
+            if docker exec database pg_isready -U postgres >/dev/null 2>&1; then
+              echo "Postgres ready"; break
+            fi
+            sleep 2
+          done
+          # create_tables_and_schema() GRANTs to pre-existing 'user_rw' and
+          # 'user_ro' roles and connects as user_rw; in compose these roles are
+          # created by setup, so create both here.
+          docker exec database psql -U postgres -d aspen_db -c \
+            "CREATE ROLE user_rw WITH LOGIN PASSWORD 'password_rw' CREATEDB;"
+          docker exec database psql -U postgres -d aspen_db -c \
+            "CREATE ROLE user_ro WITH LOGIN PASSWORD 'password_ro';"
+
+      - name: Build lineage_qc image
+        run: |
+          docker build \
+            -f src/backend/Dockerfile.lineage_qc \
+            -t genepi-lineage-qc:ci \
+            src/backend
+
+      - name: Run nextclade save test
+        run: |
+          docker run --rm --network genepinet \
+            -w /usr/src/app -e PYTHONPATH=. \
+            genepi-lineage-qc:ci \
+            pytest -p no:cacheprovider \
+              aspen/workflows/nextclade/tests/test_nextclade_save.py -vv
