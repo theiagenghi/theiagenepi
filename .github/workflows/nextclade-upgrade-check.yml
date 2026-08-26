@@ -20,6 +20,9 @@ on:
       - "src/backend/aspen/workflows/nextclade/**"
       - "src/backend/Dockerfile.lineage_qc"
       - ".github/workflows/nextclade-upgrade-check.yml"
+  push:
+    branches:
+      - "tghi-docker-*"
 
 env:
   # Default when triggered by pull_request (workflow_dispatch overrides below).
