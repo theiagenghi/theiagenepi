@@ -10,7 +10,7 @@ workflow LoadGISAID {
         # String upstream_ndjson_url = "s3://nextstrain-data/files/ncov/open/genbank.ndjson.zst"
         # String upstream_aligned_url = "s3://nextstrain-data/files/ncov/open/aligned.fasta.xz"
         String upstream_ndjson_url = "https://data.nextstrain.org/files/ncov/open/genbank.ndjson.zst"
-        String upstream_aligned_url = "https://data.nextstrain.org/files/ncov/open/aligned.fasta.xz"
+        String upstream_aligned_url = "https://data.nextstrain.org/files/ncov/open/aligned.fasta.zst"
     }
 
     call IngestRepoData {
@@ -263,7 +263,13 @@ task SaveAlignedData {
 
     # fetch the upstream repo dataset
     ${aws} s3 cp --no-progress "s3://${processed_genbank_s3_bucket}/${transformed_metadata_s3_key}" /ncov/data/metadata.tsv.xz
-    wget --continue --tries=2 -nv -O aligned.fasta.xz "~{upstream_aligned_url}"
+    # Nextstrain retired the .xz artifact in mid-2026 and now publishes zstd only.
+    # The pinned ncov fork hardcodes results/aligned_{origin}.fasta.xz, and every
+    # existing AlignedRepositoryData row points at a .xz key, so transcode here
+    # rather than propagate .zst to downstream consumers.
+    wget --continue --tries=2 -nv -O aligned.fasta.zst "~{upstream_aligned_url}"
+    zstdmt -dc aligned.fasta.zst | xz -T0 -1 > aligned.fasta.xz
+    rm -f aligned.fasta.zst
 
     # Transform gisaid metadata only! Don't re-run alignment!
     unxz -k /ncov/data/metadata.tsv.xz
