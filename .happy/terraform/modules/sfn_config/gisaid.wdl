@@ -268,7 +268,11 @@ task SaveAlignedData {
     # existing AlignedRepositoryData row points at a .xz key, so transcode here
     # rather than propagate .zst to downstream consumers.
     wget --continue --tries=2 -nv -O aligned.fasta.zst "~{upstream_aligned_url}"
-    zstdmt -dc aligned.fasta.zst | xz -T0 -1 > aligned.fasta.xz
+    # -9 is load-bearing: aligned genomes are near-duplicates of each other, so
+    # the redundancy lives between sequences. -1's 1 MiB dictionary spans ~33
+    # sequences and inflates the artifact ~6.7x (10.0 GiB vs 1.5 GiB); -9's
+    # 64 MiB dictionary spans ~2000. Costs minutes on a 2h job, so do not lower.
+    zstdmt -dc aligned.fasta.zst | xz -T0 -9 > aligned.fasta.xz
     rm -f aligned.fasta.zst
 
     # Transform gisaid metadata only! Don't re-run alignment!
